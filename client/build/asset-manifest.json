@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.js": "/static/js/main.9843811f.chunk.js",
+    "main.js.map": "/static/js/main.9843811f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0e03599a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0e03599a.js.map",
+    "static/css/2.00ec5bea.chunk.css": "/static/css/2.00ec5bea.chunk.css",
+    "static/js/2.f0e4290e.chunk.js": "/static/js/2.f0e4290e.chunk.js",
+    "static/js/2.f0e4290e.chunk.js.map": "/static/js/2.f0e4290e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.00ec5bea.chunk.css.map": "/static/css/2.00ec5bea.chunk.css.map",
+    "static/js/2.f0e4290e.chunk.js.LICENSE.txt": "/static/js/2.f0e4290e.chunk.js.LICENSE.txt",
+    "static/media/Ar-ID.86c51d6a.svg": "/static/media/Ar-ID.86c51d6a.svg",
+    "static/media/Check-LogIn.fea50e92.svg": "/static/media/Check-LogIn.fea50e92.svg",
+    "static/media/box.d8914003.svg": "/static/media/box.d8914003.svg",
+    "static/media/calendar.a972e51b.svg": "/static/media/calendar.a972e51b.svg",
+    "static/media/choice.4a11096d.svg": "/static/media/choice.4a11096d.svg",
+    "static/media/classroom.2884bc63.svg": "/static/media/classroom.2884bc63.svg",
+    "static/media/exam.f0988d41.svg": "/static/media/exam.f0988d41.svg",
+    "static/media/grid.2a77a23d.svg": "/static/media/grid.2a77a23d.svg",
+    "static/media/homework.490eb0bd.svg": "/static/media/homework.490eb0bd.svg",
+    "static/media/learning.34815e9f.svg": "/static/media/learning.34815e9f.svg",
+    "static/media/library.d164ede3.svg": "/static/media/library.d164ede3.svg",
+    "static/media/more.76b5b1d3.svg": "/static/media/more.76b5b1d3.svg",
+    "static/media/multipleChoice.f6ce2900.svg": "/static/media/multipleChoice.f6ce2900.svg",
+    "static/media/open-book.bafa48d3.svg": "/static/media/open-book.bafa48d3.svg",
+    "static/media/pdf.22505b81.svg": "/static/media/pdf.22505b81.svg",
+    "static/media/roundedPlus.d5048b9a.svg": "/static/media/roundedPlus.d5048b9a.svg",
+    "static/media/text.bbe22b36.svg": "/static/media/text.bbe22b36.svg",
+    "static/media/videoChat.fd253e16.svg": "/static/media/videoChat.fd253e16.svg",
+    "static/media/videoconference.4e2f1c07.svg": "/static/media/videoconference.4e2f1c07.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e03599a.js",
+    "static/css/2.00ec5bea.chunk.css",
+    "static/js/2.f0e4290e.chunk.js",
+    "static/js/main.9843811f.chunk.js"
+  ]
+}

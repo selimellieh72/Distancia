@@ -79,7 +79,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //Routes
-app.get("/", (req, res) => res.send("Hello World"));
 
 app.post("/register", function (req, res) {
   const fullNameFormated = req.body.fullName
@@ -429,8 +428,6 @@ app.get("/uploads/:id", function (req, res) {
   });
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+app.use(express.static("client/build"));
 
 app.listen(port, () => console.log("Server started on port " + port));
