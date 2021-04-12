@@ -1,0 +1,18 @@
+.dashboard-homework__button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    padding: 16px;
+    background: #2b2b2b;
+    display: inline-block;
+    color: #fff;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.dashboard-homework__button:hover,
+.dashboard-homework__button:active {
+    color: #2b2b2b;
+    font-weight: bold;
+    background: #b4b4b4;
+}

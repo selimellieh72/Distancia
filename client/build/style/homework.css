@@ -1,0 +1,107 @@
+.homework-card {
+  margin-bottom: 2.5rem;
+  padding: 1rem;
+  width: 100%;
+  min-width: 300px;
+  cursor: pointer;
+}
+
+.homework-card h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.homework-card__sender__info {
+  display: inline-block;
+  text-align: center;
+}
+
+.homework-card__details {
+  display: inline-block;
+  text-align: center;
+}
+
+.trash-icon {
+  cursor: pointer;
+}
+
+.trash-icon:hover,
+.trash-icon:active {
+  color: red;
+}
+
+.sender-details {
+  margin: auto;
+  text-align: center;
+  display: block;
+  background-color: #2b2b2b;
+  padding: 2rem;
+}
+
+.sender-details__name {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  /* letter-spacing: -1px; */
+  word-spacing: -1px;
+}
+
+.sender-details__discipline {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.homework-details__drawer {
+  min-width: 510px;
+}
+
+.homework-details {
+  background-color: #fff;
+  border-radius: 33px;
+  padding: 16px;
+  margin: 1.5rem;
+}
+
+.homework-details__title {
+  margin: 0 !important;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.homework-details__content__text {
+  text-align: justify;
+}
+
+.homework-details__content__title,
+.homework-details__duedate__title {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.homework-details__content {
+  border: solid #2b2b2b;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.homework-details__duedate__timing {
+  text-align: center;
+  margin: 0 auto;
+  border: solid #2b2b2b;
+  border-radius: 20px;
+  padding: 0.5rem;
+  width: max-content;
+}
+
+.homework-details__duedate__title {
+  margin-top: 10px;
+}
+
+.homework-form__datepicker {
+  margin: 2rem 0;
+}

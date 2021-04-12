@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+main {
+  height: 100%;
+  min-width: 300px;
+}
+
+body {
+  color: #2b2b2b !important;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body::before {
+  content: "";
+  display: inline-block;
+  height: 73px;
+}
+
+ul,
+ol {
+  padding: initial;
+  margin: initial;
+}
+
+hr{
+  border-color: #474747;
+}
+
+.main-header {
+  background: #2b2b2b;
+  width: 100%;
+  min-width: 300px;
+  padding: 16px;
+  display: flex;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+}
+
+.main-header__content {
+  width: 100%;
+  display: flex;
+  max-width: 2000px;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.main-header__title {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.7rem;
+  color: #d3d3d3;
+  margin: auto 0;
+}
+
+.division {
+  height: 900px;
+}
+
+.main-header__join {
+  color: #d3d3d3;
+  font-size: 1rem;
+  margin: auto 0;
+  text-decoration: none;
+}
+
+.main-header__join:hover,
+.main-header__join:active,
+.main-header__title:hover,
+.main-header__title:active {
+  color: white;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+}
+
+.auth-form__button {
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 8px 16px;
+  background-color: #2b2b2b;
+  color: #d3d3d3;
+  margin-top: 2rem;
+}
+
+.auth-form__button:hover,
+.auth-form__button:active {
+  background-color: #474747;
+  color: white;
+}
+
+.page-header__icon {
+  justify-content: space-evenly;
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.page-header__icon__grid {
+  width: 16px;
+  height: 16px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+
+.list-empty {
+  margin-top: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.list-empty svg {
+  width: 25%;
+  height: 25%;
+  margin: 2rem auto;
+}
+
+.list-empty__text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.card {
+  background: #2b2b2b;
+  width: 231px;
+  height: 231px;
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card__class__icon {
+  width: 100%;
+  height: 55%;
+  border-radius: 60%;
+  fill: #fff;
+}
+
+.card__details {
+  display: inline-block;
+}
+
+.card__title {
+  padding: 1rem 1rem 0.5rem 1rem;
+  font-size: 1.75rem;
+  font-weight: 900;
+}
+
+.card-list {
+  min-width: 300px;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  /* grid-auto-rows: minmax(50px, auto); */
+  gap: 1rem;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.uploaded-files{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.uploaded-file {
+  display: inline-block;
+  list-style: none;
+  width: 75px;
+  height: 100px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.more-icon{
+  height: 16px;
+}
+
+#root {
+  height: calc(100% - 85px);
+}
+#auth {
+  text-align: center;
+  /* background: rgb(211, 211, 211); */
+  height: 100%;
+  width: 100%;
+}
+
+#auth form {
+  padding: 16px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1080px) {
+  .card-list {
+    grid-template-columns: repeat(3, 2fr);
+  }
+}
+@media (max-width: 770px) {
+  .card-list {
+    grid-template-columns: repeat(2, 2fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .card-list {
+    grid-template-columns: repeat(1, 2fr);
+  }
+  .card {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (min-width: 1080px) {
+  #auth form {
+    width: 30%;
+  }
+}
+@media (min-width: 720px) and (max-width: 1080px) {
+  #auth form {
+    width: 50%;
+  }
+}
+
+#auth label {
+  margin-right: 8px;
+}
+
+#auth input {
+  outline: none;
+}
+
+/* @media (max-width: 430px) and (min-width: 340px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  .arrow-back {
+    height: 1.5rem;
+  }
+} */
+@media (max-width: 500px) {
+  .page-title {
+    font-size: 0.85rem;
+  }
+  .arrow-back {
+    height: 0.85rem !important;
+    width: 0.85rem !important;
+  }
+  .main-header__title{
+    font-size:1.2rem;
+  }
+  .header-profile__name{
+    font-size: 0.8rem;
+  }
+  .header-profile__avatar{
+    height: 40px !important;
+    width: 40px !important;
+  }
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="423" viewBox="0 0 1920 423">
+  <g id="Steps" transform="translate(0 -3.655)">
+    <rect id="Division" width="1920" height="423" transform="translate(0 3.655)" fill="#fff"/>
+    <g id="LogIn" transform="translate(-23 42)">
+      <text id="LogIn-2" data-name="LogIn" transform="translate(1496 250.655)" fill="#18191d" font-size="35" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="-47.495" y="0">LogIn</tspan></text>
+      <path id="Check-LogIn" d="M56.5,0A56.5,56.5,0,1,0,113,56.5,56.5,56.5,0,0,0,56.5,0ZM47.276,80.042,26.089,59.706l6.568-6.756,14.5,13.828,33.057-33.82,6.7,6.634Z" transform="translate(1439 84.655)" fill="#2b2b2b"/>
+    </g>
+    <g id="Password" transform="translate(2 42)">
+      <text id="Enter_your_Password" data-name="Enter your Password" transform="translate(958 250.655)" fill="#18191d" font-size="35" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="-180.705" y="0">Enter your Password</tspan></text>
+      <path id="Ar_Pass" d="M56.5,0A56.5,56.5,0,1,0,113,56.5,56.5,56.5,0,0,0,56.5,0ZM50.765,89.458l-8.39-8.24L67.094,56.5,42.375,31.781l8.39-8.24L83.573,56.5Z" transform="translate(904 84.655)" fill="#2b2b2b"/>
+    </g>
+    <g id="ID" transform="translate(-29 42)">
+      <text id="Enter_your_ID" data-name="Enter your ID" transform="translate(425 250.655)" fill="#18191d" font-size="35" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="-111.667" y="0">Enter your ID</tspan></text>
+      <path id="Ar-ID" d="M56.5,0A56.5,56.5,0,1,0,113,56.5,56.5,56.5,0,0,0,56.5,0ZM50.765,89.458l-8.39-8.24L67.094,56.5,42.375,31.781l8.39-8.24L83.573,56.5Z" transform="translate(369 84.655)" fill="#2b2b2b"/>
+    </g>
+  </g>
+</svg>
