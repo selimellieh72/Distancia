@@ -33,7 +33,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
