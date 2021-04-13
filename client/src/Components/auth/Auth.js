@@ -62,7 +62,7 @@ export default function Auth(props) {
         discipline: data.discipline,
       };
       axios
-        .post("http://localhost:5000/register", body)
+        .post("/register", body)
 
         .then((res) => {
           updateAuthInfo(res);
@@ -79,7 +79,7 @@ export default function Auth(props) {
         });
     } else {
       axios
-        .post("http://localhost:5000/login", {
+        .post("/login", {
           username: data.emailAddress,
           password: data.password,
         })

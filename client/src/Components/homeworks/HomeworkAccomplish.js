@@ -21,21 +21,19 @@ function HomeworkAccomplish(props) {
   const cancelRef = React.useRef();
 
   function acomplishHomework() {
-    axios
-      .patch(`http://localhost:5000/homeworks/${props.id}?accomplish=1`)
-      .then(() => {
-        props.setIsAcomplished(true);
-        onClose();
-        props.onClose();
-        toast({
-          status: "success",
-          title: "Successfully accomplished",
-          description:
-            "Your homework has been successfully accomplished, and is now visible for your teacher",
-          duration: 3000,
-          isClosable: true,
-        });
+    axios.patch(`/homeworks/${props.id}?accomplish=1`).then(() => {
+      props.setIsAcomplished(true);
+      onClose();
+      props.onClose();
+      toast({
+        status: "success",
+        title: "Successfully accomplished",
+        description:
+          "Your homework has been successfully accomplished, and is now visible for your teacher",
+        duration: 3000,
+        isClosable: true,
       });
+    });
   }
 
   return (

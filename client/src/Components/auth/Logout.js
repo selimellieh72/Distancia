@@ -8,7 +8,7 @@ export default function Logout() {
   const setAuthData = useContext(authContext)[1];
   const history = useHistory();
   function logOut(event) {
-    axios.post("http://localhost:5000/logout");
+    axios.post("/logout");
     setAuthData({ username: "", isAuth: false });
     history.push("/");
     event.preventDefault();

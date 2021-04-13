@@ -11,7 +11,7 @@ export default function GradesList(props) {
   useEffect(
     () =>
       axios
-        .get("http://localhost:5000/grades")
+        .get("/grades")
         .then(({ data }) => {
           console.log(data);
           return props.setGrades(data);

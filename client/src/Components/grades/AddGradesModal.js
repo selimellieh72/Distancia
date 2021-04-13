@@ -32,7 +32,7 @@ export default function AddGradesModal(props) {
   const addedGradeRef = useRef();
 
   function onSubmit(data) {
-    axios.post("http://localhost:5000/grades", data).then((res) => {
+    axios.post("/grades", data).then((res) => {
       props.setGrades((prevGrades) => [
         { ...res.data, ref: addedGradeRef },
         ...prevGrades,

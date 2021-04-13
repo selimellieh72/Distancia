@@ -3,7 +3,7 @@ import axios from "axios";
 import { authContext } from "../../providers/AuthContext";
 import HomeworkCard from "./homeworkCard";
 import CircularProgessIndicator from "../Core/CircularProgessIndicator";
-import { ReactComponent as HomeworkSvg } from "../../assets/svg/homework.svg"
+import { ReactComponent as HomeworkSvg } from "../../assets/svg/homework.svg";
 
 export default function HomeworksList(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -11,11 +11,7 @@ export default function HomeworksList(props) {
   useEffect(() => {
     let isMounted = true;
     axios
-      .get(
-        `http://localhost:5000/homeworks${
-          props.gradeId ? `?grade=${props.gradeId}` : ""
-        }`
-      )
+      .get(`/homeworks${props.gradeId ? `?grade=${props.gradeId}` : ""}`)
       .then((res) => {
         if (isMounted) {
           props.setHomeworksData(res.data);
@@ -48,9 +44,7 @@ export default function HomeworksList(props) {
       <div className="list-empty">
         <HomeworkSvg />
         {!isTeacher ? (
-          <p className="list-empty__text">
-            No Homeworks Found
-          </p>
+          <p className="list-empty__text">No Homeworks Found</p>
         ) : (
           <p className="list-empty__text">
             No Homeworks Found <br />

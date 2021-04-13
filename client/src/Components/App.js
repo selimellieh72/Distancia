@@ -33,7 +33,7 @@ export default function App() {
     async function getUser() {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get("http://localhost:5000/session", {
+        const response = await axios.get("/session", {
           withCredentials: true,
         });
 
@@ -108,9 +108,9 @@ export default function App() {
             isAuth={authInfo.isAuth}
           />
           <PrivateRoute
-          path="/testcreator"
-          component={CreateTest}
-          isAuth={authInfo.isAuth}
+            path="/testcreator"
+            component={CreateTest}
+            isAuth={authInfo.isAuth}
           />
 
           <Route path="/login" component={Auth}></Route>

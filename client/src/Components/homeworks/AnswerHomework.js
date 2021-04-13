@@ -22,7 +22,7 @@ export default function AnswerHomework(props) {
 
   const onSubmit = () => {
     axios
-      .patch(`http://localhost:5000/homeworks/${props.id}?answer=1`, {
+      .patch(`/homeworks/${props.id}?answer=1`, {
         fileId,
       })
       .then((res) => {

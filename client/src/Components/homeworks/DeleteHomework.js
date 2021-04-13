@@ -22,7 +22,7 @@ export default function DeleteHomework(props) {
   const cancelRef = React.useRef();
 
   function deleteHomework() {
-    axios.delete(`http://localhost:5000/homeworks/${props.id}`).then((_) => {
+    axios.delete(`/homeworks/${props.id}`).then((_) => {
       props.setHomeworks((prevHomeworks) =>
         prevHomeworks.filter((hom) => hom._id !== props.id)
       );

@@ -26,12 +26,10 @@ export default function HomeworkForm(props) {
       });
     }
     if (isEditting) {
-      axios
-        .patch(`http://localhost:5000/homeworks/${props.id}`, data)
-        .then((res) => onData(res));
+      axios.patch(`/homeworks/${props.id}`, data).then((res) => onData(res));
     } else {
       axios
-        .post("http://localhost:5000/homeworks", {
+        .post("/homeworks", {
           ...data,
           grade: props.gradeId,
           fileIds: props.fileIds ? props.fileIds : undefined,

@@ -31,7 +31,7 @@ export default function JoinGrades(props) {
 
   function onSubmit(data) {
     axios
-      .post(`http://localhost:5000/join-grade/${data.gradeId}?`)
+      .post(`/join-grade/${data.gradeId}?`)
       .then((res) => {
         props.setGrades((prevGrades) => [res.data, ...prevGrades]);
         onClose();

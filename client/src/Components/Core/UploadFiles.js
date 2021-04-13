@@ -1,9 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Input, Button, Center, Progress, Container } from "@chakra-ui/react";
-import { ReactComponent as PdfSvg } from "../../assets/svg/pdf.svg";
-
+import { Input, Button, Center, Progress } from "@chakra-ui/react";
 export default function UploadFiles(props) {
   const { register, handleSubmit } = useForm();
   const [UploadPercentage, setUploadPercentage] = useState(0);
@@ -22,76 +20,37 @@ export default function UploadFiles(props) {
         ),
     };
     axios
-      .post("http://localhost:5000/upload", formData, config)
+      .post("/upload", formData, config)
       .then((res) => props.getFileIds(res.data.files.map((f) => f.id)));
   };
-
-  const hiddenFileInput = React.useRef(null);
-
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
-  };
-
-  const handleChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    register();
-  };
-
   return (
     <>
       <Input
-        style={{ display: "none" }}
-        colorScheme="red"
         required
         pt="3px"
         name="files"
         type="file"
         multiple={props.multiple ? "multiple" : false}
-        // ref={register}
-        ref={hiddenFileInput}
-        onChange={handleChange}
+        ref={register}
       />
-      <Center mt="2rem">
-        <Button onClick={handleClick} colorScheme="blue">
+
+      {UploadPercentage !== 0 && (
+        <Progress
+          my="16px"
+          colorScheme={UploadPercentage === 100 ? "green" : undefined}
+          hasStripe={UploadPercentage !== 100}
+          value={UploadPercentage}
+        />
+      )}
+      <Center mt="16px">
+        <Button
+          disabled={UploadPercentage === 100}
+          onClick={handleSubmit(onSubmit)}
+          colorScheme="green"
+        >
           Upload
         </Button>
-        {UploadPercentage !== 0 && (
-          <Progress
-            my="16px"
-            colorScheme={UploadPercentage === 100 ? "green" : undefined}
-            hasStripe={UploadPercentage !== 100}
-            value={UploadPercentage}
-          />
-        )}
       </Center>
-      <div className="uploaded-files">
-        <ul>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-          <li className="uploaded-file">
-            {" "}
-            <PdfSvg />{" "}
-          </li>
-        </ul>
-      </div>
     </>
   );
 }
