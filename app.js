@@ -33,14 +33,15 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(cors({ credentials: true }));
+app.use(cors({ credentials: true, origin: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 //DB
 
 const MongoURI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/distanciaDB";
+  process.env.MONGODB_URI ||
+  "mongodb+srv://selimellieh:Selim2015@distanciadb.jsla5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const conn = mongoose.connection;
 let gfs;
