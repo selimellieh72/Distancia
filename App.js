@@ -36,7 +36,7 @@ export default function App() {
     async function getUser() {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get("/session", {
+        const response = await axios.get("http://localhost:5000/session", {
           withCredentials: true,
         });
 

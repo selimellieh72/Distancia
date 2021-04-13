@@ -45,6 +45,7 @@ hr{
   align-items: center;
   position: fixed;
   z-index: 999;
+  height: 80px;
 }
 
 .main-header__content {
@@ -203,7 +204,7 @@ hr{
 }
 
 #root {
-  height: calc(100% - 85px);
+  height: calc(100% - 90px);
 }
 #auth {
   text-align: center;
