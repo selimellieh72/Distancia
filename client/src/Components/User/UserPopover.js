@@ -17,6 +17,8 @@ import {
   AvatarBadge,
 } from "@chakra-ui/react";
 
+import { Link } from "react-router-dom";
+
 import Logout from "../auth/Logout";
 import { authContext } from "../../providers/AuthContext";
 import { InfoIcon } from "@chakra-ui/icons";
@@ -38,7 +40,11 @@ const UserPopover = () => {
         closeOnBlur={false}
       >
         <PopoverTrigger>
-          <Avatar className="header-profile__avatar" ml="1rem" cursor="pointer" />
+          <Avatar
+            className="header-profile__avatar"
+            ml="1rem"
+            cursor="pointer"
+          />
         </PopoverTrigger>
         <PopoverContent mt={5} p={3}>
           <FocusLock returnFocus persistentFocus={false}>
@@ -48,8 +54,11 @@ const UserPopover = () => {
               <Avatar mr={5}>
                 <AvatarBadge boxSize="1.25em" bg="green.500" />
               </Avatar>
+
               <Flex flexDir="column">
-                <Text flex={1}>{fullName}</Text>
+                <Link to="/stats">
+                  <Text flex={1}>{fullName}</Text>
+                </Link>
                 <Text as="strong">
                   {isTeacher ? `Teacher (${discipline})` : "Student"}
                 </Text>
