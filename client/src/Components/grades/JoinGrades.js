@@ -38,7 +38,7 @@ export default function JoinGrades(props) {
         toast({
           title: "Grade joined!",
           status: "success",
-          description: `Successfully joined grade '${res.data.title}' of teacher '${res.data.teacherName}'`,
+          description: `Successfully joined grade '${res.data.title}' of teacher '${res.data.teacher.fullName}'`,
           duration: 6000,
           isClosable: true,
         });

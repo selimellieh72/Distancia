@@ -8,17 +8,16 @@ import { ReactComponent as BoxSvg } from "../../assets/svg/box.svg";
 
 export default function GradesList(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
-  useEffect(
-    () =>
-      axios
-        .get("/grades")
-        .then(({ data }) => {
-          console.log(data);
-          return props.setGrades(data);
-        })
-        .catch((e) => console.log(e)),
-    []
-  );
+  useEffect(() => {
+    axios
+      .get("/grades")
+      .then(({ data }) => {
+        console.log(data);
+        return props.setGrades(data);
+      })
+      .catch((e) => console.log(e));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return props.grades === null ? (
     <CircularProgessIndicator />

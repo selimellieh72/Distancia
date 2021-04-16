@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { AttachmentIcon } from "@chakra-ui/icons";
 import { BsFileEarmarkArrowDown } from "react-icons/bs";
 
@@ -36,7 +28,7 @@ export default function Homeworktable(props) {
               <a href={`http://localhost:5000/uploads/${answer.fileId}`}>
                 Download
               </a>{" "}
-              | <a>Correct</a> | <a>Send</a>
+              | Correctx | Send
             </Td>
           </Tr>
         ))}

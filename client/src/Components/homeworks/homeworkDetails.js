@@ -18,7 +18,7 @@ export default function HomeworkDetails(props) {
         {props.fileIds && (
           <Wrap mt="4rem">
             {props.fileIds.map((id) => (
-              <WrapItem>
+              <WrapItem key={id}>
                 <a href={`http://localhost:5000/uploads/${id}`} download>
                   Download file
                 </a>

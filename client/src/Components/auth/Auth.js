@@ -167,6 +167,7 @@ export default function Auth(props) {
               })}
               type="password"
               placeholder="Password"
+              autoComplete="on"
             />
             <FormHelperText>
               {!errors.password && "We'll never share your password."}
@@ -183,6 +184,7 @@ export default function Auth(props) {
                 id="confirmPassword"
                 isRequired
                 isInvalid={errors.confirmPassword}
+                autoComplete="on"
               >
                 <FormLabel mt="20px">Confirm Password:</FormLabel>
                 <Input

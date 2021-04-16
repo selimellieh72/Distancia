@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div id="main-homepage">
       <Header homepage={true} />
-      <section class="homepage-steps">
+      <section className="homepage-steps">
         <div className="steps-list">
           <ul className="steps-list__items">
             <li className="steps-list__item">

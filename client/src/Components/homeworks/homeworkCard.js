@@ -51,7 +51,7 @@ function HomeworkCard(props) {
   }
 
   return (
-    <a
+    <div
       ref={btnRef}
       onClick={
         isTeacher
@@ -136,7 +136,7 @@ function HomeworkCard(props) {
           )
         )}
       </Flex>
-    </a>
+    </div>
   );
 }
 

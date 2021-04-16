@@ -6,7 +6,10 @@ import "react-nice-dates/build/style.css";
 export default function DatePicker(props) {
   const [date, setDate] = useState();
 
-  useEffect(() => props.getDate(date), [date]);
+  useEffect(() => {
+    props.getDate(date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
 
   return (
     <div>

@@ -51,6 +51,7 @@ export default function HomeworkForm(props) {
       setValue("title", props.title);
       setValue("content", props.content);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -102,7 +103,7 @@ export default function HomeworkForm(props) {
               </Checkbox>
             </WrapItem>
             <WrapItem>
-              <Checkbox ref={register} name="acceptAnswers" ref={register}>
+              <Checkbox ref={register} name="acceptAnswers">
                 Accept answers
               </Checkbox>
             </WrapItem>

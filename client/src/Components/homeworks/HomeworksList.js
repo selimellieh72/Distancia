@@ -20,6 +20,7 @@ export default function HomeworksList(props) {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (props.homeworks) {
     return props.homeworks.length !== 0 ? (

@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
 import {
-  Avatar,
-  Flex,
   Drawer,
   DrawerOverlay,
   DrawerContent,
@@ -15,7 +13,7 @@ import { ReactComponent as LearningSvg } from "../../assets/svg/learning.svg";
 export default function GradeCard(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const { isTeacher } = useContext(authContext)[0];
+  const { isTeacher, discipline } = useContext(authContext)[0];
 
   return (
     <>
@@ -38,10 +36,10 @@ export default function GradeCard(props) {
         <LearningSvg className="card__class__icon" />
         <div className="card__details">
           <h1 className="card__title">
-            {isTeacher ? props.title : "Physics"}
+            {isTeacher ? props.title : props.gradeMaterial}
           </h1>
           <p className="card__material">
-            {!isTeacher ? props.title : "Physics"}
+            {!isTeacher ? props.title : discipline}
           </p>
         </div>
       </div>

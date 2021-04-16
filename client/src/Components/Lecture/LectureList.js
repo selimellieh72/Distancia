@@ -1,24 +1,22 @@
-import React, { useContext } from "react";
-import { authContext } from "../../providers/AuthContext";
-import { ReactComponent as NoLectureSvg } from "../../assets/svg/open-book.svg";
-import LectureCard from "./LectureCard"
+import React from "react";
+
+import LectureCard from "./LectureCard";
 
 export default function LectureList() {
-  const isTeacher = useContext(authContext)[0].isTeacher;
   return (
     <>
-    <div className="card-list">
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    <LectureCard />
-    </div>
+      <div className="card-list">
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+        <LectureCard />
+      </div>
       {/* <div className="list-empty">
         <NoLectureSvg />
 
