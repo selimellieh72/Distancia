@@ -6,7 +6,7 @@ const router = express.Router();
 router
   .route("/grades")
   .post(function (req, res) {
-    if (req.isAuthenticated && req.user.isTeacher) {
+    if (req.isAuthenticated() && req.user.isTeacher) {
       const grade = Grade({
         title: req.body.title,
         teacher: req.user._id,
@@ -23,7 +23,7 @@ router
     }
   })
   .get(function (req, res) {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated()) {
       const query = req.user.isTeacher
         ? { teacher: req.user._id }
         : { students: req.user._id };
@@ -54,7 +54,7 @@ router
   });
 
 router.patch("/grade/:id", function (req, res) {
-  if (req.query.removeStudent) {
+  if (req.isAuthenticated() && req.query.removeStudent) {
     Grade.findByIdAndUpdate(
       req.params.id,
       {
