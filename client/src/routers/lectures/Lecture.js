@@ -13,7 +13,7 @@ import { ReactComponent as GridSvg } from "../../assets/svg/grid.svg";
 import LectureList from "../../Components/Lecture/LectureList";
 import { authContext } from "../../providers/AuthContext";
 import LectureModal from "../../Components/Lecture/LectureModal";
-import { AddIcon, ArrowBackIcon } from "@chakra-ui/icons";
+import { AddIcon, } from "@chakra-ui/icons";
 
 export default function Lecture() {
   const isTeacher = useContext(authContext)[0].isTeacher;

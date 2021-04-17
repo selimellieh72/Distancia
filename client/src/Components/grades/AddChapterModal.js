@@ -14,13 +14,11 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
-  IconButton,
   ButtonGroup,
 } from "@chakra-ui/react";
 
 export default function AddChapterModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { register, handleSubmit } = useForm();
 
   return (
     <>
@@ -34,11 +32,9 @@ export default function AddChapterModal() {
           <ModalCloseButton />
           <ModalBody>
             <FormControl isRequired>
-              <form id="join-grade" >
+              <form id="join-grade">
                 <FormLabel>Chapter name: </FormLabel>
-                <Input
-                  name="title"
-                ></Input>
+                <Input name="title"></Input>
               </form>
             </FormControl>
           </ModalBody>

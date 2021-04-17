@@ -19,7 +19,7 @@ export default function GradeCard(props) {
     <>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
         <DrawerOverlay>
-          <DrawerContent overflowY="auto">
+          <DrawerContent overflowX="hidden" overflowY="auto">
             <DrawerCloseButton color="#fff" />
             <GradeDetails
               minW="300px"
@@ -38,9 +38,7 @@ export default function GradeCard(props) {
           <h1 className="card__title">
             {isTeacher ? props.title : props.gradeMaterial}
           </h1>
-          <p className="card__material">
-            {!isTeacher ? props.title : discipline}
-          </p>
+          
         </div>
       </div>
     </>

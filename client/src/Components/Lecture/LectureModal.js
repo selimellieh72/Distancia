@@ -12,6 +12,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import LectureForm from "./LectureForm";
+import UploadFiles from "../Core/UploadFiles";
 
 export default function LectureModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,16 +23,8 @@ export default function LectureModal(props) {
 
   const isEditting = props.id && props.title && props.content;
   const [hasChanged, setHasChanged] = useState(!isEditting);
-  const [fileIds, setFileIds] = useState(null);
   const [isFileAttach, setIsFileAttach] = useState(false);
-  const [date, setDate] = useState();
 
-  function updateHasChanged(formTitle, formContent) {
-    setHasChanged(formTitle !== props.title || formContent !== props.content);
-  }
-
-  const getSetValue = (mySetValue) => (setValue = mySetValue);
-  const getDate = (myDate) => setDate(myDate);
   return (
     <>
       {props.button ? (
@@ -52,6 +45,7 @@ export default function LectureModal(props) {
           </ModalHeader>
           <ModalBody pb={6}>
             <LectureForm />
+            <UploadFiles multiple="true" />
           </ModalBody>
 
           <ModalFooter>

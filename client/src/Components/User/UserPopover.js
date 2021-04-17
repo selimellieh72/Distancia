@@ -105,24 +105,22 @@ const UserPopover = () => {
                 </DrawerHeader>
 
                 <DrawerBody mt="2.5rem" textAlign="Center">
-                  <Avatar size="2xl">
-                    {" "}
-                    <AvatarBadge boxSize="1.25em" bg="green.500" />
-                  </Avatar>
-                  <div className="user-info">
-                    <p className="user-info__fullname">{fullName}</p>
-                    {isTeacher && (
-                      <p className="user-info__discipline">
-                        Teaching {discipline}
-                      </p>
-                    )}
-                  </div>
-                </DrawerBody>
-                <Center>
-                  <DrawerFooter>
+                  
+                    <Avatar size="2xl">
+                      {" "}
+                      <AvatarBadge boxSize="1.25em" bg="green.500" />
+                    </Avatar>
+                    <div className="user-info">
+                      <p className="user-info__fullname">{fullName}</p>
+                      {isTeacher && (
+                        <p className="user-info__discipline">
+                          Teaching {discipline}
+                        </p>
+                      )}
+                    </div>
                     <Logout />
-                  </DrawerFooter>
-                </Center>
+                  
+                </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>
           </Drawer>

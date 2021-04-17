@@ -1,15 +1,12 @@
 import {
   Input,
   Textarea,
-  Radio,
-  RadioGroup,
-  Stack,
-  Flex,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CustomMenu from "./CustomMenu";
 import { ReactComponent as AddSvg } from "../../../assets/svg/plus.svg";
 import SingleChoice from "./questionType/SingleChoice";
+import MultipleChoice from "./questionType/MultipleChoice";
 
 export default function TestTextSection() {
   const [questionType, setQuestionType] = useState("text");
@@ -39,6 +36,7 @@ export default function TestTextSection() {
           />
         )}
         {questionType === "singleChoice" && <SingleChoice />}
+        {questionType === "multipleChoice" && <MultipleChoice/>}
         <CustomMenu
           questionType={questionType}
           setQuestionType={setQuestionType}

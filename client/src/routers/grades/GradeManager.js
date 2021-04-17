@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../Components/header/Header";
 import GradeTable from "../../Components/grades/gradeManager/GradeTable";
+import { Heading } from "@chakra-ui/layout";
+import BackIcon from "../../Components/Core/BackIcon";
 
 export default function GradeManager() {
   const { students, gradeId } = useLocation().state;
@@ -9,7 +11,10 @@ export default function GradeManager() {
   return (
     <>
       <div className="grade-manager">
-        <h1>GradeName</h1>
+        <Heading>
+          <BackIcon pathName="/grades" />
+          GradeName
+        </Heading>
         <GradeTable students={students} gradeId={gradeId} />
       </div>
     </>

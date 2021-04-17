@@ -19,6 +19,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import EditHomework from "./EditHomework";
 import { getTime } from "date-fns";
+import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
+
 
 function HomeworkCard(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -135,6 +137,7 @@ function HomeworkCard(props) {
             <FaCheckCircle size="25px" color="green" bgColor="white" />
           )
         )}
+        {!isTeacher && <NotdoneSvg className="undone-homework" />}
       </Flex>
     </div>
   );
