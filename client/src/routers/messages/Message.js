@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 export default function Messages() {
   return (
     <>
-      <Header />
       <div className="messages-conversations">
         <Link to="/messageconversations">
           <div className="messages-conversation">

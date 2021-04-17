@@ -24,7 +24,7 @@
 
 .test-section__creator {
   padding: 1rem;
-  height: 450px;
+  height: auto;
   width: 70%;
   max-width: 1000px;
   background-color: whitesmoke;
@@ -49,7 +49,7 @@
   position: relative !important;
 }
 
-.test-input__title{
+.test-input__title {
   width: 100%;
 }
 
@@ -66,7 +66,7 @@
   width: 75%;
 }
 
-.grade-picker{
+.grade-picker {
   margin-top: 2rem;
 }
 
@@ -76,6 +76,18 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.option {
+  height: 16px;
+  width: 16px;
+}
+
+.add {
+  margin: 1.5rem auto 0;
+}
+
+.remove {
+  margin-left: 0.25rem;
+}
 
 @media (max-width: 500px) {
   .test-section__creator {

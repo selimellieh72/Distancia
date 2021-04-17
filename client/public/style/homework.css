@@ -105,3 +105,23 @@
 .homework-form__datepicker {
   margin: 2rem 0;
 }
+
+.undone-homework {
+  height: 25px;
+  width: 25px;
+}
+
+.file-name {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.uploaded-files__list {
+  min-width: 300px;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  /* grid-auto-rows: minmax(50px, auto); */
+  gap: 2.5rem 1rem;
+  margin: 0 auto;
+  justify-items: center;
+}

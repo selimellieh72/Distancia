@@ -8,7 +8,6 @@ export default function GradeManager() {
 
   return (
     <>
-      <Header />
       <div className="grade-manager">
         <h1>GradeName</h1>
         <GradeTable students={students} gradeId={gradeId} />

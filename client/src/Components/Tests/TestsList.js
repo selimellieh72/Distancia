@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
-
+import { ReactComponent as NoTestsSvg } from "../../assets/svg/exam.svg";
 import TestCard from "./TestCard";
 import { Button } from "@chakra-ui/button";
 import { Center } from "@chakra-ui/layout";
@@ -13,12 +13,7 @@ export default function TestsList() {
       <div className="tests-list">
         <TestCard isTeacher={isTeacher} />
         <Center mt="1.5rem">
-          {isTeacher ? (
-            <Link to="/testcreator">
-              {" "}
-              <Button colorScheme="green">Create a test</Button>{" "}
-            </Link>
-          ) : null}
+          {isTeacher?<Link to="/testcreator"> <Button colorScheme="green">Create a test</Button> </Link>:null}
         </Center>
       </div>
       {/* <div className="list-empty">

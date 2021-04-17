@@ -1,6 +1,13 @@
 import React from "react";
 import Header from "../Components/header/Header";
-import { Container, Flex, Heading, Button, Box, Divider } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Heading,
+  Button,
+  Box,
+  Divider,
+} from "@chakra-ui/react";
 import BackIcon from "../Components/Core/BackIcon";
 import { ReactComponent as GridSvg } from "../assets/svg/grid.svg";
 import MeetingList from "../Components/meetings/MeetingsList";
@@ -8,7 +15,6 @@ import MeetingList from "../Components/meetings/MeetingsList";
 export default function Meetings() {
   return (
     <>
-      <Header />
       <Container maxW="container.lg" p="18px">
         <Flex alignItems="center" minW="300px" justifyContent="space-between">
           <Heading as="h1">

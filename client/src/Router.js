@@ -15,6 +15,7 @@ import GradeManager from "./routers/grades/GradeManager";
 import HomeworkTablePage from "./routers/homework/HomeworkTablePage";
 import Auth from "./Components/auth/Auth";
 import PrivateRoute from "./Components/Core/PrivateRoute";
+import Header from "./Components/header/Header";
 
 export default function Router(props) {
   return (

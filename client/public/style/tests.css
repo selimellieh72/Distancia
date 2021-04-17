@@ -49,6 +49,17 @@
   width: 65%;
 }
 
+.test-sections__list {
+  display: block;
+}
+
+.test-creator__footer__button{
+  width: auto;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
 @media (max-width: 555px) {
   .card-test__title {
     font-size: 0.8rem;

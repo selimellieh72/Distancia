@@ -12,9 +12,8 @@ import { ReactComponent as LibrarySvg } from "../assets/svg/library.svg";
 export default function Home() {
   return (
     <div id="main-homepage">
-      <Header homepage={true} />
       <section className="homepage-steps">
-        <div className="steps-list">
+        <div className="steps-lsist">
           <ul className="steps-list__items">
             <li className="steps-list__item">
               <div className="steps-list__image">

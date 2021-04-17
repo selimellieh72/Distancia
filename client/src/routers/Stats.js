@@ -15,7 +15,6 @@ import Header from "../Components/header/Header";
 export default function Stats() {
   return (
     <>
-      <Header />
       <Table colorScheme="green" variant="simple">
         <TableCaption>Student Theo Khalil OverAll grades</TableCaption>
         <Thead>

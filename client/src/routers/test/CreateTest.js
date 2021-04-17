@@ -1,31 +1,15 @@
-import {
-  Button,
-  Input,
-  Center,
-  Flex,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Button, Input, Flex, useDisclosure } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../../Components/header/Header";
-import AddTestButton from "../../Components/Tests/testCreator/AddTestButton";
-import TestTextSection, {
-  TestMultipleSection,
-} from "../../Components/Tests/testCreator/TestSection";
+import SaveExitButton from "../../Components/Tests/testCreator/SaveExitButton";
+import TestSectionList from "../../Components/Tests/testCreator/TestSectionList";
+import { useMediaPredicate } from "react-media-hook";
 
 export default function CreateTest() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { cancelIsOpen, cancelOnOpen, cancelOnClose } = useDisclosure();
+  const biggerThan500 = useMediaPredicate("(min-width: 500px)");
+
   return (
     <>
-      <Header />
       <div className="test-creator">
         <div className="test-creator__heading">
           <Input
@@ -39,65 +23,13 @@ export default function CreateTest() {
           />
           <hr className="test-creator__heading__divider" />
         </div>
-        <Center display="block">
-          <TestTextSection />
-          <TestMultipleSection />
-        </Center>
-        <Center>
-          <AddTestButton />
-        </Center>
-        <Flex mt="1.5rem" justifyContent="space-around">
+        <TestSectionList />
+
+        <Flex mt="1.5rem" justifyContent="space-around" alignItems="center">
           <Button mt="1rem" className="cancel-button" colorScheme="red">
             Cancel
           </Button>
-          <Button
-            onClick={onOpen}
-            mt="1rem"
-            className="save-exit-button"
-            colorScheme="green"
-          >
-            Save {"&"} exit
-          </Button>
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Save and Exit</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                While saving and exiting your job will be saved and you can
-                continue it later to publish it to your students.
-              </ModalBody>
-
-              <ModalFooter>
-                <Link to="/tests">
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    Proceed
-                  </Button>
-                </Link>
-                <Button variant="ghost">Cancel</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-          <Modal isOpen={cancelIsOpen} onClose={cancelOnClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Save and Exit</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                While saving and exiting your job will be saved and you can
-                continue it later to publish it to your students.
-              </ModalBody>
-
-              <ModalFooter>
-                <Link to="/tests">
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    Proceed
-                  </Button>
-                </Link>
-                <Button variant="ghost">Cancel</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          <SaveExitButton />
           <Button mt="1rem" className="publish-button" colorScheme="blue">
             Publish
           </Button>

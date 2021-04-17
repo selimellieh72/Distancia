@@ -5,9 +5,7 @@ import { ReactComponent as RoundedAddSvg } from "../../../assets/svg/roundedPlus
 export default function AddTestButton() {
   return (
     <>
-      <Button>
-        <RoundedAddSvg className="add-component-button"/>
-      </Button>
+      
     </>
   );
 }

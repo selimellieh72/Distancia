@@ -12,7 +12,6 @@ function Grades() {
   const [grades, setGrades] = useState(null);
   return (
     <div>
-      <Header />
       <Container maxW="container.lg" p="18px">
         <Flex alignItems="center" minW="300px" justifyContent="space-between">
           <Heading as="h1">Grades</Heading>

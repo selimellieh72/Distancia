@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import Logo from "./header_logo/Logo";
 import { Link } from "react-router-dom";
 import { authContext } from "../../providers/AuthContext";
 import UserPopover from "../User/UserPopover";
 
-export default function Header(props) {
+export default function Header() {
   const authData = useContext(authContext)[0];
+  const isHome = useLocation().pathname === "/";
 
   return (
     <header className="main-header">
@@ -14,7 +16,7 @@ export default function Header(props) {
         {authData.isAuth && <UserPopover />}
         {/* {authData.isAuth && <Logout />} */}
 
-        {props.homepage ? (
+        {isHome ? (
           <Link to="/login" className="main-header__join">
             SignIn
           </Link>

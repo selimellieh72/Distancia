@@ -103,7 +103,6 @@ export default function Auth(props) {
 
   return (
     <div>
-      <Header />
       <section id="auth">
         <form action="" onSubmit={handleSubmit(submitForm)}>
           {isSignup && (

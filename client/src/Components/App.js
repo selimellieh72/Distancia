@@ -6,6 +6,7 @@ import { authContext } from "../providers/AuthContext";
 import CircularProgessIndicator from "./Core/CircularProgessIndicator";
 
 import Router from "../Router";
+import Header from "./header/Header";
 
 export default function App() {
   const [authInfo, , getUser] = useContext(authContext);
@@ -23,7 +24,10 @@ export default function App() {
       {authInfo.isAuth === null ? (
         <CircularProgessIndicator />
       ) : (
-        <Router isAuth={authInfo.isAuth} />
+        <>
+          <Header />
+          <Router isAuth={authInfo.isAuth} />
+        </>
       )}
     </main>
   );

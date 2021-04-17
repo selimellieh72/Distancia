@@ -9,7 +9,6 @@ import { Flex } from "@chakra-ui/layout";
 export default function MessageConversation() {
   return (
     <>
-      <Header />
       <div className="messages">
         <div className="messages-header">
           <Flex

@@ -11,7 +11,6 @@ export default function HomeworkTablePage() {
   const { homeworkTitle, answers, gradeId } = useLocation().state;
   return (
     <>
-      <Header />
       <Container maxW="container.lg" p="18px" minW="620px">
         <Flex minW="300px" justifyContent="space-between">
           <Heading as="h1">
