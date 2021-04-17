@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import mypdf from "./pdf.pdf";
 
 export default function PdfReader() {
   const [numPages, setNumPages] = useState(null);
@@ -11,12 +12,32 @@ export default function PdfReader() {
 
   return (
     <>
-      <Document file="./pdf.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={mypdf} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
+
       <p>
         Page {pageNumber} of {numPages}
       </p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <button
+          disabled={pageNumber === 1}
+          onClick={() => setPageNumber(pageNumber - 1)}
+        >
+          -
+        </button>
+        <button
+          disabled={pageNumber === numPages}
+          onClick={() => setPageNumber(pageNumber + 1)}
+        >
+          +
+        </button>
+      </div>
     </>
   );
 }
