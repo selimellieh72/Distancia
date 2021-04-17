@@ -21,7 +21,6 @@ import EditHomework from "./EditHomework";
 import { getTime } from "date-fns";
 import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
 
-
 function HomeworkCard(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
   const [homeworkData, setHomeworkData] = useState({
@@ -93,6 +92,7 @@ function HomeworkCard(props) {
               }
               isAccomplished={homeworkData.isAccomplished}
               dueDate={props.dueDate}
+              isExpired={props.isExpired}
             />
           </DrawerContent>
         </DrawerOverlay>
@@ -137,7 +137,9 @@ function HomeworkCard(props) {
             <FaCheckCircle size="25px" color="green" bgColor="white" />
           )
         )}
-        {!isTeacher && <NotdoneSvg className="undone-homework" />}
+        {!isTeacher && props.isExpired && (
+          <NotdoneSvg className="undone-homework" />
+        )}
       </Flex>
     </div>
   );

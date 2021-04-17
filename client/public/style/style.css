@@ -29,7 +29,7 @@ ol {
   margin: initial;
 }
 
-hr{
+hr {
   border-color: #474747;
 }
 
@@ -174,7 +174,7 @@ hr{
   font-weight: 900;
 }
 
-.user-info{
+.user-info {
   margin: 2rem 0;
   text-align: center;
 }
@@ -184,7 +184,7 @@ hr{
   font-weight: bold;
 }
 
-.user-info__discipline{
+.user-info__discipline {
   margin-top: 1rem;
 }
 
@@ -198,7 +198,7 @@ hr{
   justify-items: center;
 }
 
-.uploaded-files{
+.uploaded-files {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
@@ -213,7 +213,7 @@ hr{
   margin-right: 10px;
 }
 
-.more-icon{
+.more-icon {
   height: 16px;
 }
 
@@ -288,13 +288,13 @@ hr{
     height: 0.85rem !important;
     width: 0.85rem !important;
   }
-  .main-header__title{
-    font-size:1.2rem;
+  .main-header__title {
+    font-size: 1.2rem;
   }
-  .header-profile__name{
+  .header-profile__name {
     font-size: 0.8rem;
   }
-  .header-profile__avatar{
+  .header-profile__avatar {
     height: 40px !important;
     width: 40px !important;
   }

@@ -52,14 +52,16 @@ router
                     : homeworks.map((homework) => {
                         const accomplishedUsersIds =
                           homework._doc.accomplishedUsersIds;
-                        const homeworkWithoutAccomplishedUsersIds =
-                          homework._doc;
-                        delete homeworkWithoutAccomplishedUsersIds.accomplishedUsersIds;
+                        const dueDate = homework._doc.dueDate;
+                        const newHomeworks = homework._doc;
+                        const isAccomplished = accomplishedUsersIds.includes(
+                          req.user.id
+                        );
+                        delete newHomeworks.accomplishedUsersIds;
                         return {
-                          ...homeworkWithoutAccomplishedUsersIds,
-                          isAccomplished: accomplishedUsersIds.includes(
-                            req.user.id
-                          ),
+                          ...newHomeworks,
+                          isAccomplished: isAccomplished,
+                          isExpired: !isAccomplished && dueDate < new Date(),
                         };
                       }),
                 };

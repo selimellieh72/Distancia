@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { authContext } from "../../providers/AuthContext";
 import { Avatar, Flex, Tooltip, Badge, Wrap, WrapItem } from "@chakra-ui/react";
 import moment from "moment";
 import HomeworkAccomplish from "./HomeworkAccomplish";
 import AnswerHomework from "./AnswerHomework";
 
 export default function HomeworkDetails(props) {
+  const isTeacher = useContext(authContext)[0].isTeacher;
   return (
     <div className="homework-details__drawer">
       <div className="sender-details">
@@ -40,6 +42,11 @@ export default function HomeworkDetails(props) {
             </WrapItem>
           )}
           {props.acceptAnswers && (
+            <WrapItem>
+              <Badge colorScheme="yellow">Accept answers</Badge>
+            </WrapItem>
+          )}
+          {!isTeacher && props.isExpired && (
             <WrapItem>
               <Badge colorScheme="yellow">Accept answers</Badge>
             </WrapItem>

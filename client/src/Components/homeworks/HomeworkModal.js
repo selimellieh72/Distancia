@@ -32,7 +32,9 @@ export default function HomeworkModal(props) {
   }
 
   const getSetValue = (mySetValue) => (setValue = mySetValue);
-  const getDate = (myDate) => setDate(myDate);
+  const getDate = (myDate) => {
+    setDate(myDate);
+  };
   return (
     <>
       {props.button ? (

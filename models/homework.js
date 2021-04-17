@@ -18,7 +18,9 @@ const homeworkSchema = new mongoose.Schema(
         fileId: String,
       },
     ],
+    dueDate: Date,
   },
+
   { timestamps: { createdAt: "created_at" } }
 );
 

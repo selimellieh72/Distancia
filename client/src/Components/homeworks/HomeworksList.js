@@ -14,6 +14,7 @@ export default function HomeworksList(props) {
       .get(`/homeworks${props.gradeId ? `?grade=${props.gradeId}` : ""}`)
       .then((res) => {
         if (isMounted) {
+          console.log(res.data);
           props.setHomeworksData(res.data);
         }
       });
@@ -39,6 +40,7 @@ export default function HomeworksList(props) {
           fileIds={homework.fileIds}
           acceptAnswers={homework.acceptAnswers}
           answers={homework.answers}
+          isExpired={homework.isExpired}
         />
       ))
     ) : (
