@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import mypdf from "./pdf.pdf";
+import { Center } from "@chakra-ui/react";
 
 export default function PdfReader() {
   const [numPages, setNumPages] = useState(null);
@@ -12,30 +13,36 @@ export default function PdfReader() {
 
   return (
     <>
-      <Document file={mypdf} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
+      <Center>
+        <Document file={mypdf} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber} />
+        </Document>
+      </Center>
 
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
         }}
       >
+        <p>
+          Page {pageNumber} of {numPages}
+        </p>
         <button
-          disabled={pageNumber === 1}
+          isabled={pageNumber === 1}
           onClick={() => setPageNumber(pageNumber - 1)}
+          class="btn"
+          id="next-page"
         >
-          -
+          Next Page <i class="fas fa-arrow-circle-right"></i>
         </button>
         <button
           disabled={pageNumber === numPages}
           onClick={() => setPageNumber(pageNumber + 1)}
+          class="btn"
+          id="next-page"
         >
-          +
+          Next Page <i class="fas fa-arrow-circle-right"></i>
         </button>
       </div>
     </>
