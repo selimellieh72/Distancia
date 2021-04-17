@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useToast, Checkbox, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  useToast,
+  Checkbox,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
+
 import axios from "axios";
 import DatePicker from "../Core/DatePicker";
 
@@ -83,9 +89,9 @@ export default function HomeworkForm(props) {
               props.updateHasChanged(watch("title"), watch("content"))
             }
           />
-          <div className="homework-form__datepicker">
-            <DatePicker getDate={props.getDate} />
-          </div>
+          
+
+          <DatePicker getDate={props.getDate} />
         </FormControl>
 
         {!isEditting && (

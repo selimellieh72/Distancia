@@ -89,6 +89,13 @@
   margin-left: 0.25rem;
 }
 
+.test-section__advice__message{
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 15px;
+  width: 400px;
+}
+
 @media (max-width: 500px) {
   .test-section__creator {
     width: 100%;

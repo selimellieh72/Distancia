@@ -1,0 +1,38 @@
+.lecture__buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lecture-card {
+  width: 150px;
+}
+
+.lecture-card__title {
+  height: auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.download-icon {
+  height: 16px;
+  margin-left: 16px;
+  fill: white;
+}
+
+.header__divider{
+    width: 45%;
+}
+
+.btn {
+  padding: 1rem;
+  background-color: #2b2b2b;
+  color: white;
+  border-radius: 15px;
+  margin-left: 15px;
+}
+
+.btn:disabled{
+    background-color: #6e6e6e;
+    cursor: no-drop;
+}

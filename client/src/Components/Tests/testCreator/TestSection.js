@@ -1,7 +1,4 @@
-import {
-  Input,
-  Textarea,
-} from "@chakra-ui/react";
+import { Input, Textarea } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CustomMenu from "./CustomMenu";
 import { ReactComponent as AddSvg } from "../../../assets/svg/plus.svg";
@@ -25,22 +22,29 @@ export default function TestTextSection() {
           size="lg"
           placeholder="Question Title"
         />
-        {questionType === "text" && (
-          <Textarea
-            height="150px"
-            className="test-input__question"
-            placeholder="Question"
-            mt="2rem"
-            focusBorderColor="#2b2b2b"
-            borderColor="gray"
-          />
-        )}
+
+        <Textarea
+          height="150px"
+          className="test-input__question"
+          placeholder="Question"
+          mt="2rem"
+          focusBorderColor="#2b2b2b"
+          borderColor="gray"
+        />
+
         {questionType === "singleChoice" && <SingleChoice />}
-        {questionType === "multipleChoice" && <MultipleChoice/>}
+        {questionType === "multipleChoice" && <MultipleChoice />}
         <CustomMenu
           questionType={questionType}
           setQuestionType={setQuestionType}
         />
+        {(questionType === "singleChoice" ||
+          questionType === "multipleChoice") && (
+          <p className="test-section__advice__message">
+            Please check the correct answers to have an automatic correction for
+            multiple and single choice questions
+          </p>
+        )}
 
         <div className="grade-picker">
           <p>Grade over:</p>

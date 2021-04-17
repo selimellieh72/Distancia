@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import mypdf from "./pdf.pdf";
-import { Center } from "@chakra-ui/react";
+import { Center, Button, Heading, Divider } from "@chakra-ui/react";
+import { ReactComponent as DownloadSvg } from "../../assets/svg/download.svg";
 
 export default function PdfReader() {
   const [numPages, setNumPages] = useState(null);
@@ -13,6 +14,10 @@ export default function PdfReader() {
 
   return (
     <>
+      <Center flexDir="column" display="flex" mt="1rem">
+        <Heading mb="1rem" as="h1">Chaptire</Heading>
+        <hr className="header__divider" />
+      </Center>
       <Center>
         <Document file={mypdf} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
@@ -23,27 +28,34 @@ export default function PdfReader() {
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
-        <p>
+        <Button colorScheme="green" display="flex">
+          Download <DownloadSvg className="download-icon" />
+        </Button>
+        <span>
           Page {pageNumber} of {numPages}
-        </p>
-        <button
-          isabled={pageNumber === 1}
-          onClick={() => setPageNumber(pageNumber - 1)}
-          class="btn"
-          id="next-page"
-        >
-          Next Page <i class="fas fa-arrow-circle-right"></i>
-        </button>
-        <button
-          disabled={pageNumber === numPages}
-          onClick={() => setPageNumber(pageNumber + 1)}
-          class="btn"
-          id="next-page"
-        >
-          Next Page <i class="fas fa-arrow-circle-right"></i>
-        </button>
+        </span>
+        <div className="lecture__buttons">
+          <button
+            disabled={pageNumber === 1}
+            onClick={() => setPageNumber(pageNumber - 1)}
+            className="btn"
+            id="prev-page"
+          >
+            Prev Page
+          </button>
+          <button
+            disabled={pageNumber === numPages}
+            onClick={() => setPageNumber(pageNumber + 1)}
+            className="btn"
+            id="next-page"
+          >
+            Next Page 
+          </button>
+        </div>
       </div>
     </>
   );
