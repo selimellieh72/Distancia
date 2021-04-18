@@ -107,6 +107,7 @@ router
               select: { fullName: 1, discipline: 1 },
             },
           })
+          .populate({ path: "files", select: { filename: 1 } })
           .execPopulate((e, homework) => {
             if (e) {
               res.status(403).send();
