@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  useToast,
-  Checkbox,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react";
+import { useToast, Checkbox, Wrap, WrapItem } from "@chakra-ui/react";
 
 import axios from "axios";
 import DatePicker from "../Core/DatePicker";
@@ -38,7 +33,7 @@ export default function HomeworkForm(props) {
         .post("/homeworks", {
           ...data,
           grade: props.gradeId,
-          fileIds: props.fileIds ? props.fileIds : undefined,
+          files: props.fileIds ? props.fileIds : undefined,
           dueDate: props.date,
         })
         .then((res) => onData(res));
@@ -89,9 +84,8 @@ export default function HomeworkForm(props) {
               props.updateHasChanged(watch("title"), watch("content"))
             }
           />
-          
 
-          <DatePicker getDate={props.getDate} />
+          <DatePicker defaultDate={props.date} getDate={props.getDate} />
         </FormControl>
 
         {!isEditting && (
@@ -115,7 +109,7 @@ export default function HomeworkForm(props) {
             </WrapItem>
           </Wrap>
         )}
-        {props.isFileAttach && <UploadFiles getFileIds={getFileIds} />}
+        {props.isFileAttach && <UploadFiles getFileIds={getFileIds} multiple />}
       </form>
     </>
   );

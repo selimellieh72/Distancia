@@ -51,7 +51,7 @@ export default function Homework(props) {
                 button
               />
             )}
-            <Button>
+            <Button ml="16px">
               <GridSvg className="page-header__icon__grid" />
             </Button>
           </div>

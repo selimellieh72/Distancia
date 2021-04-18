@@ -6,8 +6,14 @@
   cursor: pointer;
 }
 
-.homework-card h1 {
+.homework-card__title {
   font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1.5px;
+  word-spacing: -1px;
+}
+
+.homework-card__teacher__name {
   font-weight: bold;
 }
 
@@ -120,4 +126,13 @@
   gap: 2.5rem 1rem;
   margin: 0 auto;
   justify-items: center;
+}
+
+@media (max-width: 600px) {
+  .homework-card__title {
+    font-size: 1rem;
+  }
+  .homework-card__teacher__name {
+    font-size: 0.75rem;
+  }
 }

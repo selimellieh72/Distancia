@@ -1,0 +1,32 @@
+.page-header__left {
+  display: flex;
+  align-items: center;
+}
+
+.page-header__icon {
+  justify-content: space-evenly;
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.page-header__icon__grid {
+  width: 16px;
+  height: 16px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .page-title {
+    font-size: 0.85rem;
+  }
+  .arrow-back,
+  .page-header__icon__grid {
+    height: 0.85rem !important;
+    width: 0.85rem !important;
+  }
+}

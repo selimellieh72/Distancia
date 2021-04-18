@@ -25,7 +25,7 @@ export default function HomeworkModal(props) {
   const [hasChanged, setHasChanged] = useState(!isEditting);
   const [fileIds, setFileIds] = useState(null);
   const [isFileAttach, setIsFileAttach] = useState(false);
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(new Date());
 
   function updateHasChanged(formTitle, formContent) {
     setHasChanged(formTitle !== props.title || formContent !== props.content);
@@ -38,9 +38,20 @@ export default function HomeworkModal(props) {
   return (
     <>
       {props.button ? (
-        <IconButton icon={<props.icon />} onClick={onOpen} />
+        <IconButton
+          icon={<props.icon />}
+          onClick={() => {
+            setDate(new Date());
+            onOpen();
+          }}
+        />
       ) : (
-        <props.icon onClick={onOpen} />
+        <props.icon
+          onClick={() => {
+            setDate(new Date());
+            onOpen();
+          }}
+        />
       )}
       <Modal
         closeOnOverlayClick={false}
@@ -76,7 +87,11 @@ export default function HomeworkModal(props) {
 
           <ModalFooter>
             <Button
-              onClick={() => (isFileAttach ? setIsFileAttach(false) : null)}
+              onClick={() => {
+                if (isFileAttach) {
+                  setIsFileAttach(false);
+                }
+              }}
               form="homework-form"
               type="submit"
               colorScheme="blue"

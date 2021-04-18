@@ -12,7 +12,7 @@ export default function DatePicker(props) {
       <RDatePicker
         onChange={props.getDate}
         min={new Date()}
-        defaultValue={new Date()}
+        defaultValue={props.defaultDate || new Date()}
         includeTime
       />
     </div>

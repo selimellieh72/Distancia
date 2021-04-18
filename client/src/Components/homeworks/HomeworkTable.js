@@ -32,6 +32,30 @@ export default function Homeworktable(props) {
             </Td>
           </Tr>
         ))}
+        <Tr>
+          <Td>student name</Td>
+          <Td>Seen</Td>
+          <Td>
+            <BsFileEarmarkArrowDown size="25px" />
+          </Td>
+          <Td>Download | Correct | Send</Td>
+        </Tr>
+        <Tr>
+          <Td>student name</Td>
+          <Td>Not seen</Td>
+          <Td>
+            <BsFileEarmarkArrowDown size="25px" />
+          </Td>
+          <Td>Download | Correct | Send</Td>
+        </Tr>
+        <Tr>
+          <Td>student name</Td>
+          <Td>Done</Td>
+          <Td>
+            <BsFileEarmarkArrowDown size="25px" />
+          </Td>
+          <Td>Download | Correct | Send</Td>
+        </Tr>
       </Tbody>
     </Table>
   );

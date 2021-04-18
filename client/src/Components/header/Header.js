@@ -18,7 +18,7 @@ export default function Header() {
 
         {isHome ? (
           <Link to="/login" className="main-header__join">
-            SignIn
+            Sign In
           </Link>
         ) : null}
       </div>

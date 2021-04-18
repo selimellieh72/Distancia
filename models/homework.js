@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const requiredString = { type: String, required: true };
 
+const GFS = mongoose.model(
+  "GFS",
+  new mongoose.Schema({}, { strict: false }),
+  "uploads.files"
+);
+
 const homeworkSchema = new mongoose.Schema(
   {
     title: requiredString,
@@ -9,7 +15,7 @@ const homeworkSchema = new mongoose.Schema(
     accomplishedUsersIds: [
       { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     ],
-    fileIds: [String],
+    files: [{ type: mongoose.Schema.Types.ObjectId, ref: "GFS" }],
     grade: { type: mongoose.Schema.Types.ObjectId, ref: "Grade" },
     acceptAnswers: Boolean,
     answers: [

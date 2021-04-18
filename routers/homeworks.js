@@ -41,9 +41,11 @@ router
                 ? { path: "answers.student", select: { fullName: 1 } }
                 : ""
             )
+            .populate({ path: "files", select: { filename: 1 } })
             .sort({ created_at: -1 })
             .exec(function (e, homeworks) {
               if (e) {
+                console.log(e);
                 res.status(403).send();
               } else {
                 const response = {

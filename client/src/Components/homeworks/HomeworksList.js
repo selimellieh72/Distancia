@@ -37,7 +37,14 @@ export default function HomeworksList(props) {
           isAccomplished={homework.isAccomplished}
           dueDate={homework.dueDate}
           setHomeworks={props.setHomeworks}
-          fileIds={homework.fileIds}
+          files={homework.files.map((f) => {
+            f.name = f.filename;
+            f.id = f._id;
+            delete f.filename;
+            delete f._id;
+            console.log(f);
+            return f;
+          })}
           acceptAnswers={homework.acceptAnswers}
           answers={homework.answers}
           isExpired={homework.isExpired}

@@ -81,7 +81,7 @@ function HomeworkCard(props) {
               content={homeworkData.content}
               teacherDiscipline={props.teacherDiscipline}
               teacherName={props.teacherName}
-              fileIds={props.fileIds}
+              files={props.files}
               acceptAnswers={props.acceptAnswers}
               onClose={onClose}
               setIsAcomplished={() =>
@@ -106,11 +106,11 @@ function HomeworkCard(props) {
       >
         <Flex flex={1} flexDir="column" alignItems="center" textAlign="center">
           <Avatar />
-          <p style={{ fontWeight: "bold" }}>{props.teacherName}</p>
+          <p className="homework-card__teacher__name">{props.teacherName}</p>
         </Flex>
 
         <Flex flex={3} flexDir="column" ml="15px" alignItems="start">
-          <h1>{homeworkData.title}</h1>
+          <h1 className="homework-card__title">{homeworkData.title}</h1>
           <Flex alignItems="center">
             <FaBook style={{ marginRight: "6px" }} />
             <p>{props.teacherDiscipline}</p>

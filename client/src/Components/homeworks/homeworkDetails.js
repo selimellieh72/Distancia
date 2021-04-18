@@ -1,12 +1,22 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
-import { Avatar, Flex, Tooltip, Badge, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+  Avatar,
+  Flex,
+  Tooltip,
+  Badge,
+  Wrap,
+  WrapItem,
+  Show,
+} from "@chakra-ui/react";
 import moment from "moment";
 import HomeworkAccomplish from "./HomeworkAccomplish";
 import AnswerHomework from "./AnswerHomework";
+import ShowFiles from "../Core/ShowFiles";
 
 export default function HomeworkDetails(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
+
   return (
     <div className="homework-details__drawer">
       <div className="sender-details">
@@ -17,17 +27,6 @@ export default function HomeworkDetails(props) {
       <div className="homework-details">
         <h1 className="homework-details__title">{props.title}</h1>
 
-        {props.fileIds && (
-          <Wrap mt="4rem">
-            {props.fileIds.map((id) => (
-              <WrapItem key={id}>
-                <a href={`http://localhost:5000/uploads/${id}`} download>
-                  Download file
-                </a>
-              </WrapItem>
-            ))}
-          </Wrap>
-        )}
         <Wrap mb="2rem">
           {props.isAccomplished && (
             <WrapItem>
@@ -65,6 +64,10 @@ export default function HomeworkDetails(props) {
             </span>
           </div>
         </div>
+        <div>
+          <div>Files: </div>
+          {<ShowFiles files={props.files} downloadable />}
+        </div>
       </div>
 
       <Flex justifyContent="center">
@@ -85,6 +88,7 @@ export default function HomeworkDetails(props) {
                   isAccomplished={props.isAccomplished}
                   onClose={props.onClose}
                   disabled={props.acceptAnswers}
+                  isExpired={props.isExpired}
                 />
               )}
             </span>

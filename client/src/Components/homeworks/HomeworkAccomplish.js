@@ -38,7 +38,7 @@ function HomeworkAccomplish(props) {
 
   return (
     <div>
-      {!props.isAccomplished && (
+      {!props.isAccomplished && !props.isExpired && (
         <AccomplishButton onClick={() => setIsOpen(true)} />
       )}
       <AlertDialog
