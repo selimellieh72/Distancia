@@ -43,7 +43,29 @@
   right: 1.5rem;
 }
 
-.card-test__divider{
+.card-test__accomplishment {
+  font-size: 0.7rem;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  padding: 0.3rem;
+  color: white;
+  border-radius: 8px;
+}
+
+.done {
+  background-color: #38a169;
+}
+
+.waiting {
+  background-color: #3182ce;
+}
+
+.undone {
+  background-color: #e53e3e;
+}
+
+.card-test__divider {
   margin: 1rem auto;
   border-color: rgba(0, 0, 0, 0.25);
   width: 65%;
@@ -53,12 +75,34 @@
   display: block;
 }
 
-.test-creator__footer__button{
+.test-creator__footer__button {
   width: auto;
   display: block;
   text-align: center;
   margin: 0 auto;
 }
+
+.test-section__question__title{
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.test-section__divider{
+  margin-top: 1rem;
+  border-width: 1px;
+  border-color: #2b2b2b;
+  width: 65%;
+}
+
+.test-section__question__content{
+  margin: 3rem 0;
+  height: auto;
+  border: #2b2b2b solid 1px;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: justify;
+}
+
 
 @media (max-width: 555px) {
   .card-test__title {

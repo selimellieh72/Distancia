@@ -16,6 +16,8 @@ import HomeworkTablePage from "./routers/homework/HomeworkTablePage";
 import Auth from "./Components/auth/Auth";
 import PrivateRoute from "./Components/Core/PrivateRoute";
 import Header from "./Components/header/Header";
+import SeeAnswers from "./routers/test/SeeAnswers";
+import TakeQuizz from "./routers/test/TakeQuizz";
 
 export default function Router(props) {
   return (
@@ -71,6 +73,16 @@ export default function Router(props) {
       />
       <PrivateRoute path="/stats" component={Stats} isAuth={props.isAuth} />
 
+      <PrivateRoute
+        path="/answers"
+        component={SeeAnswers}
+        isAuth={props.isAuth}
+      />
+      <PrivateRoute
+        path="/takequizz"
+        component={TakeQuizz}
+        isAuth={props.isAuth}
+      />
       <Route path="/login" component={Auth}></Route>
       <Route path="/register" render={() => <Auth type="signup" />}></Route>
 

@@ -14,7 +14,11 @@ function Grades() {
     <div>
       <Container maxW="container.lg" p="18px">
         <Flex alignItems="center" minW="300px" justifyContent="space-between">
-          <Heading as="h1">Grades</Heading>
+          {isTeacher ? (
+            <Heading as="h1">Grades</Heading>
+          ) : (
+            <Heading as="h1">Material</Heading>
+          )}
           {isTeacher ? (
             <AddGradesModal setGrades={setGrades} />
           ) : (

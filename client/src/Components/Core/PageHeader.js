@@ -13,6 +13,7 @@ export default function PageHeader(props) {
           <span className="page-title">{props.title}</span>
         </div>
         <div className="page-header__icon">
+          {props.addButton}
           <Button>
             <GridSvg className="page-header__icon__grid" />
           </Button>

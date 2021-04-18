@@ -108,16 +108,10 @@ hr {
   color: white;
 }
 
-
-
-
-
 .page-heading {
   display: flex;
   align-items: center;
 }
-
-
 
 .list-empty {
   margin-top: 4rem;
@@ -210,6 +204,12 @@ hr {
 .arrow-back {
   height: 24px !important;
   width: 24px !important;
+}
+
+.menu-icon{
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
 }
 
 #root {

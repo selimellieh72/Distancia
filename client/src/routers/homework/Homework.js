@@ -2,20 +2,10 @@ import React, { useState, useContext } from "react";
 
 import HomeworksList from "../../Components/homeworks/HomeworksList";
 import { authContext } from "../../providers/AuthContext";
-import { AddIcon, ArrowBackIcon } from "@chakra-ui/icons";
-import {
-  Container,
-  Flex,
-  Heading,
-  Divider,
-  Box,
-  Button,
-} from "@chakra-ui/react";
-
-import Header from "../../Components/header/Header";
+import { AddIcon } from "@chakra-ui/icons";
+import { Container } from "@chakra-ui/react";
+import PageHeader from "../../Components/Core/PageHeader.js";
 import HomeworkModal from "../../Components/homeworks/HomeworkModal.js";
-import BackIcon from "../../Components/Core/BackIcon";
-import { ReactComponent as GridSvg } from "../../assets/svg/grid.svg";
 
 export default function Homework(props) {
   const [homeworksData, setHomeworksData] = useState({});
@@ -25,20 +15,19 @@ export default function Homework(props) {
   return (
     <div>
       <Container maxW="container.lg" p="18px">
-        <Flex alignItems="center" minW="300px" justifyContent="space-between">
-          <Heading className="page-header" as="h1">
-            {" "}
-            <BackIcon pathName="/grades" />
-            {gradeId ? (
+        <PageHeader
+          title={
+            gradeId ? (
               <span className="page-title">
-                {homeworksData.gradeTitle || ""}
+                {isTeacher ? homeworksData.gradeTitle || "" : props.discipline}
               </span>
             ) : (
               "Homeworks"
-            )}
-          </Heading>
-          <div className="page-header__icon">
-            {isTeacher && gradeId && (
+            )
+          }
+          addButton={
+            isTeacher &&
+            gradeId && (
               <HomeworkModal
                 gradeId={gradeId}
                 setHomeworks={(setHomeworksCallback) => {
@@ -50,16 +39,9 @@ export default function Homework(props) {
                 icon={AddIcon}
                 button
               />
-            )}
-            <Button ml="16px">
-              <GridSvg className="page-header__icon__grid" />
-            </Button>
-          </div>
-        </Flex>
-        <Box my="18px">
-          <Divider borderColor="black" opacity="0.2" variant="solid" />
-        </Box>
-
+            )
+          }
+        />
         <HomeworksList
           setHomeworksData={setHomeworksData}
           gradeId={gradeId}

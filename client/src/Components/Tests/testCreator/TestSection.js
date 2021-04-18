@@ -40,10 +40,10 @@ export default function TestTextSection() {
         />
         {(questionType === "singleChoice" ||
           questionType === "multipleChoice") && (
-          <p className="test-section__advice__message">
+          <span className="test-section__advice__message">
             Please check the correct answers to have an automatic correction for
             multiple and single choice questions
-          </p>
+          </span>
         )}
 
         <div className="grade-picker">

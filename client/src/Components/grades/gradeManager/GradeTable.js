@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import GradeManager from "../../../routers/grades/GradeManager";
-import { Table, Thead, Tbody, Tr, Th, Td, Button } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Button,
+  Center,
+} from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function GradeTable(props) {
@@ -44,6 +53,19 @@ export default function GradeTable(props) {
               {/* <Td><BsFileEarmarkArrowDown/></Td> */}
             </Tr>
           ))}
+          <Tr>
+            <Td>student student</Td>
+            <Td>Waiting...</Td>
+            <Td>
+              <Button mr="1rem" width="70px" size="sm" colorScheme="red">
+                Deny
+              </Button>
+              <Button width="70px" size="sm" colorScheme="green">
+                Accept
+              </Button>
+            </Td>
+            {/* <Td><BsFileEarmarkArrowDown/></Td> */}
+          </Tr>
         </Tbody>
       </Table>
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../../Components/header/Header";
 import {
   Container,
@@ -11,26 +11,16 @@ import {
 import BackIcon from "../../Components/Core/BackIcon";
 import { ReactComponent as GridSvg } from "../../assets/svg/grid.svg";
 import TestsList from "../../Components/Tests/TestsList";
+import PageHeader from "../../Components/Core/PageHeader";
+import { authContext } from "../../providers/AuthContext";
 
 export default function Test() {
+  const isTeacher = useContext(authContext)[0].isTeacher;
+
   return (
     <>
       <Container maxW="container.lg" p="18px">
-        <Flex alignItems="center" minW="300px" justifyContent="space-between">
-          <Heading display="flex" alignItems="center" as="h1">
-            {" "}
-            <BackIcon pathName="/grades" />
-            <span className="page-title">Tests</span>
-          </Heading>
-          <div className="page-header__icon">
-            <Button>
-              <GridSvg className="page-header__icon__grid" />
-            </Button>
-          </div>
-        </Flex>
-        <Box my="18px">
-          <Divider borderColor="black" opacity="0.2" variant="solid" />
-        </Box>
+        {isTeacher? <PageHeader title={"grade"} /> :<PageHeader title={"material"} /> }
         <TestsList />
       </Container>
     </>

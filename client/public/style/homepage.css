@@ -104,6 +104,10 @@
   font-size: 16px;
 }
 
+#main-homepage {
+  overflow-x: hidden;
+}
+
 @media (max-width: 720px) {
   .steps-list__item {
     display: inline;

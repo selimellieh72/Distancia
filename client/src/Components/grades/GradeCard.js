@@ -38,7 +38,6 @@ export default function GradeCard(props) {
           <h1 className="card__title">
             {isTeacher ? props.title : props.gradeMaterial}
           </h1>
-          {!isTeacher && props.title}
         </div>
       </div>
     </>

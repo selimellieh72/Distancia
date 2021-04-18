@@ -89,11 +89,11 @@
   margin-left: 0.25rem;
 }
 
-.test-section__advice__message{
-  padding: 0.5rem;
-  font-size: 0.75rem;
-  border-radius: 15px;
+.test-section__advice__message {
+  font-style: italic;
+  font-size: 0.7rem;
   width: 400px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 500px) {

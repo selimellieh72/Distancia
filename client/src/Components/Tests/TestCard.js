@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@chakra-ui/button";
+import { Link } from "react-router-dom";
 
 export default function TestCard(props) {
   return (
@@ -13,13 +14,28 @@ export default function TestCard(props) {
           </div>
         </div>
         <div className="card-test__body">
-          <p className="car-test__body__content">Content content content content content content content content</p>
+          <p className="car-test__body__content">
+            Content content content content content content content content
+          </p>
         </div>
         <div className="card-test__footer">
-          {!props.isTeacher ?<Button className="card-test__button" colorScheme="blue">Take quiz</Button> : <Button className="card-test__button" colorScheme="blue">See answers</Button>}
+          {!props.isTeacher ? (
+            <Link to="/takequizz">
+            <Button size="sm" className="card-test__button" colorScheme="blue">
+              Take quiz
+            </Button>
+            </Link>
+          ) : (
+            <Link to="/answers">
+            <Button size="sm" className="card-test__button" colorScheme="blue">
+              See answers
+            </Button>
+            </Link>
+          )}
         </div>
+        {!props.isTeacher &&<div className="card-test__accomplishment done">Done | Undone | Waiting</div>}
       </div>
-      <hr className="card-test__divider"/>
+      <hr className="card-test__divider" />
     </>
   );
 }
