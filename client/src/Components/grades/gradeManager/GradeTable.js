@@ -17,7 +17,7 @@ export default function GradeTable(props) {
   const [students, setStudents] = useState(props.students);
   const deleteStudent = (studentId) =>
     axios
-      .patch(`/grade/${props.gradeId}?removeStudent=${studentId}`)
+      .patch(`/grades/${props.gradeId}?removeStudent=${studentId}`)
       .then((res) =>
         setStudents((prevStudents) =>
           prevStudents.filter((student) => student._id !== studentId)

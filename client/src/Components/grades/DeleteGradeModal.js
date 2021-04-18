@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   Tooltip,
   useToast,
@@ -20,10 +21,27 @@ export default function DeleteGradeModal(props) {
   const toast = useToast();
   const cancelRef = React.useRef();
 
+  const onSubmit = () => {
+    axios.delete(`/grades/${props.gradeId}`).then(() => {
+      props.setGrades((grades) =>
+        grades.filter((g) => g._id !== props.gradeId)
+      );
+      onClose();
+      toast({
+        duration: 4000,
+        status: "success",
+        isClosable: true,
+        title: "Grade deleted",
+        description: `Successfuly deleted grade of title '${props.gradeTitle}'`,
+      });
+    });
+  };
+
   return (
     <>
       <Tooltip label="Delete Grade" aria-label="A tooltip" bg="red.600">
-        <Button width="125px"
+        <Button
+          width="125px"
           onClick={(e) => {
             e.stopPropagation();
             onOpen();
@@ -55,7 +73,7 @@ export default function DeleteGradeModal(props) {
             <Button ref={cancelRef} onClick={onClose}>
               No
             </Button>
-            <Button colorScheme="red" ml={3}>
+            <Button colorScheme="red" ml={3} onClick={onSubmit}>
               Yes
             </Button>
           </AlertDialogFooter>

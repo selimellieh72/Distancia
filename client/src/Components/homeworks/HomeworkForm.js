@@ -33,6 +33,7 @@ export default function HomeworkForm(props) {
         .post("/homeworks", {
           ...data,
           grade: props.gradeId,
+          chapter: props.chapterId,
           files: props.fileIds ? props.fileIds : undefined,
           dueDate: props.date,
         })

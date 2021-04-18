@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { authContext } from "../../providers/AuthContext";
 import {
   Drawer,
@@ -14,7 +14,10 @@ export default function GradeCard(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const { isTeacher, discipline } = useContext(authContext)[0];
-
+  const [gradeDetails, setGradeDetails] = useState({});
+  useEffect(() => {
+    setGradeDetails({ chapters: props.chapters });
+  }, []);
   return (
     <>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
@@ -28,6 +31,10 @@ export default function GradeCard(props) {
               students={props.students}
               material={props.gradeMaterial}
               id={props.id}
+              chapters={props.chapters}
+              gradeDetails={gradeDetails}
+              setGradeDetails={setGradeDetails}
+              setGrades={props.setGrades}
             />
           </DrawerContent>
         </DrawerOverlay>

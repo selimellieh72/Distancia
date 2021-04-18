@@ -27,11 +27,13 @@ export default function GradesList(props) {
         return (
           <GradeCard
             gradeMaterial={grade.teacher.discipline}
+            setGrades={props.setGrades}
             title={grade.title}
             students={grade.students}
             key={grade._id}
             id={grade._id}
             linkRef={grade.ref && grade.ref}
+            chapters={grade.chapters}
           />
         );
       })}

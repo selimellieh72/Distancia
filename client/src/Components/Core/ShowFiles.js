@@ -10,9 +10,10 @@ export default function ShowFiles(props) {
     }
   }
 
-  const baseUrl = "http://localhost:3000"
-    ? "http://localhost:5000/api"
-    : window.location.origin + "/api";
+  const baseURL =
+    window.location.origin === "http://localhost:3000"
+      ? "http://localhost:5000/api"
+      : window.location.origin + "/api";
 
   console.log(props.files);
   return (
@@ -32,7 +33,7 @@ export default function ShowFiles(props) {
           <li key={file.id} className="uploaded-file">
             {" "}
             {props.downloadable ? (
-              <a href={`${baseUrl}/uploads/${file.id}`} download>
+              <a href={`${baseURL}/uploads/${file.id}`} download>
                 <MyFileIcon />
               </a>
             ) : (

@@ -46,7 +46,7 @@ export default function JoinGrades(props) {
       .catch((e) => {
         setError("gradeId", {
           type: "server",
-          message: "Incorrect id, please try again.",
+          message: e.response.data.message || "Unknown error.",
         });
       });
   }

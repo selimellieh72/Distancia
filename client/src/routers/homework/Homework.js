@@ -10,7 +10,8 @@ import HomeworkModal from "../../Components/homeworks/HomeworkModal.js";
 export default function Homework(props) {
   const [homeworksData, setHomeworksData] = useState({});
   const isTeacher = useContext(authContext)[0].isTeacher;
-  const gradeId = props.match.params.id;
+  const gradeId = props.match.params.gradeId;
+  const chapterId = props.match.params.chapterId;
 
   return (
     <div>
@@ -27,9 +28,11 @@ export default function Homework(props) {
           }
           addButton={
             isTeacher &&
-            gradeId && (
+            gradeId &&
+            chapterId && (
               <HomeworkModal
                 gradeId={gradeId}
+                chapterId={chapterId}
                 setHomeworks={(setHomeworksCallback) => {
                   const homeworks = setHomeworksCallback(
                     homeworksData.homeworks
@@ -45,6 +48,7 @@ export default function Homework(props) {
         <HomeworksList
           setHomeworksData={setHomeworksData}
           gradeId={gradeId}
+          chapterId={chapterId}
           homeworks={homeworksData.homeworks}
         />
       </Container>

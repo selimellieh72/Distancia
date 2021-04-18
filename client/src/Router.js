@@ -29,7 +29,7 @@ export default function Router(props) {
         exact
       />
       <PrivateRoute
-        path="/homeworks/:id"
+        path="/grades/:gradeId/chapter/:chapterId/homeworks"
         component={Homework}
         isAuth={props.isAuth}
       />

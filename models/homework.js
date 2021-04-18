@@ -16,7 +16,16 @@ const homeworkSchema = new mongoose.Schema(
       { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     ],
     files: [{ type: mongoose.Schema.Types.ObjectId, ref: "GFS" }],
-    grade: { type: mongoose.Schema.Types.ObjectId, ref: "Grade" },
+    grade: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Grade",
+      required: true,
+    },
+    chapter: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Chapter",
+      required: true,
+    },
     acceptAnswers: Boolean,
     answers: [
       {

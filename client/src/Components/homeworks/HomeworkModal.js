@@ -66,6 +66,7 @@ export default function HomeworkModal(props) {
           </ModalHeader>
           <ModalBody pb={6}>
             <HomeworkForm
+              chapterId={props.chapterId}
               initialRef={initialRef}
               onClose={onClose}
               setHomeworkData={props.setHomeworkData}

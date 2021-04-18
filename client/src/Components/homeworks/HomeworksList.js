@@ -11,7 +11,11 @@ export default function HomeworksList(props) {
   useEffect(() => {
     let isMounted = true;
     axios
-      .get(`/homeworks${props.gradeId ? `?grade=${props.gradeId}` : ""}`)
+      .get(
+        `/homeworks?${props.gradeId ? `&grade=${props.gradeId}` : ""}${
+          props.chapterId ? `&chapter=${props.chapterId}` : ""
+        }`
+      )
       .then((res) => {
         if (isMounted) {
           console.log(res.data);

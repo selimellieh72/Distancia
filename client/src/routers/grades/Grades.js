@@ -17,7 +17,7 @@ function Grades() {
           {isTeacher ? (
             <Heading as="h1">Grades</Heading>
           ) : (
-            <Heading as="h1">Material</Heading>
+            <Heading as="h1">Materials</Heading>
           )}
           {isTeacher ? (
             <AddGradesModal setGrades={setGrades} />

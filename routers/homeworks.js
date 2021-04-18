@@ -10,8 +10,8 @@ router
     if (req.isAuthenticated()) {
       async function getHomeworksQuery() {
         let query;
-        if (req.query.grade) {
-          query = { grade: req.query.grade };
+        if (Object.keys(req.query).length > 0) {
+          query = req.query;
         } else {
           const grades = await Grade.find(
             req.user.isTeacher
