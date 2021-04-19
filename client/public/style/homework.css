@@ -128,6 +128,35 @@
   justify-items: center;
 }
 
+.homework-table-card {
+  margin-top: 1rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.homework-table-card > h1 {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.homework-table-card__status {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.homework-table-card__status__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+.homework-table-card__status__tag {
+  margin-right: 0.5rem;
+}
+
 @media (max-width: 600px) {
   .homework-card__title {
     font-size: 1rem;

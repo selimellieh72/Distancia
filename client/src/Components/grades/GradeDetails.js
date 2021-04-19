@@ -19,6 +19,7 @@ import ChapterCollapsible from "./ChapterCollapsible";
 
 export default function GradeDetails(props) {
   const isTeacher = props.isTeacher;
+ 
 
   return (
     <>
@@ -31,7 +32,7 @@ export default function GradeDetails(props) {
       {/* grade ID */}
       {isTeacher && <GradeId id={props.id} />}
       {/* chapter */}
-      <List spacing={3} mb="3rem" mt="3rem">
+      {props.gradeDetails.chapters.length !== 0 ?<List spacing={3} mb="3rem" mt="3rem">
         {props.gradeDetails.chapters?.map((chapter) => (
           <ChapterCollapsible
             title={chapter.title}
@@ -39,7 +40,7 @@ export default function GradeDetails(props) {
             gradeId={props.id}
           />
         ))}
-      </List>
+      </List> :<p className="no-chapter__message">No chapters <br/>added</p>}
 
       {/* manage */}
       {isTeacher && (

@@ -11,14 +11,14 @@ export default function HomeworkTablePage() {
   const { homeworkTitle, answers, gradeId } = useLocation().state;
   return (
     <>
-      <Container maxW="container.lg" p="18px" minW="620px">
+      <Container maxW="container.lg" p="18px">
         <Flex minW="300px" justifyContent="space-between">
           <Heading as="h1">
             <BackIcon pathName={`homeworks/${gradeId || ""}`} />
             {homeworkTitle}
           </Heading>
         </Flex>
-        <Homeworktable answers={answers} />
+        <Homeworktable  />
       </Container>
     </>
   );

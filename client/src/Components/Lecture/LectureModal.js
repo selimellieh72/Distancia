@@ -10,6 +10,11 @@ import {
   useDisclosure,
   Button,
   IconButton,
+  Stack,
+  RadioGroup,
+  Radio,
+  Input,
+  Center
 } from "@chakra-ui/react";
 import LectureForm from "./LectureForm";
 import UploadFiles from "../Core/UploadFiles";
@@ -24,6 +29,9 @@ export default function LectureModal(props) {
   const isEditting = props.id && props.title && props.content;
   const [hasChanged, setHasChanged] = useState(!isEditting);
   const [isFileAttach, setIsFileAttach] = useState(false);
+  const [documentType, setDocumentType] = useState("");
+
+  console.log(documentType);
 
   return (
     <>
@@ -45,7 +53,29 @@ export default function LectureModal(props) {
           </ModalHeader>
           <ModalBody pb={6}>
             <LectureForm />
-            <UploadFiles multiple="true" />
+
+            <RadioGroup display="flex" justifyContent="space-evenly">
+              <Radio value="1" onChange={() => setDocumentType("video")}>
+                Video
+              </Radio>
+              <Radio value="2" onChange={() => setDocumentType("link")}>
+                Link
+              </Radio>
+              <Radio value="3" onChange={() => setDocumentType("file")}>
+                File
+              </Radio>
+            </RadioGroup>
+            {documentType==="video"&&<Center>
+              <Button mt="1.5rem" colorScheme="telegram">
+                Upload Video
+              </Button>
+            </Center>}
+            {documentType==="link"&&<Input
+              placeholder="Link: https://"
+              borderColor="#2b2b2b"
+              mt="1.5rem"
+            />}
+            {documentType==="file"&&<UploadFiles multiple="true" />}
           </ModalBody>
 
           <ModalFooter>

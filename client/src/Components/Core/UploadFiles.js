@@ -59,7 +59,7 @@ export default function UploadFiles(props) {
         onChange={handleChange}
       />
       <Center mt="2rem">
-        <Button py="6" onClick={handleClick} colorScheme="blue">
+        <Button py="6" onClick={handleClick} colorScheme="green">
           {isLoading ? (
             <CircularProgress isIndeterminate color="green.300" />
           ) : (
