@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { FormControl, FormErrorMessage } from "@chakra-ui/react";
 
 import { Button, Center, CircularProgress } from "@chakra-ui/react";
 
@@ -84,8 +85,12 @@ export default function UploadFiles(props) {
             f.id = uuidv4();
             return f;
           })}
+          notDownloadable
         />
       </div>
+      <FormControl isInvalid>
+        <FormErrorMessage>{props.errorMessage}</FormErrorMessage>
+      </FormControl>
     </>
   );
 }

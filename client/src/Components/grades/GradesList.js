@@ -7,7 +7,7 @@ import GradeCard from "./GradeCard";
 import { ReactComponent as BoxSvg } from "../../assets/svg/box.svg";
 
 export default function GradesList(props) {
-  const isTeacher = useContext(authContext)[0].isTeacher;
+  const { isTeacher, discipline } = useContext(authContext)[0];
   useEffect(() => {
     axios
       .get("/grades")
@@ -26,7 +26,7 @@ export default function GradesList(props) {
       {props.grades.map((grade) => {
         return (
           <GradeCard
-            gradeMaterial={grade.teacher.discipline}
+            gradeMaterial={isTeacher ? discipline : grade.teacher.discipline}
             setGrades={props.setGrades}
             title={grade.title}
             students={grade.students}

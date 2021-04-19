@@ -118,27 +118,17 @@
   text-align: center;
 }
 
-.uploaded-files__list {
-  min-width: 300px;
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  /* grid-auto-rows: minmax(50px, auto); */
-  gap: 2.5rem 1rem;
-  margin: 0 auto;
-  justify-items: center;
-}
-
 .homework-table-card {
   margin-top: 1rem;
   padding: 2rem;
   text-align: center;
-  cursor: pointer;
 }
 
 .homework-table-card > h1 {
   margin-bottom: 1rem;
   font-weight: bold;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .homework-table-card__status {

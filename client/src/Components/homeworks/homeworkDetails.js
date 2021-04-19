@@ -1,14 +1,6 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
-import {
-  Avatar,
-  Flex,
-  Tooltip,
-  Badge,
-  Wrap,
-  WrapItem,
-  Show,
-} from "@chakra-ui/react";
+import { Avatar, Flex, Tooltip, Badge, Wrap, WrapItem } from "@chakra-ui/react";
 import moment from "moment";
 import HomeworkAccomplish from "./HomeworkAccomplish";
 import AnswerHomework from "./AnswerHomework";
@@ -66,7 +58,7 @@ export default function HomeworkDetails(props) {
         </div>
         <div>
           <div>Files: </div>
-          {<ShowFiles files={props.files} downloadable />}
+          {<ShowFiles files={props.files} />}
         </div>
       </div>
 

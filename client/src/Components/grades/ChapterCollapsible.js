@@ -27,7 +27,9 @@ export default function ChapterCollapsible({ title, gradeId, chapterId }) {
       <Collapse in={isToogled} animateOpacity className="grade-content">
         <UnorderedList mb="1rem" minWidth="min-content" spacing={1.5}>
           <ListItem className="grade-content__type">
-            <Link to={"/lecture"}>Lecture</Link>
+            <Link to={`/grades/${gradeId}/chapter/${chapterId}/lectures`}>
+              Lecture
+            </Link>
           </ListItem>
           <ListItem className="grade-content__type">
             <Link to={"/meetings"}>Meetings</Link>

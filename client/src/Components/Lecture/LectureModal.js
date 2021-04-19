@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react";
-
+import React, { useRef, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import {
+  FormErrorMessage,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -10,35 +12,69 @@ import {
   useDisclosure,
   Button,
   IconButton,
-  Stack,
   RadioGroup,
   Radio,
   Input,
-  Center
+  FormLabel,
+  FormControl,
+  FormHelperText,
+  useToast,
 } from "@chakra-ui/react";
-import LectureForm from "./LectureForm";
+
 import UploadFiles from "../Core/UploadFiles";
 
 export default function LectureModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  let setValue;
-
+  const { errors, setValue, register, handleSubmit, reset } = useForm();
   const initialRef = useRef();
 
-  const isEditting = props.id && props.title && props.content;
-  const [hasChanged, setHasChanged] = useState(!isEditting);
-  const [isFileAttach, setIsFileAttach] = useState(false);
-  const [documentType, setDocumentType] = useState("");
+  const [documentType, setDocumentType] = useState("link");
+  const toast = useToast();
+  const onSubmit = (data) => {
+    const lecture = {
+      title: data.title,
+      chapter: props.chapterId,
+      file: documentType === "file" ? data.file[0] : undefined,
+      link: documentType === "link" ? data.link : undefined,
+    };
+    return axios
+      .patch(`/grades/${props.gradeId}?addLecture=true`, lecture)
+      .then((res) => {
+        onClose();
+        toast({
+          title: "Lecture added!",
+          description: `The lecture with the title ${data.title} was successfully added.`,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
 
-  console.log(documentType);
+        props.setLecturesData((lectureData) => ({
+          ...lectureData,
+          lectures: [res.data, ...lectureData.lectures],
+        }));
+      })
+      .catch((e) => console.log(e));
+  };
 
+  useEffect(() => {
+    register("file", {
+      validate: (val) =>
+        (val && val.length > 0) ||
+        documentType !== "file" ||
+        "Please upload the file before adding the lectures.",
+    });
+  });
+  const openModal = () => {
+    reset();
+    onOpen();
+  };
   return (
     <>
       {props.button ? (
-        <IconButton icon={<props.icon />} onClick={onOpen} />
+        <IconButton icon={<props.icon />} onClick={openModal} />
       ) : (
-        <props.icon onClick={onOpen} />
+        <props.icon onClick={openModal} />
       )}
       <Modal
         closeOnOverlayClick={false}
@@ -48,53 +84,84 @@ export default function LectureModal(props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {isEditting ? "Edit Lecture" : "Add Lecture"}
-          </ModalHeader>
+          <ModalHeader>Add Lecture</ModalHeader>
           <ModalBody pb={6}>
-            <LectureForm />
+            <form id="lecture-form" onSubmit={handleSubmit(onSubmit)}>
+              <FormControl isInvalid={errors.title} mb="9px" isRequired>
+                <FormLabel>Title:</FormLabel>
+                <Input
+                  name="title"
+                  ref={register({
+                    maxLength: {
+                      value: 64,
+                      message:
+                        "Your lecture title should contain a maximum of 64 characters",
+                    },
+                  })}
+                />
+                <FormHelperText>
+                  {!errors.title &&
+                    "Your lecture title that will be shown to your students."}
+                </FormHelperText>
+                <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
+              </FormControl>
 
-            <RadioGroup display="flex" justifyContent="space-evenly">
-              <Radio value="1" onChange={() => setDocumentType("video")}>
-                Video
-              </Radio>
-              <Radio value="2" onChange={() => setDocumentType("link")}>
-                Link
-              </Radio>
-              <Radio value="3" onChange={() => setDocumentType("file")}>
-                File
-              </Radio>
-            </RadioGroup>
-            {documentType==="video"&&<Center>
-              <Button mt="1.5rem" colorScheme="telegram">
-                Upload Video
-              </Button>
-            </Center>}
-            {documentType==="link"&&<Input
-              placeholder="Link: https://"
-              borderColor="#2b2b2b"
-              mt="1.5rem"
-            />}
-            {documentType==="file"&&<UploadFiles multiple="true" />}
+              <RadioGroup
+                value={documentType}
+                onChange={setDocumentType}
+                display="flex"
+                justifyContent="space-evenly"
+              >
+                <Radio
+                  onClick={() => setValue("file", [])}
+                  value="link"
+                  checked="checked"
+                >
+                  Video Link
+                </Radio>
+                <Radio onClick={() => setValue("link", "")} value="file">
+                  File
+                </Radio>
+              </RadioGroup>
+              {documentType === "link" && (
+                <FormControl isInvalid={errors.link} mt="1.5rem" isRequired>
+                  <FormLabel>Link: </FormLabel>
+                  <Input
+                    name="link"
+                    ref={register({
+                      validate: (val) => {
+                        const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+                        if (val.match(p) || documentType !== "link") {
+                          return true;
+                        } else {
+                          return "Please enter a correct youtube video url";
+                        }
+                      },
+                    })}
+                    placeholder="https://google.com"
+                  />
+                  <FormHelperText>
+                    {!errors.link && "Your lecture video url."}
+                  </FormHelperText>
+                  <FormErrorMessage>{errors.link?.message}</FormErrorMessage>
+                </FormControl>
+              )}
+              {documentType === "file" && (
+                <>
+                  <UploadFiles
+                    errorMessage={errors.file?.message}
+                    getFileIds={(fileIds) => setValue("file", fileIds)}
+                  />
+                </>
+              )}
+            </form>
           </ModalBody>
 
           <ModalFooter>
             <Button form="lecture-form" type="submit" colorScheme="blue" mr={3}>
-              {isEditting ? "Edit" : "Add"}
+              Add
             </Button>
-            <Button
-              onClick={() => {
-                if (isEditting) {
-                  setValue("title", "");
-                  setValue("content", "");
-                  setHasChanged(false);
-                }
-                if (isFileAttach) setIsFileAttach(false);
-                onClose();
-              }}
-            >
-              Cancel
-            </Button>
+            <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

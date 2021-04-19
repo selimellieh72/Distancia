@@ -10,8 +10,7 @@ import HomeworkModal from "../../Components/homeworks/HomeworkModal.js";
 export default function Homework(props) {
   const [homeworksData, setHomeworksData] = useState({});
   const isTeacher = useContext(authContext)[0].isTeacher;
-  const gradeId = props.match.params.gradeId;
-  const chapterId = props.match.params.chapterId;
+  const { gradeId, chapterId } = props.match.params;
 
   return (
     <div>

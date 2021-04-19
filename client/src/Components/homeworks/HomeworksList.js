@@ -32,6 +32,7 @@ export default function HomeworksList(props) {
       props.homeworks.map((homework) => (
         <HomeworkCard
           gradeId={props.gradeId}
+          chapterId={props.chapterId}
           key={homework._id}
           id={homework._id}
           title={homework.title}
@@ -46,7 +47,6 @@ export default function HomeworksList(props) {
             f.id = f._id;
             delete f.filename;
             delete f._id;
-            console.log(f);
             return f;
           })}
           acceptAnswers={homework.acceptAnswers}

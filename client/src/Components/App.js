@@ -26,7 +26,7 @@ export default function App() {
       ) : (
         <>
           <Header />
-          <Router isAuth={authInfo.isAuth} />
+          <Router isAuth={authInfo.isAuth} isTeacher={authInfo.isTeacher} />
         </>
       )}
     </main>

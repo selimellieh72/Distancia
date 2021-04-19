@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Switch, Redirect, Route } from "react-router-dom";
 import Tests from "./routers/test/Tests";
 import Lecture from "./routers/lectures/Lecture";
@@ -18,6 +19,7 @@ import PrivateRoute from "./Components/Core/PrivateRoute";
 import Header from "./Components/header/Header";
 import SeeAnswers from "./routers/test/SeeAnswers";
 import TakeQuizz from "./routers/test/TakeQuizz";
+import VideoPlayer from "./routers/VideoPlayer";
 
 export default function Router(props) {
   return (
@@ -25,63 +27,83 @@ export default function Router(props) {
       <PrivateRoute
         path="/homeworks"
         component={Homework}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
         exact
       />
       <PrivateRoute
         path="/grades/:gradeId/chapter/:chapterId/homeworks"
         component={Homework}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
-      <PrivateRoute path="/grades" component={Grades} isAuth={props.isAuth} />
+      <PrivateRoute
+        path="/grades/:gradeId/chapter/:chapterId/lectures"
+        component={Lecture}
+        isViewable={props.isAuth}
+      />
+      <PrivateRoute
+        path="/grades/:gradeId/lectures"
+        component={Lecture}
+        isViewable={props.isAuth}
+      />
+      <PrivateRoute
+        path="/grades"
+        component={Grades}
+        isViewable={props.isAuth}
+        exact
+      />
       <PrivateRoute
         path="/manager"
         component={GradeManager}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
       <PrivateRoute
-        path="/homeworktable"
+        path="/homeworks/:homeworkId"
         component={HomeworkTablePage}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth && props.isTeacher}
       />
-      <PrivateRoute path="/lecture" component={Lecture} isAuth={props.isAuth} />
+
       <PrivateRoute
         path="/meetings"
         component={Meetings}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
-      <PrivateRoute path="/tests" component={Tests} isAuth={props.isAuth} />
+      <PrivateRoute path="/tests" component={Tests} isViewable={props.isAuth} />
       <PrivateRoute
         path="/lecturedisplay"
         component={LectureDisplay}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
       <PrivateRoute
         path="/testcreator"
         component={CreateTest}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
       <PrivateRoute
         path="/messages"
         component={Messages}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
       <PrivateRoute
         path="/messageconversations"
         component={MessageConversation}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
-      <PrivateRoute path="/stats" component={Stats} isAuth={props.isAuth} />
+      <PrivateRoute path="/stats" component={Stats} isViewable={props.isAuth} />
 
       <PrivateRoute
         path="/answers"
         component={SeeAnswers}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
       />
       <PrivateRoute
         path="/takequizz"
         component={TakeQuizz}
-        isAuth={props.isAuth}
+        isViewable={props.isAuth}
+      />
+      <PrivateRoute
+        path="/video"
+        component={VideoPlayer}
+        isViewable={props.isAuth}
       />
       <Route path="/login" component={Auth}></Route>
       <Route path="/register" render={() => <Auth type="signup" />}></Route>

@@ -1,10 +1,13 @@
 import React from "react";
-import { FileIcon, defaultStyles } from "react-file-icon";
 
+import { Link } from "react-router-dom";
+import { Wrap, WrapItem, Heading } from "@chakra-ui/react";
+import { FileIcon, defaultStyles } from "react-file-icon";
+import { ReactComponent as VideoSvg } from "../../assets/svg/video.svg";
 export default function ShowFiles(props) {
   function customFileName(fileName) {
-    if (fileName.length >= 36) {
-      return fileName.substr(0, 33) + "...";
+    if (fileName.length >= 10) {
+      return fileName.substr(0, 7) + "...";
     } else {
       return fileName;
     }
@@ -15,33 +18,65 @@ export default function ShowFiles(props) {
       ? "http://localhost:5000/api"
       : window.location.origin + "/api";
 
-  console.log(props.files);
   return (
-    <ul className="uploaded-files__list">
+    <Wrap spacing="60px" justify="center" overflow="hidden">
       {props.files?.map((file) => {
-        const [fileName, fileExtension] = file.name.split(".");
+        let fileName, fileExtension;
+        if (props.titleNoExtension) {
+          fileName = file.name;
+          fileExtension = file.extension;
+        } else {
+          [fileName, fileExtension] = file.name.split(".");
+        }
+
         const MyFileIcon = () => (
           <div>
-            <FileIcon
-              extension={fileExtension}
-              {...defaultStyles[fileExtension]}
-            />
-            <p className="file-name">{customFileName(fileName)}</p>
+            {file.link ? (
+              <Link
+                to={{
+                  pathname: "/video",
+                  state: { title: fileName, link: file.link },
+                }}
+              >
+                <VideoSvg style={{ height: "40pt", width: "40pt" }} />
+              </Link>
+            ) : (
+              <div style={{ height: "52px", width: "52px" }}>
+                <FileIcon
+                  extension={fileExtension}
+                  {...defaultStyles[fileExtension]}
+                />
+              </div>
+            )}
           </div>
         );
         return (
-          <li key={file.id} className="uploaded-file">
-            {" "}
-            {props.downloadable ? (
-              <a href={`${baseURL}/uploads/${file.id}`} download>
+          <WrapItem>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {!props.notDownloadable && !file.link ? (
+                <a href={`${baseURL}/uploads/${file.id}`} download>
+                  <MyFileIcon />
+                </a>
+              ) : (
                 <MyFileIcon />
-              </a>
-            ) : (
-              <MyFileIcon />
-            )}
-          </li>
+              )}
+              {props.big ? (
+                <Heading mt="1rem" as="h1" textAlign="center">
+                  {customFileName(fileName)}
+                </Heading>
+              ) : (
+                <p style={{ marginTop: "1rem" }}>{customFileName(fileName)}</p>
+              )}
+            </div>
+          </WrapItem>
         );
       })}
-    </ul>
+    </Wrap>
   );
 }

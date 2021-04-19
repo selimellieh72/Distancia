@@ -12,9 +12,7 @@ const homeworkSchema = new mongoose.Schema(
   {
     title: requiredString,
     content: requiredString,
-    accomplishedUsersIds: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    ],
+    accomplishedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     files: [{ type: mongoose.Schema.Types.ObjectId, ref: "GFS" }],
     grade: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +28,7 @@ const homeworkSchema = new mongoose.Schema(
     answers: [
       {
         student: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        fileId: String,
+        fileId: { type: mongoose.Schema.Types.ObjectId, ref: "GFS" },
       },
     ],
     dueDate: Date,

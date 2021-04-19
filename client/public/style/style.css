@@ -177,7 +177,7 @@ hr {
   display: grid;
   grid-template-columns: repeat(4, 2fr);
   /* grid-auto-rows: minmax(50px, auto); */
-  gap: 1rem;
+  gap: 3rem;
   margin: 0 auto;
   justify-items: center;
 }
@@ -206,7 +206,7 @@ hr {
   width: 24px !important;
 }
 
-.menu-icon{
+.menu-icon {
   height: 16px;
   width: 16px;
   cursor: pointer;

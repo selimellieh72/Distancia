@@ -1,7 +1,7 @@
 import express from "express";
 import Grade from "../models/grade.js";
 import Chapter from "../models/Chapter.js";
-
+import Lecture from "../models/lecture.js";
 const router = express.Router();
 
 router
@@ -31,6 +31,8 @@ router
 
       Grade.find(query)
         .sort({ created_at: -1 })
+        .select(req.user.isTeacher ? "-teacher" : "-students")
+        .select("-lectures")
         .populate(
           req.user.isTeacher
             ? {
@@ -85,10 +87,36 @@ router
             if (e) {
               res.status(403).send();
             } else {
-              res.status(202).send({ chapter_id: chapter._id });
+              res.status(202).json({ chapter_id: chapter._id });
             }
           }
         );
+      } else if (req.query.addLecture === "true") {
+        const lecture = new Lecture(req.body);
+
+        Grade.findByIdAndUpdate(
+          req.params.id,
+          {
+            $push: { lectures: lecture },
+          },
+          function (e, grade) {
+            if (e) {
+              res.status(403).send();
+            } else {
+              lecture
+                .populate({ path: "file", select: { filename: 1 } })
+                .execPopulate(function (e, lecture) {
+                  if (e) {
+                    res.status(403).send();
+                  } else {
+                    res.json(lecture);
+                  }
+                });
+            }
+          }
+        );
+      } else {
+        res.status(403).send();
       }
     }
   })
@@ -126,6 +154,39 @@ router.post("/join-grade/:id", function (req, res) {
           });
         }
       });
+  }
+});
+
+router.get("/grades/:id/lectures", function (req, res) {
+  if (req.isAuthenticated()) {
+    Grade.aggregate;
+    Grade.findById(req.params.id)
+      .select("lectures")
+      .select(req.query.chapter ? " chapters" : "")
+
+      .populate("lectures.file")
+      .exec(function (e, grade) {
+        if (e) {
+          res.status(403).send();
+        } else {
+          const response = {};
+          const lectures = !req.query.chapter
+            ? grade.lectures
+            : grade.lectures.filter((lecture) =>
+                lecture.chapter.equals(req.query.chapter)
+              );
+
+          response.lectures = lectures;
+          if (req.query.chapter)
+            response.chapterTitle = grade.chapters.filter((chapter) =>
+              chapter._id.equals(req.query.chapter)
+            )[0].title;
+
+          res.json(response);
+        }
+      });
+  } else {
+    res.status(401).send();
   }
 });
 

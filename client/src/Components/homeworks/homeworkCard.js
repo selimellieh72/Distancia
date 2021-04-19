@@ -57,10 +57,9 @@ function HomeworkCard(props) {
       onClick={
         isTeacher
           ? () =>
-              history.push("/homeworktable", {
+              history.push(`/homeworks/${props.id}`, {
                 gradeId: props.gradeId,
-                homeworkTitle: homeworkData.title,
-                answers: props.answers,
+                chapterId: props.chapterId,
               })
           : openHomework
       }
