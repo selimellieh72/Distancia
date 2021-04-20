@@ -1,21 +1,17 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import Header from "../../Components/header/Header";
 import GradeTable from "../../Components/grades/gradeManager/GradeTable";
 import { Heading } from "@chakra-ui/layout";
 import BackIcon from "../../Components/Core/BackIcon";
+import PageHeader from "../../Components/Core/PageHeader";
 
-export default function GradeManager() {
-  const { students, gradeId } = useLocation().state;
-
+export default function GradeManager(props) {
+  const { gradeId } = props.match.params;
   return (
     <>
       <div className="grade-manager">
-        <Heading>
-          <BackIcon pathName="/grades" />
-          GradeName
-        </Heading>
-        <GradeTable students={students} gradeId={gradeId} />
+        <PageHeader title="GradeManage" />
+        <GradeTable gradeId={gradeId} />
       </div>
     </>
   );

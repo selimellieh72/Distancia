@@ -77,6 +77,10 @@
   font-weight: bold;
 }
 
+.homework-table__pending__section{
+  font-size: large;
+}
+
 .grade-content {
   display: block;
   margin-left: 50px;

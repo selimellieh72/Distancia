@@ -58,8 +58,7 @@ export default function GradeDetails(props) {
 
             <Link
               to={{
-                pathname: "/manager",
-                state: { students: props.students, gradeId: props.id },
+                pathname: `/grades/${props.id}/manager`,
               }}
             >
               <Button width="125px" colorScheme="green">

@@ -52,7 +52,7 @@ export default function Router(props) {
         exact
       />
       <PrivateRoute
-        path="/manager"
+        path="/grades/:gradeId/manager"
         component={GradeManager}
         isViewable={props.isAuth}
       />

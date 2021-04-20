@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import GradeManager from "../../../routers/grades/GradeManager";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Button,
-  Center,
-} from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import GradeTablePending from "./GradeTablePending";
+import GradeTableAttendance from "./GradeTableAttendance";
 
 export default function GradeTable(props) {
   const [students, setStudents] = useState(props.students);
@@ -25,49 +15,9 @@ export default function GradeTable(props) {
       );
   return (
     <>
-      <Table mt="20px" variant="striped" colorScheme="black">
-        <Thead>
-          <Tr>
-            <Th>Student name</Th>
-            <Th>Status</Th>
-            {/*accepted-pending*/}
-            <Th>Action</Th>
-            {/*accept-Refuse*/}
-            {/* <Th >Files <AttachmentIcon/></Th> */}
-          </Tr>
-        </Thead>
-        <Tbody>
-          {students.map((student) => (
-            <Tr key={student._id}>
-              <Td>{student.fullName}</Td>
-              <Td>Accept</Td>
-              <Td>
-                <Button
-                  onClick={() => deleteStudent(student._id)}
-                  size="sm"
-                  colorScheme="red"
-                >
-                  Remove <DeleteIcon ml="5px" />
-                </Button>
-              </Td>
-              {/* <Td><BsFileEarmarkArrowDown/></Td> */}
-            </Tr>
-          ))}
-          <Tr>
-            <Td>student student</Td>
-            <Td>Waiting...</Td>
-            <Td>
-              <Button mr="1rem" width="70px" size="sm" colorScheme="red">
-                Deny
-              </Button>
-              <Button width="70px" size="sm" colorScheme="green">
-                Accept
-              </Button>
-            </Td>
-            {/* <Td><BsFileEarmarkArrowDown/></Td> */}
-          </Tr>
-        </Tbody>
-      </Table>
+      <GradeTablePending deleteStudent={deleteStudent} students={students} />
+
+      <GradeTableAttendance deleteStudent={deleteStudent} students={students} />
     </>
   );
 }
