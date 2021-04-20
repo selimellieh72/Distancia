@@ -7,7 +7,6 @@ import Meetings from "./routers/Meetings";
 import LectureDisplay from "./routers/lectures/LectureDisplay";
 import CreateTest from "./routers/test/CreateTest";
 import Messages from "./routers/messages/Message";
-import MessageConversation from "./routers/messages/MessageConversation";
 import Stats from "./routers/Stats";
 import Home from "./routers/Home";
 import Homework from "./routers/homework/Homework";
@@ -20,6 +19,7 @@ import Header from "./Components/header/Header";
 import SeeAnswers from "./routers/test/SeeAnswers";
 import TakeQuizz from "./routers/test/TakeQuizz";
 import VideoPlayer from "./routers/VideoPlayer";
+import MessageConversationPhone from "./routers/messages/MessageConversationPhone";
 
 export default function Router(props) {
   return (
@@ -85,7 +85,7 @@ export default function Router(props) {
       />
       <PrivateRoute
         path="/messageconversations"
-        component={MessageConversation}
+        component={MessageConversationPhone}
         isViewable={props.isAuth}
       />
       <PrivateRoute path="/stats" component={Stats} isViewable={props.isAuth} />

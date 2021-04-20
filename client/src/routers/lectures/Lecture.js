@@ -49,6 +49,7 @@ export default function Lecture(props) {
           <Divider borderColor="black" opacity="0.2" variant="solid" />
         </Box>
         <LectureList
+          isTeacher={isTeacher}
           lecturesData={lecturesData}
           setLecturesData={setLecturesData}
           gradeId={gradeId}

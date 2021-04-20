@@ -177,7 +177,7 @@ hr {
   display: grid;
   grid-template-columns: repeat(4, 2fr);
   /* grid-auto-rows: minmax(50px, auto); */
-  gap: 3rem;
+  gap: 1rem;
   margin: 0 auto;
   justify-items: center;
 }

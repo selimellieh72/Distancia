@@ -9,7 +9,7 @@ export default function PageHeader(props) {
       <Flex alignItems="center" minW="300px" justifyContent="space-between">
         <div className="page-header__left">
           {" "}
-          <BackIcon pathName="/grades" />
+          <BackIcon pathName={props.pathName || "/grades"} />
           <span className="page-title">{props.title}</span>
         </div>
         <div className="page-header__icon">

@@ -1,23 +1,36 @@
-.messages-conversation {
+.main-messages {
+  height: 100%;
   width: 100%;
+  display: flex;
+  overflow-y: hidden;
+}
+
+.messages-body {
+  height: calc(100% - 202px);
+  margin: 0.5rem;
+  overflow-y: auto;
+}
+
+/* convo card */
+
+.convo-card {
+  width: 100%;
+  /* background-color: #d3d3d3; */
   height: 100px;
-  border-bottom: #a5a5a5 solid;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.messages-profile__info {
-  margin-left: 1.5rem;
+.convo-card__profile__name {
+  color: #2b2b2b;
+  font-size: 1.15rem;
+  margin-left: 1rem;
+  font-weight: 700;
 }
 
-.messages-profile__username {
-  font-size: large;
-  font-weight: bold;
-}
-
-.messages-profile__status {
-  font-size: smaller;
-  letter-spacing: -1px;
-  font-family: "Poppins", sans-serif;
-}
+/* message conversation */
 
 .messages {
   /* background-color: #d3d3d3; */
@@ -32,10 +45,6 @@
   background-color: #3b3b3b;
   width: 100%;
   z-index: 2;
-}
-
-.receiver {
-  display: flex;
 }
 
 .receiver-info {
@@ -64,17 +73,29 @@
   font-size: small;
 }
 
+.message-container {
+  margin-bottom: 0.5rem;
+  display: flex;
+  padding: 0 1rem;
+  flex-direction: column;
+}
+
+.message-in {
+  align-items: flex-start;
+}
+
+.message-out {
+  align-items: flex-end;
+}
+
 .message-holder {
   padding: 1rem;
-  display: inline-block;
   height: auto;
   max-width: 85%;
   border-radius: 15px;
-  margin-bottom: 20px;
 }
 
 .right-sent {
-  margin-left: 115px;
   background-color: #d3d3d3;
 }
 
@@ -84,13 +105,11 @@
 }
 
 .messages-footer {
-  padding-right: 1rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  position: absolute;
-  bottom: 10px;
 }
 
 .messages-footer__input::placeholder {
@@ -103,4 +122,56 @@
   width: 30px;
   padding: 0.1rem;
   fill: #2b2b2b;
+}
+
+/* .time-restriction {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.time-restriction__title {
+  font-size: 0.8rem;
+}
+
+.time-restriction__time {
+  font-size: 0.8rem;
+} */
+
+/* Deskttop */
+
+.list-convos-desktop {
+  height: 100%;
+  width: 40%;
+  border-right: #2b2b2b solid 2px;
+}
+
+/* Phone-tablet */
+
+.messages-conversations {
+  width: 100%;
+}
+
+.messages-conversation {
+  width: 100%;
+  height: 100px;
+  border-bottom: #a5a5a5 solid;
+}
+
+.messages-profile__info {
+  margin-left: 1.5rem;
+}
+
+.messages-profile__username {
+  font-size: large;
+  font-weight: bold;
+}
+
+.messages-profile__status {
+  font-size: smaller;
+  letter-spacing: -1px;
+  font-family: "Poppins", sans-serif;
 }

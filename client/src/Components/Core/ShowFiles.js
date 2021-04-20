@@ -19,7 +19,7 @@ export default function ShowFiles(props) {
       : window.location.origin + "/api";
 
   return (
-    <Wrap spacing="60px" justify="center" overflow="hidden">
+    <div classname="card-list">
       {props.files?.map((file) => {
         let fileName, fileExtension;
         if (props.titleNoExtension) {
@@ -66,7 +66,7 @@ export default function ShowFiles(props) {
               ) : (
                 <MyFileIcon />
               )}
-              {props.big ? (
+              {props.lecture ? (
                 <Heading mt="1rem" as="h1" textAlign="center">
                   {customFileName(fileName)}
                 </Heading>
@@ -77,6 +77,6 @@ export default function ShowFiles(props) {
           </WrapItem>
         );
       })}
-    </Wrap>
+    </div>
   );
 }
