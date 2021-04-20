@@ -38,7 +38,6 @@ export default function LectureCard(props) {
         <a href={`${baseURL}/uploads/${props.fileId}`} download>
           <div className="lecture-card__class__icon">
             <FileIcon
-              className="lecture-card__class__icon"
               extension={props.extension}
               {...defaultStyles[props.extension]}
             />
