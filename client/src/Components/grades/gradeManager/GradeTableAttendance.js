@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import {
   Table,
   Thead,
@@ -6,14 +7,25 @@ import {
   Th,
   Tbody,
   Td,
-  Button,
   Collapse,
   useDisclosure,
   Center,
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+
+import RemoveStudentButton from "./RemoveStudentButton";
 
 export default function GradeTableAttendance(props) {
+  useEffect(
+    () =>
+      axios
+        .get(`/grades/${props.gradeId}?students=true&title=true`)
+        .then((res) => {
+          props.setGradeTitle(res.data.title);
+          props.setStudents(res.data.students);
+        }),
+    []
+  );
+
   const { isOpen, onToggle } = useDisclosure();
   return (
     <>
@@ -27,7 +39,7 @@ export default function GradeTableAttendance(props) {
           <Thead>
             <Tr>
               <Th>Student name</Th>
-              <Th>Status</Th>
+
               {/*accepted-pending*/}
               <Th>Action</Th>
               {/*accept-Refuse*/}
@@ -38,15 +50,15 @@ export default function GradeTableAttendance(props) {
             {props.students?.map((student) => (
               <Tr key={student._id}>
                 <Td>{student.fullName}</Td>
-                <Td>Accept</Td>
+
                 <Td>
-                  <Button
-                    onClick={() => props.deleteStudent(student._id)}
-                    size="sm"
-                    colorScheme="red"
-                  >
-                    Remove <DeleteIcon ml="5px" />
-                  </Button>
+                  <RemoveStudentButton
+                    gradeTitle={props.gradeTitle}
+                    gradeId={props.gradeId}
+                    studentId={student._id}
+                    setStudents={props.setStudents}
+                    studentName={student.fullName}
+                  />
                 </Td>
               </Tr>
             ))}

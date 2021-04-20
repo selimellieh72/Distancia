@@ -1,17 +1,23 @@
-import React from "react";
-import Header from "../../Components/header/Header";
+import React, { useState } from "react";
+
 import GradeTable from "../../Components/grades/gradeManager/GradeTable";
-import { Heading } from "@chakra-ui/layout";
-import BackIcon from "../../Components/Core/BackIcon";
+
 import PageHeader from "../../Components/Core/PageHeader";
 
 export default function GradeManager(props) {
   const { gradeId } = props.match.params;
+
+  const [gradeTitle, setGradeTitle] = useState();
+
   return (
     <>
       <div className="grade-manager">
-        <PageHeader title="GradeManage" />
-        <GradeTable gradeId={gradeId} />
+        <PageHeader title={gradeTitle} />
+        <GradeTable
+          gradeTitle={gradeTitle}
+          setGradeTitle={setGradeTitle}
+          gradeId={gradeId}
+        />
       </div>
     </>
   );

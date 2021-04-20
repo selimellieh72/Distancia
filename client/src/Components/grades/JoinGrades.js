@@ -33,12 +33,11 @@ export default function JoinGrades(props) {
     axios
       .post(`/join-grade/${data.gradeId}?`)
       .then((res) => {
-        props.setGrades((prevGrades) => [res.data, ...prevGrades]);
         onClose();
         toast({
-          title: "Grade joined!",
-          status: "success",
-          description: `Successfully joined grade '${res.data.title}' of teacher '${res.data.teacher.fullName}'`,
+          title: "Grade join request sent!",
+          status: "info",
+          description: `Your request to join the grade '${res.data.title}' has been sent to teacher '${res.data.teacher.fullName}'`,
           duration: 6000,
           isClosable: true,
         });

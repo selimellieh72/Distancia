@@ -10,7 +10,7 @@ import HomeworkModal from "../../Components/homeworks/HomeworkModal.js";
 export default function Homework(props) {
   const [homeworksData, setHomeworksData] = useState({});
   const isTeacher = useContext(authContext)[0].isTeacher;
-  const { gradeId, chapterId } = props.match.params;
+  const { gradeId, chapterId } = props.match.params || {};
 
   return (
     <div>
@@ -19,7 +19,9 @@ export default function Homework(props) {
           title={
             gradeId ? (
               <span className="page-title">
-                {isTeacher ? homeworksData.gradeTitle || "" : props.discipline}
+                {homeworksData.chapterTitle ||
+                  homeworksData.gradeTitle ||
+                  "Homeworks"}
               </span>
             ) : (
               "Homeworks"

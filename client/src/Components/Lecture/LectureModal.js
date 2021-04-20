@@ -51,7 +51,7 @@ export default function LectureModal(props) {
 
         props.setLecturesData((lectureData) => ({
           ...lectureData,
-          lectures: [res.data, ...lectureData.lectures],
+          lectures: [...lectureData.lectures, res.data],
         }));
       })
       .catch((e) => console.log(e));

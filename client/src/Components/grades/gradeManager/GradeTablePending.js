@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Table,
   Thead,
@@ -10,10 +11,22 @@ import {
   Collapse,
   Center,
   useDisclosure,
+  ButtonGroup,
 } from "@chakra-ui/react";
+import AcceptStudentButton from "./AcceptStudentButton";
+import RejectStudentButton from "./RejectStudentButton";
 
 export default function GradeTablePending(props) {
-  const {isOpen , onToggle} = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
+  const [requests, setRequests] = useState([]);
+
+  useEffect(
+    () =>
+      axios
+        .get(`/requests?${props.gradeId ? `grade=${props.gradeId}` : ""}`)
+        .then((res) => setRequests(res.data)),
+    []
+  );
   return (
     <>
       <Center mt="1.5rem">
@@ -26,7 +39,7 @@ export default function GradeTablePending(props) {
           <Thead>
             <Tr>
               <Th>Student name</Th>
-              <Th>Status</Th>
+
               {/*accepted-pending*/}
               <Th>Action</Th>
               {/*accept-Refuse*/}
@@ -34,19 +47,29 @@ export default function GradeTablePending(props) {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>student student</Td>
-              <Td>Waiting...</Td>
-              <Td>
-                <Button mr="1rem" width="70px" size="sm" colorScheme="red">
-                  Deny
-                </Button>
-                <Button width="70px" size="sm" colorScheme="green">
-                  Accept
-                </Button>
-              </Td>
-              {/* <Td><BsFileEarmarkArrowDown/></Td> */}
-            </Tr>
+            {requests?.map((request) => (
+              <Tr key={request._id}>
+                <Td>{request.student.fullName}</Td>
+
+                <Td>
+                  <ButtonGroup>
+                    {" "}
+                    <RejectStudentButton
+                      studentName={request.student.fullName}
+                      requestId={request._id}
+                      setRequests={setRequests}
+                    />
+                    <AcceptStudentButton
+                      studentName={request.student.fullName}
+                      requestId={request._id}
+                      setRequests={setRequests}
+                      setStudents={props.setStudents}
+                    />
+                  </ButtonGroup>
+                </Td>
+                {/* <Td><BsFileEarmarkArrowDown/></Td> */}
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </Collapse>

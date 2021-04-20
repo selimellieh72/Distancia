@@ -4,20 +4,18 @@ import GradeTablePending from "./GradeTablePending";
 import GradeTableAttendance from "./GradeTableAttendance";
 
 export default function GradeTable(props) {
-  const [students, setStudents] = useState(props.students);
-  const deleteStudent = (studentId) =>
-    axios
-      .patch(`/grades/${props.gradeId}?removeStudent=${studentId}`)
-      .then((res) =>
-        setStudents((prevStudents) =>
-          prevStudents.filter((student) => student._id !== studentId)
-        )
-      );
+  const [students, setStudents] = useState();
   return (
     <>
-      <GradeTablePending deleteStudent={deleteStudent} students={students} />
+      <GradeTablePending setStudents={setStudents} gradeId={props.gradeId} />
 
-      <GradeTableAttendance deleteStudent={deleteStudent} students={students} />
+      <GradeTableAttendance
+        students={students}
+        setStudents={setStudents}
+        gradeTitle={props.gradeTitle}
+        setGradeTitle={props.setGradeTitle}
+        gradeId={props.gradeId}
+      />
     </>
   );
 }

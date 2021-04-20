@@ -22,7 +22,7 @@ function Grades() {
           {isTeacher ? (
             <AddGradesModal setGrades={setGrades} />
           ) : (
-            <JoinGrades setGrades={setGrades} />
+            <JoinGrades />
           )}
         </Flex>
         <Box my="18px">

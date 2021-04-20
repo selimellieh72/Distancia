@@ -19,8 +19,8 @@ export default function HomeworkTablePage(props) {
     }
   }
 
-  backPath = backPath ?? "" + "/homeworks";
-
+  backPath = (backPath ?? "") + "/homeworks";
+  console.log(backPath);
   return (
     <>
       <Container maxW="container.lg" p="18px">

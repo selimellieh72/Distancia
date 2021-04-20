@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { authContext } from "../../providers/AuthContext";
 import axios from "axios";
 import LectureCard from "./LectureCard";
-import {ReactComponent as NoLectureSvg} from "../../assets/svg/open-book.svg";
+import { ReactComponent as NoLectureSvg } from "../../assets/svg/open-book.svg";
 
 export default function LectureList(props) {
   const lecturesLength = props.lecturesData?.lectures !== 0;
@@ -24,6 +24,7 @@ export default function LectureList(props) {
         <LectureCard
           name={lecture.title}
           extension={lecture.file?.filename?.split(".")[1] ?? undefined}
+          fileId={lecture.file?._id}
           link={lecture.link ?? undefined}
           id={lecture?._id}
           gradeId={props.gradeId}

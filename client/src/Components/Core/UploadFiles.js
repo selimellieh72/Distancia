@@ -78,7 +78,6 @@ export default function UploadFiles(props) {
         style={{
           display: !fileUploaded || fileUploaded === 0 ? "none" : undefined,
         }}
-        className="uploaded-files"
       >
         <ShowFiles
           files={fileUploaded?.map((f) => {
