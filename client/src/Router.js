@@ -85,6 +85,11 @@ export default function Router(props) {
         isViewable={props.isAuth}
       />
       <PrivateRoute
+        path="/messages"
+        component={Messages}
+        isViewable={props.isAuth}
+      />
+      <PrivateRoute
         path="/messageconversations"
         component={MessageConversationPhone}
         isViewable={props.isAuth}

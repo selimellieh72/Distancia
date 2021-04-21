@@ -42,9 +42,7 @@ export default function ChapterCollapsible({ title, gradeId, chapterId }) {
           <ListItem className="grade-content__type">
             <Link to={"/tests"}>Tests</Link>
           </ListItem>
-          <ListItem className="grade-content__type">
-            <Link to={`/grades/${gradeId}/messages`}>Messages</Link>
-          </ListItem>
+       
         </UnorderedList>
       </Collapse>
 
