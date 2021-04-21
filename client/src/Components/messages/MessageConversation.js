@@ -13,18 +13,34 @@ export default function MessageConversation(props) {
     if (!message) {
       return;
     }
-    axios
-      .post("/messages", {
+
+    props.socket.emit(
+      "sendMessage",
+      {
         reciever: props.currentChat.recieverId,
         text: message,
-      })
-      .then((res) => {
+      },
+      ({ message }) => {
         props.setMessages((prevMessages) => [
           ...prevMessages,
-          { text: res.data.text, isMe: true, _id: res.data._id },
+          { text: message.text, isMe: true, _id: message._id },
         ]);
         setMessage("");
-      });
+      }
+    );
+
+    // axios
+    //   .post("/messages", {
+    //     reciever: props.currentChat.recieverId,
+    //     text: message,
+    //   })
+    //   .then((res) => {
+    //     props.setMessages((prevMessages) => [
+    //       ...prevMessages,
+    //       { text: res.data.text, isMe: true, _id: res.data._id },
+    //     ]);
+    //     setMessage("");
+    //   });
   };
   return (
     <>

@@ -1,7 +1,11 @@
-import express, { request } from "express";
+import express from "express";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import http from "http";
+
 import cors from "cors";
 import mongoose from "mongoose";
-import session from "express-session";
+
 import passport from "passport";
 
 import path from "path";
@@ -19,6 +23,9 @@ import uploadRouter from "./routers/upload.js";
 import requestsRouter from "./routers/requests.js";
 import messagesRouter from "./routers/messages.js";
 
+//Sockets namespace
+import sockets from "./sockets.js";
+
 eval(
   `Grid.prototype.findOne = ${Grid.prototype.findOne
     .toString()
@@ -26,28 +33,35 @@ eval(
 );
 
 const app = express();
-const port = process.env.PORT || 5000;
-
-//Middlewares
-
-app.use(express.json());
-
-app.use(
-  session({
-    secret: "SelimTheoLau",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-app.use(cors({ credentials: true, origin: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-//DB
+const server = http.createServer(app);
 
 const MongoURI =
   process.env.MONGODB_URI ||
   "mongodb+srv://selimellieh:Selim2015@distanciadb.jsla5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+const port = process.env.PORT || 5000;
+
+const sessionMiddleware = session({
+  secret: "SelimTheoLau",
+  resave: true,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: MongoURI }),
+});
+//Middlewares
+
+app.use(express.json());
+
+app.use(sessionMiddleware);
+app.use(cors({ credentials: true, origin: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Socket IO
+
+sockets(server, sessionMiddleware);
+
+//DB
+
 mongoose.connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 app.set("MongoURI", MongoURI);
 const conn = mongoose.connection;
@@ -64,8 +78,15 @@ mongoose.set("useCreateIndex", true);
 //Auth
 
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 //Routers
 app.use("/api", userRouter);
@@ -84,4 +105,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(port, () => console.log("Server started on port " + port));
+server.listen(port, () => console.log("Server started on port " + port));

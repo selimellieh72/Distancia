@@ -9,13 +9,18 @@ import { ReactComponent as BoxSvg } from "../../assets/svg/box.svg";
 export default function GradesList(props) {
   const { isTeacher, discipline } = useContext(authContext)[0];
   useEffect(() => {
-    axios
-      .get("/grades")
-      .then(({ data }) => {
-        console.log(data);
-        return props.setGrades(data);
-      })
-      .catch((e) => console.log(e));
+    let isMounted = true;
+    if (isMounted) {
+      axios
+        .get("/grades")
+        .then(({ data }) => {
+          console.log(data);
+          return props.setGrades(data);
+        })
+        .catch((e) => console.log(e));
+    }
+    return () => (isMounted = false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

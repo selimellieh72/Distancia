@@ -16,6 +16,7 @@
     "framer-motion": "^4.0.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
+    "passport.socketio": "^3.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-file-icon": "^1.0.0",
@@ -28,6 +29,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-widgets": "^5.0.3",
+    "socket.io-client": "^4.0.1",
     "uuid": "^8.3.2",
     "victory": "^35.5.0",
     "web-vitals": "^1.1.1"

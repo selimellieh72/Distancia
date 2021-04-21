@@ -106,8 +106,16 @@ export default function Router(props) {
         component={VideoPlayer}
         isViewable={props.isAuth}
       />
-      <Route path="/login" component={Auth}></Route>
-      <Route path="/register" render={() => <Auth type="signup" />}></Route>
+      <Route
+        path="/login"
+        render={() => (!props.isAuth ? <Auth /> : <Redirect to="/grades" />)}
+      />
+      <Route
+        path="/register"
+        render={() =>
+          !props.isAuth ? <Auth type="signup" /> : <Redirect to="/grades" />
+        }
+      />
 
       <Route
         path="/"

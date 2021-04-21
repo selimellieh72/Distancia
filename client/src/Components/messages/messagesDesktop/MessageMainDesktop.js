@@ -11,6 +11,7 @@ export default function MessageMainDesktop(props) {
       />
       {props.currentChat && Object.keys(props.currentChat).length > 0 && (
         <MessageConversation
+          socket={props.socket}
           messages={props.messages}
           setMessages={props.setMessages}
           currentChat={props.currentChat}
