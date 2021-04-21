@@ -1,11 +1,20 @@
 import React from "react";
+import { authContext } from "../../../providers/AuthContext";
 import { Avatar } from "@chakra-ui/react";
 
-export default function ConvoCard() {
+export default function ConvoCard(props) {
   return (
-    <div className="convo-card">
+    <div
+      className="convo-card"
+      onClick={() =>
+        props.setCurrentChat({
+          recieverName: props.userName,
+          recieverId: props.userId,
+        })
+      }
+    >
       <Avatar />
-      <h1 className="convo-card__profile__name">student student</h1>
+      <h1 className="convo-card__profile__name">{props.userName}</h1>
       {/* <div className="time-restriction">
             <span className="time-restriction__title">
                 Allowed time

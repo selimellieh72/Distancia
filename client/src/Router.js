@@ -55,6 +55,7 @@ export default function Router(props) {
         path="/grades/:gradeId"
         component={GradeManager}
         isViewable={props.isAuth}
+        exact
       />
       <PrivateRoute
         path="/homeworks/:homeworkId"
@@ -79,7 +80,7 @@ export default function Router(props) {
         isViewable={props.isAuth}
       />
       <PrivateRoute
-        path="/messages"
+        path="/grades/:gradeId/messages"
         component={Messages}
         isViewable={props.isAuth}
       />

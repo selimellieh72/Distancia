@@ -82,7 +82,8 @@
 }
 
 .homework-details__content__title,
-.homework-details__duedate__title {
+.homework-details__duedate__title,
+.homework-details__files__title {
   margin-left: 10px;
   margin-bottom: 10px;
   font-size: 1.15rem;
@@ -124,7 +125,7 @@
   text-align: center;
 }
 
-.homework-table-card > h1 {
+homework-details__duedate__titlehomework-table-card > h1 {
   margin-bottom: 1rem;
   font-weight: bold;
   font-size: 1.5rem;

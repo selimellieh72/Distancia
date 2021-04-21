@@ -1,10 +1,31 @@
 import { Textarea } from "@chakra-ui/textarea";
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as SendSvg } from "../../assets/svg/send-button.svg";
 import { Avatar } from "@chakra-ui/avatar";
 import { Flex } from "@chakra-ui/layout";
+import Messages from "./Messages";
+import axios from "axios";
 
-export default function MessageConversation() {
+export default function MessageConversation(props) {
+  const [message, setMessage] = useState("");
+
+  const sendMessage = () => {
+    if (!message) {
+      return;
+    }
+    axios
+      .post("/messages", {
+        reciever: props.currentChat.recieverId,
+        text: message,
+      })
+      .then((res) => {
+        props.setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: res.data.text, isMe: true, _id: res.data._id },
+        ]);
+        setMessage("");
+      });
+  };
   return (
     <>
       <div className="messages">
@@ -17,121 +38,25 @@ export default function MessageConversation() {
             <div className="receiver">
               <Avatar
                 mr="1.5rem"
-                name="Pamela S. Albert"
+                name={props.currentChat.recieverName}
                 bg="#fff"
                 color="#2b2b2b"
                 fontWeight="bold"
               />
               <div className="receiver-info">
-                <p className="receiver-name">Theo khalil</p>
-                <p className="receiver-status">Physics Teacher</p>
+                <p className="receiver-name">
+                  {props.currentChat.recieverName}
+                </p>
+                {/* <p className="receiver-status">Physics Teacher</p> */}
               </div>
             </div>
-            <div className="contacting-time">
+            {/* <div className="contacting-time">
               <p className="contacting-time__from">From 6:00 AM</p>
               <p className="contacting-time__until">Until 1:00 PM</p>
-            </div>
+            </div> */}
           </Flex>
         </div>
-        <div className="messages-body">
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-out">
-            <div className="message-holder right-sent">
-              <span>Bonjour j'aurais une question une question. </span>{" "}
-            </div>
-          </div>
-          <div className="message-container message-in">
-            <div className="message-holder left-received">
-              <span>
-                Bonjour eleve je suis disponible pour repondre a vos questions.{" "}
-              </span>{" "}
-            </div>
-          </div>
-        </div>
+        <Messages messages={props.messages} scrollRef={props.scrollRef} />
         <div className="messages-footer">
           <Textarea
             fontSize="md"
@@ -142,8 +67,16 @@ export default function MessageConversation() {
             width="90%"
             borderWidth="3px"
             borderColor="#2b2b2b"
+            value={message}
+            onKeyPress={function (e) {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                sendMessage();
+              }
+            }}
+            onChange={({ target }) => setMessage(target.value)}
           />
-          <SendSvg className="send-icon" />
+          <SendSvg onClick={sendMessage} className="send-icon" />
         </div>
       </div>
     </>

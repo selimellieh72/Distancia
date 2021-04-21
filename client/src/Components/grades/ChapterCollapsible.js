@@ -18,9 +18,9 @@ export default function ChapterCollapsible({ title, gradeId, chapterId }) {
 
             <span>{title}</span>
           </div>
-          <Link to="/chapterAccomplishment">
+          {/* <Link to="/chapterAccomplishment">
             <MoreSvg className="more-icon" />
-          </Link>
+          </Link> */}
         </ListItem>
       </div>
 
@@ -43,7 +43,7 @@ export default function ChapterCollapsible({ title, gradeId, chapterId }) {
             <Link to={"/tests"}>Tests</Link>
           </ListItem>
           <ListItem className="grade-content__type">
-            <Link to={"/messages"}>Messages</Link>
+            <Link to={`/grades/${gradeId}/messages`}>Messages</Link>
           </ListItem>
         </UnorderedList>
       </Collapse>

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { chapterSchema } from "./Chapter.js";
+import { chapterSchema } from "./chapter.js";
 import { lectureSchema } from "./lecture.js";
 const gradeSchema = new mongoose.Schema(
   {

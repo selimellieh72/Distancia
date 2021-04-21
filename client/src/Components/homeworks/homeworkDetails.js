@@ -39,7 +39,7 @@ export default function HomeworkDetails(props) {
           )}
           {!isTeacher && props.isExpired && (
             <WrapItem>
-              <Badge colorScheme="yellow">Accept answers</Badge>
+              <Badge colorScheme="red">Expired</Badge>
             </WrapItem>
           )}
         </Wrap>
@@ -56,10 +56,12 @@ export default function HomeworkDetails(props) {
             </span>
           </div>
         </div>
-        <div>
-          <div>Files: </div>
-          {<ShowFiles files={props.files} />}
-        </div>
+        {props.files && props.files.length > 0 && (
+          <div>
+            <div className="homework-details__files__title">Files: </div>
+            {<ShowFiles files={props.files} />}
+          </div>
+        )}
       </div>
 
       <Flex justifyContent="center">

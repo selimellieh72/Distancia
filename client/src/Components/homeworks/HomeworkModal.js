@@ -10,6 +10,7 @@ import {
   useDisclosure,
   Button,
   IconButton,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 
 import HomeworkForm from "./HomeworkForm";
@@ -35,33 +36,30 @@ export default function HomeworkModal(props) {
   const getDate = (myDate) => {
     setDate(myDate);
   };
+
+  const openModal = () => {
+    if (isEditting) {
+      setValue("title", "");
+      setValue("content", "");
+      setHasChanged(false);
+    }
+    if (isFileAttach) setIsFileAttach(false);
+    setFileIds(null);
+    setDate(new Date());
+    onOpen();
+  };
   return (
     <>
       {props.button ? (
-        <IconButton
-          icon={<props.icon />}
-          onClick={() => {
-            setDate(new Date());
-            onOpen();
-          }}
-        />
+        <IconButton icon={<props.icon />} onClick={openModal} />
       ) : (
-        <props.icon
-          onClick={() => {
-            setDate(new Date());
-            onOpen();
-          }}
-        />
+        <props.icon onClick={openModal} />
       )}
-      <Modal
-        closeOnOverlayClick={false}
-        initialFocusRef={initialRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
+            <ModalCloseButton />
             {isEditting ? "Edit Homework" : "Add Homework"}
           </ModalHeader>
           <ModalBody pb={6}>
@@ -105,19 +103,7 @@ export default function HomeworkModal(props) {
             >
               {isEditting ? "Edit" : "Add"}
             </Button>
-            <Button
-              onClick={() => {
-                if (isEditting) {
-                  setValue("title", "");
-                  setValue("content", "");
-                  setHasChanged(false);
-                }
-                if (isFileAttach) setIsFileAttach(false);
-                onClose();
-              }}
-            >
-              Cancel
-            </Button>
+            <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

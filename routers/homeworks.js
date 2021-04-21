@@ -66,12 +66,19 @@ router
                 };
                 if (req.query.grade) {
                   Grade.findById(req.query.grade)
-                    .select("title")
+                    .select("title chapters")
+
                     .exec(function (e, grade) {
                       if (e) {
                         res.status(403).send();
                       }
                       response.gradeTitle = grade?.title;
+
+                      if (req.query.chapter) {
+                        response.chapterTitle = grade?.chapters?.filter(
+                          (chapter) => chapter._id.equals(req.query.chapter)
+                        )[0].title;
+                      }
                       res.json(response);
                     });
                 } else {

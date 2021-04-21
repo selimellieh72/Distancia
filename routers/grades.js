@@ -1,7 +1,9 @@
 import express from "express";
+
 import Grade from "../models/grade.js";
-import Chapter from "../models/Chapter.js";
+import Chapter from "../models/chapter.js";
 import Lecture from "../models/lecture.js";
+import Request from "../models/request.js";
 const router = express.Router();
 
 router
@@ -34,20 +36,15 @@ router
         .select(req.user.isTeacher ? "-teacher" : "-students")
         .select("-lectures")
         .populate(
-          req.user.isTeacher
+          !req.user.isTeacher
             ? {
-                path: "students",
-                select: { fullName: 1 },
-                options: { sort: { created_at: -1 } },
-              }
-            : {
                 path: "teacher",
                 select: { discipline: 1 },
               }
+            : ""
         )
         .exec((e, grades) => {
           if (e) {
-            console.log(e);
             res.status(403).send();
           } else {
             res.send(grades);
@@ -58,6 +55,35 @@ router
 
 router
   .route("/grades/:id")
+  .get(function (req, res) {
+    if (req.isAuthenticated()) {
+      Grade.findById(req.params.id)
+        .select(req.query.teacher ? "teacher" : "")
+        .select(req.query.students ? "students" : "")
+        .select(req.query.title ? "title" : "")
+        .populate(
+          req.user.isTeacher
+            ? {
+                path: "students",
+                select: { fullName: 1 },
+                options: { sort: { created_at: -1 } },
+              }
+            : {
+                path: "teacher",
+                select: { fullName: 1 },
+              }
+        )
+        .exec(function (e, grade) {
+          if (e) {
+            res.status(403).send();
+          } else {
+            res.json(grade);
+          }
+        });
+    } else {
+      res.status(401).send;
+    }
+  })
   .patch(function (req, res) {
     if (req.isAuthenticated()) {
       if (req.query.removeStudent) {
@@ -116,7 +142,7 @@ router
           }
         );
       } else {
-        res.status(403).send();
+        res.status(401).send();
       }
     }
   })
@@ -136,20 +162,32 @@ router.post("/join-grade/:id", function (req, res) {
       })
       .exec(function (e, grade) {
         if (e) {
-          res.status(403).send({
+          res.status(403).json({
             message: `Incorrect id, please try again.`,
           });
         } else if (grade.students.includes(req.user.id)) {
-          res.status(403).send({
+          res.status(403).json({
             message: `Cannot join grade '${grade.title}' that you've already joined`,
           });
         } else {
-          grade.students.push(req.user.id);
-          grade.save(function (e, grade) {
-            if (e) {
-              res.status(403).send();
+          const myRequest = {
+            student: req.user._id,
+            grade: grade._id,
+          };
+          Request.findOne(myRequest, function (e, gottenRequest) {
+            if (e || gottenRequest) {
+              res.status(403).json({
+                message: `A request has already been sent to join grade '${grade.title}' of teacher '${grade.teacher.fullName}'.`,
+              });
             } else {
-              res.status(200).json(grade);
+              const request = new Request(myRequest);
+              request.save(function (e) {
+                if (e) {
+                  res.status(403).send;
+                } else {
+                  res.send(grade);
+                }
+              });
             }
           });
         }

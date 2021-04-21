@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -16,6 +16,8 @@ import userRouter from "./routers/user.js";
 import homeworksRouter from "./routers/homeworks.js";
 import gradesRouter from "./routers/grades.js";
 import uploadRouter from "./routers/upload.js";
+import requestsRouter from "./routers/requests.js";
+import messagesRouter from "./routers/messages.js";
 
 eval(
   `Grid.prototype.findOne = ${Grid.prototype.findOne
@@ -69,6 +71,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/api", userRouter);
 app.use("/api", homeworksRouter);
 app.use("/api", gradesRouter);
+app.use("/api", requestsRouter);
+app.use("/api", messagesRouter);
 app.use("/api", uploadRouter(app));
 
 //Heroku set up
