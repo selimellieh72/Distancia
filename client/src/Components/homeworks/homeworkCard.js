@@ -8,6 +8,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Wrap,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import { FaBook } from "react-icons/fa";
@@ -100,7 +101,7 @@ function HomeworkCard(props) {
         </Flex>
 
         {isTeacher ? (
-          <>
+          <Wrap mr="16px">
             <EditHomework
               id={props.id}
               title={props.title}
@@ -113,7 +114,7 @@ function HomeworkCard(props) {
               setHomeworks={props.setHomeworks}
               size="50px"
             />
-          </>
+          </Wrap>
         ) : (
           homeworkData.isAccomplished && (
             <FaCheckCircle size="25px" color="green" bgColor="white" />

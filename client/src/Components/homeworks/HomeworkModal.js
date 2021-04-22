@@ -39,8 +39,11 @@ export default function HomeworkModal(props) {
 
   const openModal = () => {
     if (isEditting) {
-      setValue("title", "");
-      setValue("content", "");
+      if (setValue) {
+        setValue("title", "");
+        setValue("content", "");
+      }
+
       setHasChanged(false);
     }
     if (isFileAttach) setIsFileAttach(false);

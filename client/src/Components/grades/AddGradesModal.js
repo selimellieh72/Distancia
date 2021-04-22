@@ -52,7 +52,12 @@ export default function AddGradesModal(props) {
     <>
       <IconButton icon={<AddIcon />} onClick={onOpen} />
 
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        initialFocusRef={initialRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Add Grade</ModalHeader>

@@ -47,7 +47,7 @@ export default function AddChapterModal(props) {
       <Button width="125px" colorScheme="blue" onClick={onOpen}>
         Add Chapter
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Add Chapter</ModalHeader>

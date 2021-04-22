@@ -2,14 +2,10 @@ import express from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import http from "http";
-
 import cors from "cors";
 import mongoose from "mongoose";
-
 import passport from "passport";
-
 import path from "path";
-
 import Grid from "gridfs-stream";
 
 //Models
@@ -21,11 +17,11 @@ import homeworksRouter from "./routers/homeworks.js";
 import gradesRouter from "./routers/grades.js";
 import uploadRouter from "./routers/upload.js";
 import requestsRouter from "./routers/requests.js";
-import messagesRouter from "./routers/messages.js";
 
-//Sockets namespace
+//Sockets
 import sockets from "./sockets.js";
 
+// Constants
 eval(
   `Grid.prototype.findOne = ${Grid.prototype.findOne
     .toString()
@@ -93,7 +89,7 @@ app.use("/api", userRouter);
 app.use("/api", homeworksRouter);
 app.use("/api", gradesRouter);
 app.use("/api", requestsRouter);
-app.use("/api", messagesRouter);
+
 app.use("/api", uploadRouter(app));
 
 //Heroku set up

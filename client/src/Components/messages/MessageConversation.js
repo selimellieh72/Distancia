@@ -80,7 +80,7 @@ export default function MessageConversation(props) {
             )}
             <div className="receiver">
               <Avatar
-              padding="0.5rem"
+                padding="0.5rem"
                 mr="1.5rem"
                 name={
                   props.currentChat.gradeId
@@ -131,7 +131,11 @@ export default function MessageConversation(props) {
             }}
             onChange={({ target }) => setMessage(target.value)}
           />
-          <SendSvg onClick={sendMessage} className="send-icon" />
+          <SendSvg
+            style={{ cursor: message ? undefined : "not-allowed" }}
+            onClick={sendMessage}
+            className="send-icon"
+          />
         </div>
       </div>
     </>

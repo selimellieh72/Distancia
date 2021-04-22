@@ -1,7 +1,7 @@
 import React from "react";
 import ConvoCard from "./ConvoCard";
 import BackIcon from "../../Core/BackIcon";
-import { CircularProgress } from "@chakra-ui/progress";
+import CircularProgessIndicator from "../../Core/CircularProgessIndicator";
 
 export default function ListConvosDesktop(props) {
   return (
@@ -23,7 +23,7 @@ export default function ListConvosDesktop(props) {
           </div>
         ))
       ) : (
-        <CircularProgress color="green"/>
+        <CircularProgessIndicator />
       )}
     </div>
   );

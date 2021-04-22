@@ -20,7 +20,7 @@ body {
 body::before {
   content: "";
   display: inline-block;
-  height: 73px;
+  height: 71px;
 }
 
 ul,
@@ -189,14 +189,14 @@ hr {
   justify-content: center;
 }
 
-.edit-profile__btn{
+.edit-profile__btn {
   margin-top: 1rem;
   font-size: 0.7rem;
   font-weight: bolder;
   cursor: pointer;
 }
 
-.edit-profile__btn:hover{
+.edit-profile__btn:hover {
   color: #2b2b2bb2;
 }
 
