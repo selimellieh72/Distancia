@@ -10,8 +10,9 @@ import {
   Collapse,
   useDisclosure,
   Center,
+  Icon,
 } from "@chakra-ui/react";
-
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import RemoveStudentButton from "./RemoveStudentButton";
 
 export default function GradeTableAttendance(props) {
@@ -25,14 +26,30 @@ export default function GradeTableAttendance(props) {
         }),
     []
   );
-
+  const [isToogled, setIsToogled] = React.useState();
   const { isOpen, onToggle } = useDisclosure();
   return (
     <>
       <Center mt="4rem">
-        <h1 className="homework-table__pending__section" onClick={onToggle}>
-          Students
-        </h1>
+        <div className="homework-table__sections">
+          <Icon
+            className="chevron-icon"
+            as={ChevronRightIcon}
+            w={10}
+            h={10}
+            transition="0.4s"
+            transform={isToogled && "rotate(90deg)"}
+          />
+          <h1
+            className="homework-table__pending__section"
+            onClick={() => {
+              setIsToogled(!isToogled);
+              onToggle();
+            }}
+          >
+            Students
+          </h1>
+        </div>
       </Center>
       <Collapse in={isOpen}>
         <Table mt="20px" variant="striped" colorScheme="black">

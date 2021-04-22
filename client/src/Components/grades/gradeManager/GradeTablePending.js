@@ -12,13 +12,16 @@ import {
   Center,
   useDisclosure,
   ButtonGroup,
+  Icon,
 } from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import AcceptStudentButton from "./AcceptStudentButton";
 import RejectStudentButton from "./RejectStudentButton";
 
 export default function GradeTablePending(props) {
   const { isOpen, onToggle } = useDisclosure();
   const [requests, setRequests] = useState([]);
+  const [isToogled, setIsToogled] = React.useState();
 
   useEffect(
     () =>
@@ -30,9 +33,25 @@ export default function GradeTablePending(props) {
   return (
     <>
       <Center mt="1.5rem">
-        <h1 className="homework-table__pending__section" onClick={onToggle}>
-          Pending request
-        </h1>
+        <div className="homework-table__sections">
+          <Icon
+            className="chevron-icon"
+            as={ChevronRightIcon}
+            w={10}
+            h={10}
+            transition="0.4s"
+            transform={isToogled && "rotate(90deg)"}
+          />
+          <h1
+            className="homework-table__pending__section"
+            onClick={() => {
+              setIsToogled(!isToogled);
+              onToggle();
+            }}
+          >
+            Pending request
+          </h1>
+        </div>
       </Center>
       <Collapse in={isOpen}>
         <Table mt="20px" variant="striped" colorScheme="black">

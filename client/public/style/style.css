@@ -190,7 +190,15 @@ hr {
 }
 
 .edit-profile__btn {
+  margin-bottom: 0.5rem;
   margin-top: 1rem;
+  font-size: 0.7rem;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.all-requests__btn {
+  margin-bottom: 1rem;
   font-size: 0.7rem;
   font-weight: bolder;
   cursor: pointer;

@@ -104,6 +104,15 @@
   font-size: 1rem;
 }
 
+.teacher-sender {
+  font-style: italic;
+}
+
+.messages-chat__title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .message-timing {
   margin: -12px 0px -5px 4px;
   float: right;
@@ -169,6 +178,8 @@
 
 .back-button-convos {
   padding: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .list-convos-desktop {
@@ -202,4 +213,10 @@
   font-size: smaller;
   letter-spacing: -1px;
   font-family: "Poppins", sans-serif;
+}
+ 
+@media (max-width: 1100px) {
+  .messages-chat__title{
+    font-size: 1rem;
+  }
 }

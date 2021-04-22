@@ -22,6 +22,7 @@ import EditHomework from "./EditHomework";
 import { getTime } from "date-fns";
 import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
 import axios from "axios";
+import HomeworkDrawer from "./HomeworkDrawer";
 
 function HomeworkCard(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -48,38 +49,18 @@ function HomeworkCard(props) {
 
   return (
     <div ref={btnRef} onClick={openHomework}>
-      <Drawer
+      <HomeworkDrawer
+        acceptAnswers={props.acceptAnswers}
+        files={props.files}
+        teacherName={props.teacherName}
+        teacherDiscipline={props.teacherDiscipline}
+        homeworkData={homeworkData}
+        setHomeworkData={setHomeworkData}
         isOpen={isOpen}
-        placement="right"
         onClose={onClose}
-        finalFocusRef={btnRef}
-        size="md"
-      >
-        <DrawerOverlay>
-          <DrawerContent overflowY="auto">
-            <DrawerCloseButton color="#fff" />
-            <HomeworkDetails
-              id={props.id}
-              title={homeworkData.title}
-              content={homeworkData.content}
-              teacherDiscipline={props.teacherDiscipline}
-              teacherName={props.teacherName}
-              files={props.files}
-              acceptAnswers={props.acceptAnswers}
-              onClose={onClose}
-              setIsAcomplished={() =>
-                setHomeworkData((prevData) => ({
-                  ...prevData,
-                  isAccomplished: true,
-                }))
-              }
-              isAccomplished={homeworkData.isAccomplished}
-              dueDate={props.dueDate}
-              isExpired={props.isExpired}
-            />
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+        btnRef={btnRef}
+        id={props.id}
+      />
       <Flex
         bgColor="#d3d3d3"
         color="#2b2b2b"

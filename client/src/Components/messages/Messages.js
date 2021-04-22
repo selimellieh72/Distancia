@@ -1,7 +1,9 @@
 import React from "react";
 import moment from "moment";
+import { authContext } from "../../providers/AuthContext";
 
 export default function Messages({ messages, scrollRef }) {
+console.log(messages)
   return (
     <div className="messages-body">
       {messages?.map(
@@ -20,7 +22,7 @@ export default function Messages({ messages, scrollRef }) {
               <div>
                 {message.sender?.fullName !== undefined && (
                   <>
-                    <span className="message-sender">
+                    <span className={message.sender?.isTeacher?"message-sender teacher-sender":"message-sender"}>
                       {message.sender?.fullName}
                     </span>
                     <br />{" "}

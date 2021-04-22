@@ -57,7 +57,7 @@ export default function (server, sessionMiddleware) {
               ? ""
               : {
                   path: "sender",
-                  select: { fullName: 1 },
+                  select: "fullName isTeacher",
                 }
           )
           .exec(function (error, messages) {

@@ -65,6 +65,7 @@ const UserPopover = () => {
                     isOpen={isOpen}
                     onClose={onClose}
                   />
+                  <p className="all-requests__btn">All Requests</p>
                 </Flex>
                 <Flex flexDir="column">
                   <Link to="/stats">
@@ -121,6 +122,14 @@ const UserPopover = () => {
                       </p>
                     )}
                   </div>
+                  <UpdateData
+                    isTeacher={isTeacher}
+                    fullName={fullName}
+                    discipline={discipline}
+                    isOpen={isOpen}
+                    onClose={onClose}
+                  />
+                  <p className="all-requests__btn">All Requests</p>
                   <Logout />
                 </DrawerBody>
               </DrawerContent>

@@ -19,6 +19,17 @@
   justify-content: end;
 }
 
+/* .chevron-icon{
+  height: 24px;
+  width: 24px;
+} */
+
+.homework-table__sections{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
 .grade-details__message {
   display: flex;
   margin: 0.2rem 0.3rem;
