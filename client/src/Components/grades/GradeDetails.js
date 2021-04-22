@@ -39,6 +39,8 @@ export default function GradeDetails(props) {
               title={chapter.title}
               chapterId={chapter._id}
               gradeId={props.id}
+              gradeTitle={props.title}
+              setGradeDetails={props.setGradeDetails}
             />
           ))}
         </List>

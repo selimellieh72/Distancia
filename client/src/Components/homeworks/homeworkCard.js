@@ -52,6 +52,7 @@ function HomeworkCard(props) {
       <HomeworkDrawer
         acceptAnswers={props.acceptAnswers}
         files={props.files}
+        isExpired={props.isExpired}
         teacherName={props.teacherName}
         teacherDiscipline={props.teacherDiscipline}
         homeworkData={homeworkData}

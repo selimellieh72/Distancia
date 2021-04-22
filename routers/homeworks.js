@@ -137,7 +137,6 @@ router
   .get(function (req, res) {
     if (req.isAuthenticated()) {
       Homework.findById(req.params.id)
-
         .populate({
           path: "grade",
           select: { students: 1 },
@@ -146,6 +145,7 @@ router
             select: { fullName: 1 },
           },
         })
+        .populate({ path: "files", select: { filename: 1 } })
         .exec(function (e, homework) {
           if (e) {
             res.status(403).send();

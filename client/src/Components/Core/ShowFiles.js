@@ -20,7 +20,9 @@ export default function ShowFiles(props) {
   return (
     <Wrap>
       {props.files?.map((file) => {
-        const [fileName, fileExtension] = file.name.split(".");
+        const fullName = file.name || file.filename;
+        const fileId = file.id || file._id;
+        const [fileName, fileExtension] = fullName.split(".");
 
         const MyFileIcon = () => (
           <div style={{ height: "52px", width: "52px" }}>
@@ -32,16 +34,24 @@ export default function ShowFiles(props) {
         );
 
         return (
-          <WrapItem>
-            <div style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
+          <WrapItem key={fileId}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               {!props.notDownloadable ? (
-                <a href={`${baseURL}/uploads/${file.id}`} download>
+                <a href={`${baseURL}/uploads/${fileId}`} download>
                   <MyFileIcon />
                 </a>
               ) : (
                 <MyFileIcon />
               )}
-              <p style={{ textAlign: "center", marginTop: "1rem" }}>{customFileName(fileName)}</p>
+              <p style={{ textAlign: "center", marginTop: "1rem" }}>
+                {customFileName(fileName)}
+              </p>
             </div>
           </WrapItem>
         );

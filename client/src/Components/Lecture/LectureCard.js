@@ -26,7 +26,7 @@ export default function LectureCard(props) {
       {props.link ? (
         <Link
           to={{
-            pathname: "/video/${props.id}",
+            pathname: "/video",
             state: {
               gradeId: props.gradeId,
               chapterId: props.chapterId,

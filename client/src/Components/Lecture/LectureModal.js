@@ -81,6 +81,7 @@ export default function LectureModal(props) {
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
+        isCentered
       >
         <ModalOverlay />
         <ModalContent>

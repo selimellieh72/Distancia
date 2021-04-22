@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ListItem, ListIcon, Collapse, UnorderedList } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { ReactComponent as MoreSvg } from "../../assets/svg/more.svg";
-import { FaTrash } from "react-icons/fa";
-import { authContext } from "../../providers/AuthContext";
 
-export default function ChapterCollapsible({ title, gradeId, chapterId }) {
+import { authContext } from "../../providers/AuthContext";
+import DeleteChapter from "./DeleteChapter";
+
+export default function ChapterCollapsible({
+  title,
+  gradeId,
+  chapterId,
+  gradeTitle,
+  setGradeDetails,
+}) {
   const [isToogled, setIsToogled] = useState();
   const isTeacher = React.useContext(authContext)[0].isTeacher;
 
@@ -24,7 +30,15 @@ export default function ChapterCollapsible({ title, gradeId, chapterId }) {
             <span>{title}</span>
           </div>
 
-          {isTeacher && <FaTrash className="delete-icon" />}
+          {isTeacher && (
+            <DeleteChapter
+              title={title}
+              gradeTitle={gradeTitle}
+              gradeId={gradeId}
+              chapterId={chapterId}
+              setGradeDetails={setGradeDetails}
+            />
+          )}
         </ListItem>
       </div>
 

@@ -100,25 +100,44 @@ router
             }
           }
         );
-      } else if (req.query.addChapter === "true") {
+      } else if (req.query.addChapter) {
         const title = req.body.title;
-        const chapter = new Chapter({ title });
+        if (title && title.length >= 10 && title.length <= 50) {
+          const chapter = new Chapter({ title });
 
+          Grade.findByIdAndUpdate(
+            req.params.id,
+            {
+              $push: { chapters: chapter },
+            },
+            function (e, grade) {
+              if (e) {
+                res.status(403).send();
+              } else {
+                res.status(202).json({ chapter_id: chapter._id });
+              }
+            }
+          );
+        } else {
+          res.status(403).send();
+        }
+      } else if (req.query.deleteChapter) {
         Grade.findByIdAndUpdate(
           req.params.id,
           {
-            $push: { chapters: chapter },
+            $pull: { chapters: { _id: req.body.chapterId } },
           },
-          function (e, grade) {
+          function (e) {
             if (e) {
               res.status(403).send();
             } else {
-              res.status(202).json({ chapter_id: chapter._id });
+              res.send();
             }
           }
         );
-      } else if (req.query.addLecture === "true") {
+      } else if (req.query.addLecture) {
         const lecture = new Lecture(req.body);
+        console.log("here");
 
         Grade.findByIdAndUpdate(
           req.params.id,
@@ -141,9 +160,9 @@ router
             }
           }
         );
-      } else {
-        res.status(401).send();
       }
+    } else {
+      res.status(401).send();
     }
   })
   .delete(function (req, res) {

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { authContext } from "../../providers/AuthContext";
 import { useLocation } from "react-router-dom";
 import { Heading, Flex, Container, Button } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -9,6 +10,7 @@ import HomeworkDrawer from "../../Components/homeworks/HomeworkDrawer";
 
 export default function HomeworkTablePage(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { discipline, fullName } = useContext(authContext)[0];
 
   const [homework, setHomework] = useState({});
   const { homeworkId } = props.match.params;
@@ -23,7 +25,7 @@ export default function HomeworkTablePage(props) {
   }
 
   backPath = (backPath ?? "") + "/homeworks";
-  console.log(backPath);
+
   return (
     <>
       <Container maxW="container.lg" p="18px">
@@ -34,7 +36,19 @@ export default function HomeworkTablePage(props) {
           </Heading>
           <Button onClick={onOpen} colorScheme="blue">
             Homework Details
-          </Button>
+          </Button>{" "}
+          <HomeworkDrawer
+            acceptAnswers={homework.acceptAnswers}
+            isExpired={homework.isExpired}
+            files={homework.files}
+            teacherName={fullName}
+            teacherDiscipline={discipline}
+            homeworkData={homework}
+            setHomeworkData={setHomework}
+            isOpen={isOpen}
+            onClose={onClose}
+            id={homework.id}
+          />
           {/* <HomeworkDrawer onOpen={onOpen} /> */}
         </Flex>
         <Homeworktable

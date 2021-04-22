@@ -24,7 +24,7 @@
   width: 24px;
 } */
 
-.homework-table__sections{
+.homework-table__sections {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -165,7 +165,7 @@
   text-align: center;
 }
 
-.all-homeworks{
+.all-homeworks {
   height: 20px;
   width: 20px;
   fill: #2b2b2b;
@@ -179,4 +179,8 @@
   .grade-content__type {
     font-size: 0.8rem;
   }
+}
+
+.delete-icon:hover {
+  color: red;
 }

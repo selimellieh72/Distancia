@@ -43,13 +43,7 @@ export default function HomeworksList(props) {
           hasSeen={homework.hasSeen}
           dueDate={homework.dueDate}
           setHomeworks={props.setHomeworks}
-          files={homework.files.map((f) => {
-            f.name = f.filename;
-            f.id = f._id;
-            delete f.filename;
-            delete f._id;
-            return f;
-          })}
+          files={homework.files}
           acceptAnswers={homework.acceptAnswers}
           answers={homework.answers}
           isExpired={homework.isExpired}

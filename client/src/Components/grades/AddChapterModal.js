@@ -16,11 +16,13 @@ import {
   useDisclosure,
   Button,
   ButtonGroup,
+  FormErrorMessage,
+  FormHelperText,
 } from "@chakra-ui/react";
 
 export default function AddChapterModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const toast = useToast();
 
   const onSubmit = (data) => {
@@ -53,10 +55,29 @@ export default function AddChapterModal(props) {
           <ModalHeader>Add Chapter</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <FormControl isRequired>
+            <FormControl isInvalid={errors.title} isRequired>
               <form id="add-chapter" onSubmit={handleSubmit(onSubmit)}>
                 <FormLabel>Chapter name: </FormLabel>
-                <Input name="title" ref={register}></Input>
+                <Input
+                  name="title"
+                  ref={register({
+                    maxLength: {
+                      value: 50,
+                      message:
+                        "Your chapter title can only contain a maximum of 50 characters.",
+                    },
+                    minLength: {
+                      value: 10,
+                      message:
+                        "Your chapter title should be atleast 10 characters long",
+                    },
+                  })}
+                />
+                <FormHelperText>
+                  {!errors.title &&
+                    "Your chapter title will be visible to your students."}
+                </FormHelperText>
+                <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
               </form>
             </FormControl>
           </ModalBody>

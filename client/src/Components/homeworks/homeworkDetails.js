@@ -8,7 +8,7 @@ import ShowFiles from "../Core/ShowFiles";
 
 export default function HomeworkDetails(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
-
+  console.log(isTeacher);
   return (
     <div className="homework-details__drawer">
       <div className="sender-details">
@@ -20,7 +20,7 @@ export default function HomeworkDetails(props) {
         <h1 className="homework-details__title">{props.title}</h1>
 
         <Wrap mb="2rem">
-          {props.isAccomplished && (
+          {!isTeacher && props.isAccomplished && (
             <WrapItem>
               <Badge variant="solid" colorScheme="green">
                 Acomplished
@@ -57,15 +57,15 @@ export default function HomeworkDetails(props) {
           </div>
         </div>
         {props.files && props.files.length > 0 && (
-          <div>
-            <div className="homework-details__files__title">Files: </div>
+          <div className="homework-details__files__title">
+            <div>Files: </div>
             {<ShowFiles files={props.files} />}
           </div>
         )}
       </div>
 
       <Flex justifyContent="center">
-        {props.isAccomplished ? (
+        {props.isAccomplished || isTeacher ? (
           <> </>
         ) : (
           <Tooltip label={"Click to mark this homework as accomplished"}>
