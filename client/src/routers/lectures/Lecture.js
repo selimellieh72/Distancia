@@ -14,6 +14,7 @@ import LectureList from "../../Components/Lecture/LectureList";
 import { authContext } from "../../providers/AuthContext";
 import LectureModal from "../../Components/Lecture/LectureModal";
 import { AddIcon } from "@chakra-ui/icons";
+import PageHeader from "../../Components/Core/PageHeader";
 
 export default function Lecture(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -22,7 +23,22 @@ export default function Lecture(props) {
   return (
     <>
       <Container maxW="container.lg" p="18px">
-        <Flex alignItems="center" minW="300px" justifyContent="space-between">
+        <PageHeader
+          pathName="/grades"
+          title={chapterId && lecturesData?.chapterTitle}
+          addButton={
+            isTeacher && (
+              <LectureModal
+                gradeId={gradeId}
+                chapterId={chapterId}
+                icon={AddIcon}
+                setLecturesData={setLecturesData}
+                button
+              />
+            )
+          }
+        />
+        {/* <Flex alignItems="center" minW="300px" justifyContent="space-between">
           <Heading as="h1">
             {" "}
             <BackIcon pathName="/grades" />
@@ -47,7 +63,7 @@ export default function Lecture(props) {
         </Flex>
         <Box my="18px">
           <Divider borderColor="black" opacity="0.2" variant="solid" />
-        </Box>
+        </Box> */}
         <LectureList
           isTeacher={isTeacher}
           lecturesData={lecturesData}

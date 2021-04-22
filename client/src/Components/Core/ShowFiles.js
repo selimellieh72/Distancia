@@ -5,8 +5,8 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 
 export default function ShowFiles(props) {
   function customFileName(fileName) {
-    if (fileName.length >= 10) {
-      return fileName.substr(0, 7) + "...";
+    if (fileName.length >= 20) {
+      return fileName.substr(0, 17) + "...";
     } else {
       return fileName;
     }
@@ -33,7 +33,7 @@ export default function ShowFiles(props) {
 
         return (
           <WrapItem>
-            <div>
+            <div style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
               {!props.notDownloadable ? (
                 <a href={`${baseURL}/uploads/${file.id}`} download>
                   <MyFileIcon />
@@ -41,7 +41,7 @@ export default function ShowFiles(props) {
               ) : (
                 <MyFileIcon />
               )}
-              <p style={{ marginTop: "1rem" }}>{customFileName(fileName)}</p>
+              <p style={{ textAlign: "center", marginTop: "1rem" }}>{customFileName(fileName)}</p>
             </div>
           </WrapItem>
         );

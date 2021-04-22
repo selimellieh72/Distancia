@@ -17,19 +17,25 @@ export default function Messages({ messages, scrollRef }) {
                 message.isMe ? "right-sent" : "left-received"
               }`}
             >
-              <span>
-                {message.text}
-                <br />
-                <span style={{ color: "red" }}>
-                  Hour:{moment(message.created_at).format("HH:mm")}
-                </span>
-                <br />
-
-                <span style={{ color: "blue" }}>
-                  {message.sender.isTeacher && "Teacher: "}
-                  {message.sender?.fullName}
-                </span>
-              </span>
+              <div>
+                {message.sender?.fullName !== undefined && (
+                  <>
+                    <span className="message-sender">
+                      {message.sender?.fullName}
+                    </span>
+                    <br />{" "}
+                  </>
+                )}
+                <div>
+                  <span>{message.text}</span>
+                  <br />
+                </div>
+                <div className="message-timing">
+                  <span className="message-timing__hour">
+                    {moment(message.created_at).format("HH:mm")}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         )

@@ -16,11 +16,14 @@ export default function MessageMainPhone(props) {
           setMessages={props.setMessages}
           currentChat={props.currentChat}
           scrollRef={props.scrollRef}
+          setCurrentChat={props.setCurrentChat}
+          lessThan660={props.lessThan660}
         />
       ) : (
         <ListConvosPhone
           chats={props.chats}
           setCurrentChat={props.setCurrentChat}
+          currentChat={props.currentChat}
         />
       )}
     </>

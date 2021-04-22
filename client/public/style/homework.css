@@ -125,11 +125,10 @@
   text-align: center;
 }
 
-homework-details__duedate__titlehomework-table-card > h1 {
-  margin-bottom: 1rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-  cursor: pointer;
+.student-name{
+  font-size: 1.23rem;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
 }
 
 .homework-table-card__status {

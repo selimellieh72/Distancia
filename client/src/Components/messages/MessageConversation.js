@@ -6,6 +6,9 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Flex } from "@chakra-ui/layout";
 import Messages from "./Messages";
 import axios from "axios";
+import BackIcon from "../Core/BackIcon";
+import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ReactComponent as ClassroomSvg } from "../../assets/svg/multiple-users-silhouette.svg";
 
 export default function MessageConversation(props) {
   const [message, setMessage] = useState("");
@@ -62,22 +65,43 @@ export default function MessageConversation(props) {
       <div className="messages">
         <div className="messages-header">
           <Flex
-            justifyContent="space-between"
+            // justifyContent="space-between"
             height="100%"
             alignItems="center"
           >
+            {props.lessThan660 && (
+              <ArrowBackIcon
+                onClick={() => {
+                  props.setCurrentChat({});
+                }}
+                className="white__arrow-back"
+                mr="1rem"
+              />
+            )}
             <div className="receiver">
               <Avatar
+              padding="0.5rem"
                 mr="1.5rem"
-                name={props.currentChat.recieverName}
-                bg="#fff"
-                color="#2b2b2b"
+                name={
+                  props.currentChat.gradeId
+                    ? null
+                    : props.currentChat.recieverName
+                }
+                bg="#2b2b2b"
+                color="#fff"
                 fontWeight="bold"
+                icon={<ClassroomSvg fill="white" />}
               />
               <div className="receiver-info">
-                <p className="receiver-name">
-                  {props.currentChat.recieverName}
-                </p>
+                {props.currentChat.gradeId ? (
+                  <p className="receiver-name">
+                    grade: {props.currentChat.recieverName}
+                  </p>
+                ) : (
+                  <p className="receiver-name">
+                    {props.currentChat.recieverName}
+                  </p>
+                )}
                 {/* <p className="receiver-status">Physics Teacher</p> */}
               </div>
             </div>

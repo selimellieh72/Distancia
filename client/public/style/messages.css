@@ -7,7 +7,7 @@
 
 .messages-body {
   height: calc(100% - 202px);
-  margin: 0.5rem;
+  padding: 0.5rem;
   overflow-y: auto;
 }
 
@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 }
 
 .convo-card__profile__name {
@@ -40,7 +41,7 @@
 
 .messages-header {
   position: relative;
-  padding: 2rem;
+  padding: 0.5rem;
   height: 100px;
   background-color: #3b3b3b;
   width: 100%;
@@ -89,10 +90,27 @@
 }
 
 .message-holder {
-  padding: 1rem;
+  min-width: 100px;
+  position: relative;
+  padding: 0.5rem;
   height: auto;
   max-width: 85%;
   border-radius: 15px;
+  /* margin-bottom: -20px; */
+}
+
+.message-sender {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.message-timing {
+  margin: -12px 0px -5px 4px;
+  float: right;
+}
+
+.message-timing__hour {
+  font-size: 0.7rem;
 }
 
 .right-sent {
@@ -122,6 +140,12 @@
   width: 30px;
   padding: 0.1rem;
   fill: #2b2b2b;
+  cursor: pointer;
+}
+
+.send-icon:hover {
+  fill: #2b2b2be0;
+  transition: 0.15s;
 }
 
 /* .time-restriction {
@@ -142,6 +166,10 @@
 } */
 
 /* Deskttop */
+
+.back-button-convos {
+  padding: 1rem;
+}
 
 .list-convos-desktop {
   height: 100%;

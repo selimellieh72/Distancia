@@ -8,6 +8,21 @@
   margin-top: 1rem;
 }
 
+.google-icon {
+  height: 25px;
+  width: 25px;
+  margin-right: 1rem;
+}
+
+.signin-with-google {
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.signin-with-google span {
+  font-size: 0.8rem;
+}
+
 .logout-button {
   background-color: #3182ce;
   padding: 0.5rem;
@@ -15,7 +30,6 @@
   border-radius: 10px;
   outline: none;
 }
-
 
 #auth {
   text-align: center;

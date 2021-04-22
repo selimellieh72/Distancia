@@ -18,7 +18,9 @@ export default function HomeworkTableCard(props) {
 
   return (
     <div className="homework-table-card">
-      <h1 onClick={onToggle}>{props.studentName}</h1>
+      <h1 className="student-name" onClick={onToggle}>
+        {props.studentName}
+      </h1>
 
       <Collapse in={isOpen}>
         <Container padding="1rem">
@@ -34,10 +36,11 @@ export default function HomeworkTableCard(props) {
             )}
           </div>
           <div className="homework-table-card__status">
-            <h1 className="homework-table-card__status__title">Seen:</h1>
+            <h1 className="homework-table-card__status__title">
+              {props.hasAccomplished ? "Done" : "Seen:"}
+            </h1>
             {props.hasAccomplished ? (
               <>
-                <p className="homework-table-card__status__tag">Done</p>
                 <FaCheckCircle size="25px" color="green" bgColor="white" />
               </>
             ) : (

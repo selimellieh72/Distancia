@@ -94,6 +94,7 @@ export default function MessageMain(props) {
           setMessages={setMessages}
           currentChat={currentChat}
           scrollRef={scrollRef}
+          lessThan660={lessThan660}
         />
       ) : (
         <MessageMainDesktop

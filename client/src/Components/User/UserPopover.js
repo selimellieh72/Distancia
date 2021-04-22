@@ -26,6 +26,7 @@ import {
 import Logout from "../auth/Logout";
 import { authContext } from "../../providers/AuthContext";
 import { Link } from "react-router-dom";
+import UpdateData from "./UpdateData";
 
 const UserPopover = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -39,13 +40,7 @@ const UserPopover = () => {
         {fullName}
       </Box>
       {biggerThan400 ? (
-        <Popover
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          placement="right"
-          closeOnBlur={false}
-        >
+        <Popover onClose={onClose} placement="right" closeOnBlur={false}>
           <PopoverTrigger>
             <Avatar
               className="header-profile__avatar"
@@ -59,9 +54,18 @@ const UserPopover = () => {
               <PopoverCloseButton />
 
               <Flex mb="18px">
-                <Avatar mr={5}>
-                  <AvatarBadge boxSize="1.25em" bg="green.500" />
-                </Avatar>
+                <Flex flexDir="column">
+                  <Avatar mr={5}>
+                    <AvatarBadge boxSize="1.25em" bg="green.500" />
+                  </Avatar>
+                  <UpdateData
+                    isTeacher={isTeacher}
+                    fullName={fullName}
+                    discipline={discipline}
+                    isOpen={isOpen}
+                    onClose={onClose}
+                  />
+                </Flex>
                 <Flex flexDir="column">
                   <Link to="/stats">
                     {" "}
@@ -105,21 +109,19 @@ const UserPopover = () => {
                 </DrawerHeader>
 
                 <DrawerBody mt="2.5rem" textAlign="Center">
-                  
-                    <Avatar size="2xl">
-                      {" "}
-                      <AvatarBadge boxSize="1.25em" bg="green.500" />
-                    </Avatar>
-                    <div className="user-info">
-                      <p className="user-info__fullname">{fullName}</p>
-                      {isTeacher && (
-                        <p className="user-info__discipline">
-                          Teaching {discipline}
-                        </p>
-                      )}
-                    </div>
-                    <Logout />
-                  
+                  <Avatar size="2xl">
+                    {" "}
+                    <AvatarBadge boxSize="1.25em" bg="green.500" />
+                  </Avatar>
+                  <div className="user-info">
+                    <p className="user-info__fullname">{fullName}</p>
+                    {isTeacher && (
+                      <p className="user-info__discipline">
+                        Teaching {discipline}
+                      </p>
+                    )}
+                  </div>
+                  <Logout />
                 </DrawerBody>
               </DrawerContent>
             </DrawerOverlay>

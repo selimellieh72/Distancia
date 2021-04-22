@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Avatar } from "@chakra-ui/react";
+import { Flex, Avatar, Icon } from "@chakra-ui/react";
+import { ReactComponent as ClassroomSvg } from "../../../assets/svg/multiple-users-silhouette.svg";
 
 export default function ConvoCardPhone(props) {
   return (
@@ -13,8 +14,12 @@ export default function ConvoCardPhone(props) {
       }}
       className="messages-conversation"
     >
-      <Flex paddingTop="1.5rem" justifyContent="center">
-        <Avatar bg="#2b2b2b" />
+      <Flex padding="1.5rem" justifyContent="start" alignItems="center">
+        {props.gradeId ? (
+          <Avatar padding="0.5rem" bg="#2b2b2b" icon={<ClassroomSvg fill="white"/>} />
+        ) : (
+          <Avatar bg="#2b2b2b" />
+        )}
         <div className="messages-profile__info">
           <p className="messages-profile__username">
             {(props.gradeId ? "Grade: " : "") + props.userName}

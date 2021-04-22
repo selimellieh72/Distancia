@@ -4,6 +4,7 @@ import Header from "../header/Header";
 import { useForm } from "react-hook-form";
 import { useHistory, Link } from "react-router-dom";
 import { authContext } from "../../providers/AuthContext";
+import { ReactComponent as GoogleIcon } from "../../assets/svg/search.svg";
 
 import axios from "axios";
 
@@ -18,6 +19,7 @@ import {
   Select,
   Switch,
   Flex,
+  Center,
 } from "@chakra-ui/react";
 
 export default function Auth(props) {
@@ -236,9 +238,22 @@ export default function Auth(props) {
           )}
           <div className="auth-button">
             {!isSignup ? (
-              <Link className="auth-button__joining__type" to="/register">
-                Don't have an account? Create one!
-              </Link>
+              <>
+                <Center>
+                  <Flex
+                    width="max-content"
+                    alignItems="center"
+                    className="signin-with-google"
+                  >
+                    {" "}
+                    <GoogleIcon className="google-icon" />{" "}
+                    <span>Sign in with google</span>
+                  </Flex>
+                </Center>
+                <Link className="auth-button__joining__type" to="/register">
+                  Don't have an account? Create one!
+                </Link>
+              </>
             ) : (
               <Link className="auth-button__joining__type" to="/login">
                 Already have an account? Sign In!
@@ -253,7 +268,7 @@ export default function Auth(props) {
               display="block"
               colorScheme="blue"
             >
-              {isSignup ? "Register" : "Log in"}
+              {isSignup ? "Register" : "Sign in"}
             </Button>
           </div>
         </form>

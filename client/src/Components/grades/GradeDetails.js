@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, List, Wrap } from "@chakra-ui/react";
+import { Button, List, Wrap, Center } from "@chakra-ui/react";
 
 import GradeId from "./gradesItem/GradeId";
-import { getByDisplayValue } from "@testing-library/dom";
 import AddChapterModal from "./AddChapterModal";
 import DeleteGradeModal from "./DeleteGradeModal";
-
+import { ReactComponent as MessageIcon } from "../../assets/svg/send.svg";
 import ChapterCollapsible from "./ChapterCollapsible";
 
 export default function GradeDetails(props) {
@@ -20,6 +19,15 @@ export default function GradeDetails(props) {
         </p>
         <p className="grade-details__discipline">{props.material}</p>
       </div>
+      {/* Message */}
+      <Link to={`/grades/${props.id}/messages`}>
+        <div className="grade-details__message__part">
+          <div className="grade-details__message">
+            <p>Messages</p>
+            <MessageIcon className="grade-details__message__icon" />
+          </div>
+        </div>
+      </Link>
       {/* grade ID */}
       {isTeacher && <GradeId id={props.id} />}
       {/* chapter */}
@@ -75,11 +83,6 @@ export default function GradeDetails(props) {
               gradeId={props.id}
             />
           )}
-          <Link to={`/grades/${props.id}/messages`}>
-            <Button width="125px" colorScheme="messenger">
-              Messages
-            </Button>
-          </Link>
         </Wrap>
 
         <div className="grade-manager__delete"></div>

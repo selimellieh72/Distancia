@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+.trash-icon{
+  position: absolute;
+  fill: red;
+}
+
 .lecture-card__title {
   height: auto;
   text-align: center;

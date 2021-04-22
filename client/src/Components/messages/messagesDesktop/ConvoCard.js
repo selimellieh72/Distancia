@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar } from "@chakra-ui/react";
+import { ReactComponent as ClassroomSvg } from "../../../assets/svg/multiple-users-silhouette.svg";
 
 export default function ConvoCard(props) {
   return (
@@ -13,7 +14,15 @@ export default function ConvoCard(props) {
         })
       }
     >
-      <Avatar />
+      {props.gradeId ? (
+        <Avatar
+          padding="0.5rem"
+          bg="#2b2b2b"
+          icon={<ClassroomSvg fill="white" />}
+        />
+      ) : (
+        <Avatar bg="#2b2b2b" />
+      )}
       <h1 className="convo-card__profile__name">
         {(props.gradeId ? "Grade: " : "") + props.userName}
       </h1>
