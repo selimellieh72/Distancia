@@ -14,9 +14,9 @@ export default function PageHeader(props) {
           <span className="page-title">{props.title}</span>
         </div>
         <div className="page-header__icon">
+          {props.deleteButton}
           {props.addButton}
           <LeftDrawer />
-          
         </div>
       </Flex>
       <Box my="18px">

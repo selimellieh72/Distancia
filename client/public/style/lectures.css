@@ -6,11 +6,14 @@
 .lecture-card {
   width: 150px;
   text-align: center;
+  position: relative;
 }
 
 .trash-icon{
   position: absolute;
   fill: red;
+  right: -18px;
+  z-index: 999;
 }
 
 .lecture-card__title {

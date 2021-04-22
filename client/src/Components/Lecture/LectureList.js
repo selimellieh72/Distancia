@@ -29,6 +29,7 @@ export default function LectureList(props) {
           id={lecture?._id}
           gradeId={props.gradeId}
           chapterId={props.chapterId}
+          deleteState={props.deleteState}
         />
       ))}
     </div>

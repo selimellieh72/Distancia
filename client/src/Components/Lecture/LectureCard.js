@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as FolderSvg } from "../../assets/svg/folder.svg";
 import { ReactComponent as VideoSvg } from "../../assets/svg/video.svg";
 import { FileIcon, defaultStyles } from "react-file-icon";
-import { FaTrash } from "react-icons/fa";
+import { CloseIcon } from "@chakra-ui/icons";
 import { authContext } from "../../providers/AuthContext";
 
 export default function LectureCard(props) {
@@ -53,7 +53,7 @@ export default function LectureCard(props) {
   return (
     <>
       <div className="lecture-card">
-        {isTeacher && <FaTrash className="trash-icon" />}
+        {isTeacher && props.deleteState && <CloseIcon display="block" className="trash-icon" />}
         <MyFileIcon />
         <div className="card__details">
           <h1 className="lecture-card__title">{props.name}</h1>
