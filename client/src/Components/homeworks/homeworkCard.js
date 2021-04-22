@@ -14,12 +14,13 @@ import { FaBook } from "react-icons/fa";
 import DeleteHomework from "./DeleteHomework";
 import { authContext } from "../../providers/AuthContext";
 import HomeworkDetails from "./homeworkDetails";
-import { set } from "js-cookie";
+
 import { FaCheckCircle } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import EditHomework from "./EditHomework";
 import { getTime } from "date-fns";
 import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
+import axios from "axios";
 
 function HomeworkCard(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -33,37 +34,19 @@ function HomeworkCard(props) {
   const history = useHistory();
 
   function openHomework() {
-    // if (homeworkData.isAccomplished === true) {
-    //   return onOpen;
-    // } else {
-    //   var today = new Date();
-    //   var date =
-    //     today.getFullYear() +
-    //     "-" +
-    //     (today.getMonth() + 1) +
-    //     "-" +
-    //     today.getDate();
-    //   var time =
-    //     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    //   var openedAt = date + " " + time;
-    //   console.log(openedAt);
-    // }
-    onOpen();
+    if (isTeacher) {
+      history.push(`/homeworks/${props.id}`, {
+        gradeId: props.gradeId,
+        chapterId: props.chapterId,
+      });
+    } else {
+      if (!props.hasSeen) axios.patch(`/homeworks/${props.id}?seen=true`);
+      onOpen();
+    }
   }
 
   return (
-    <div
-      ref={btnRef}
-      onClick={
-        isTeacher
-          ? () =>
-              history.push(`/homeworks/${props.id}`, {
-                gradeId: props.gradeId,
-                chapterId: props.chapterId,
-              })
-          : openHomework
-      }
-    >
+    <div ref={btnRef} onClick={openHomework}>
       <Drawer
         isOpen={isOpen}
         placement="right"

@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 export default function Messages({ messages, scrollRef }) {
   return (
@@ -16,7 +17,19 @@ export default function Messages({ messages, scrollRef }) {
                 message.isMe ? "right-sent" : "left-received"
               }`}
             >
-              <span>{message.text} </span>
+              <span>
+                {message.text}
+                <br />
+                <span style={{ color: "red" }}>
+                  Hour:{moment(message.created_at).format("HH:mm")}
+                </span>
+                <br />
+
+                <span style={{ color: "blue" }}>
+                  {message.sender.isTeacher && "Teacher: "}
+                  {message.sender?.fullName}
+                </span>
+              </span>
             </div>
           </div>
         )

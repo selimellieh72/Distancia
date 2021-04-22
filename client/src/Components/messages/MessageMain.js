@@ -5,7 +5,6 @@ import { useMediaPredicate } from "react-media-hook";
 import MessageMainDesktop from "./messagesDesktop/MessageMainDesktop";
 import axios from "axios";
 import io from "socket.io-client";
-import Cookies from "js-cookie";
 
 let socket;
 
@@ -23,27 +22,40 @@ export default function MessageMain(props) {
       withCredentials: true,
     });
 
-    console.log(socket);
-
     socket.on("messages", (messages) => setMessages(messages));
 
     socket.on("message", (message) => {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: message.text, _id: message._id, isMe: false },
+        {
+          ...message,
+          isMe: false,
+        },
       ]);
     });
     axios
       .get(
-        `/grades/${props.gradeId}?${
+        `/grades/${props.gradeId}?title=true${
           isTeacher ? "students=true" : "teacher=true"
         }`
       )
       .then((res) => {
-        console.log(res);
+        setChats((chats) => [
+          {
+            _id: props.gradeId,
+            fullName: res.data.title,
+            gradeId: props.gradeId,
+          },
+          ...chats,
+        ]);
         if (isTeacher) {
-          setChats(res.data.students);
+          setChats((chats) => [...chats, ...res.data.students]);
         } else {
+          setChats((chats) => [
+            ...chats,
+            { _id: res.data.teacher._id, fullName: res.data.teacher.fullName },
+          ]);
+
           setCurrentChat({
             recieverName: res.data.teacher.fullName,
             recieverId: res.data.teacher._id,
@@ -61,7 +73,7 @@ export default function MessageMain(props) {
       setMessages([]);
       socket?.emit(
         "getMessages",
-        { secondUser: currentChat.recieverId },
+        { secondUser: currentChat.recieverId, grade: currentChat.gradeId },
         ({ error }) => {}
       );
     }
@@ -74,7 +86,15 @@ export default function MessageMain(props) {
   return (
     <div className="main-messages">
       {lessThan660 ? (
-        <MessageMainPhone currentChat={currentChat} />
+        <MessageMainPhone
+          socket={socket}
+          setCurrentChat={setCurrentChat}
+          chats={chats}
+          messages={messages}
+          setMessages={setMessages}
+          currentChat={currentChat}
+          scrollRef={scrollRef}
+        />
       ) : (
         <MessageMainDesktop
           socket={socket}

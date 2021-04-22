@@ -40,6 +40,7 @@ export default function HomeworksList(props) {
           teacherName={homework.grade.teacher.fullName}
           teacherDiscipline={homework.grade.teacher.discipline}
           isAccomplished={homework.isAccomplished}
+          hasSeen={homework.hasSeen}
           dueDate={homework.dueDate}
           setHomeworks={props.setHomeworks}
           files={homework.files.map((f) => {

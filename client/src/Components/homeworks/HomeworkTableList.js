@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+
 import HomeworkTableCard from "./HomeworkTableCard";
 
 export default function HomeworkTableList(props) {
   useEffect(
     () =>
-      axios.get(`/homeworks/${props.homeworkId}`).then((res) => {
-        return props.setHomework({
-          answers: res.data.answers,
-          students: res.data.grade.students,
-          title: res.data.title,
-          accomplishedUsers: res.data.accomplishedUsers,
-        });
-      }),
+      axios
+        .get(`/homeworks/${props.homeworkId}`)
+        .then((res) => props.setHomework(res.data)),
     []
   );
 
   return (
     <>
-      {props.homework.students?.map((student) => (
+      {props.homework?.grade?.students?.map((student) => (
         <HomeworkTableCard
+          key={student._id}
           studentName={student.fullName}
           answerFileId={
             props.homework.answers?.filter(
@@ -29,6 +26,11 @@ export default function HomeworkTableList(props) {
           hasAccomplished={props.homework.accomplishedUsers.includes(
             student._id
           )}
+          lastSeen={
+            props.homework.studentsSeen.find(
+              ({ student: s }) => s === student._id
+            )?.date
+          }
         />
       ))}
     </>

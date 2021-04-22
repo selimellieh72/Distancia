@@ -14,43 +14,67 @@ export default function (server, sessionMiddleware) {
 
     if (user) {
       socket.on("getMessages", ({ secondUser, grade }, callback) => {
-        const index = clients.findIndex(
-          (client) => client.userId === user || client.socketId === socket
-        );
-        if (index > -1) {
-          clients.splice(index, 1);
-        }
-        clients.push({
-          userId: user,
-          socketId: socket.id,
-          room: secondUser || grade,
-        });
-
         if (secondUser) {
-          const userId = mongoose.Types.ObjectId(user);
-          const secondUserId = mongoose.Types.ObjectId(secondUser);
-          Message.find({
-            $and: [
-              { $or: [{ sender: userId }, { sender: secondUserId }] },
-              { $or: [{ reciever: userId }, { reciever: secondUserId }] },
-            ],
-          })
-            .sort({ created_at: 1 })
-            .exec(function (error, messages) {
-              if (error) {
-                callback({ error });
-              } else {
-                callback({});
-                socket.emit(
-                  "messages",
-                  messages.map((message) => ({
-                    ...message._doc,
-                    isMe: userId.equals(message._doc.sender),
-                  }))
-                );
-              }
-            });
+          const index = clients.findIndex(
+            (client) => client.userId === user || client.socketId === socket
+          );
+          if (index > -1) {
+            clients.splice(index, 1);
+          }
+          clients.push({
+            userId: user,
+            socketId: socket.id,
+            room: secondUser || grade,
+          });
+        } else {
+          socket.join(grade);
         }
+
+        const userId = mongoose.Types.ObjectId(user);
+        const query = secondUser
+          ? {
+              $and: [
+                {
+                  $or: [
+                    { sender: userId },
+                    { sender: mongoose.Types.ObjectId(secondUser) },
+                  ],
+                },
+                {
+                  $or: [
+                    { reciever: userId },
+                    { reciever: mongoose.Types.ObjectId(secondUser) },
+                  ],
+                },
+              ],
+            }
+          : { grade };
+
+        Message.find(query)
+          .sort({ created_at: 1 })
+          .populate(
+            secondUser
+              ? ""
+              : {
+                  path: "sender",
+                  select: { fullName: 1 },
+                }
+          )
+          .exec(function (error, messages) {
+            if (error) {
+              callback({ error });
+            } else {
+              callback({});
+
+              socket.emit(
+                "messages",
+                messages.map((message) => ({
+                  ...message._doc,
+                  isMe: userId.equals(message._doc.sender._id),
+                }))
+              );
+            }
+          });
       });
       socket.on("sendMessage", ({ reciever, text, grade }, callback) => {
         const message = new Message({ reciever, text, grade, sender: user });
@@ -66,13 +90,24 @@ export default function (server, sessionMiddleware) {
             if (recieverSocketId) {
               nsp.to(recieverSocketId).emit("message", message);
             }
-
-            callback({ message });
+          } else {
+            message
+              .populate({
+                path: "sender",
+                select: `fullName ${grade ? "isTeacher" : ""}`,
+              })
+              .execPopulate((error, message) => {
+                if (error) {
+                  callback({ error });
+                } else {
+                  socket.broadcast.to(grade).emit("message", message);
+                }
+              });
           }
+          callback({ message });
         });
       });
       socket.on("disconnect", () => {
-        console.log("User disconnected");
         const userIndex = clients.findIndex(
           (client) => client.socketId === socket.id
         );

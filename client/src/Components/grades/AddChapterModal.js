@@ -44,7 +44,7 @@ export default function AddChapterModal(props) {
 
   return (
     <>
-      <Button width="125px" mr="2rem" colorScheme="blue" onClick={onOpen}>
+      <Button width="125px" colorScheme="blue" onClick={onOpen}>
         Add Chapter
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>

@@ -15,11 +15,9 @@ import GradeManager from "./routers/grades/GradeManager";
 import HomeworkTablePage from "./routers/homework/HomeworkTablePage";
 import Auth from "./Components/auth/Auth";
 import PrivateRoute from "./Components/Core/PrivateRoute";
-import Header from "./Components/header/Header";
 import SeeAnswers from "./routers/test/SeeAnswers";
 import TakeQuizz from "./routers/test/TakeQuizz";
 import VideoPlayer from "./routers/VideoPlayer";
-import MessageConversationPhone from "./routers/messages/MessageConversationPhone";
 
 export default function Router(props) {
   return (
@@ -89,11 +87,7 @@ export default function Router(props) {
         component={Messages}
         isViewable={props.isAuth}
       />
-      <PrivateRoute
-        path="/messageconversations"
-        component={MessageConversationPhone}
-        isViewable={props.isAuth}
-      />
+
       <PrivateRoute path="/stats" component={Stats} isViewable={props.isAuth} />
 
       <PrivateRoute

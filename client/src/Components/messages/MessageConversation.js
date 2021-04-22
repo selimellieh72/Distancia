@@ -1,5 +1,6 @@
 import { Textarea } from "@chakra-ui/textarea";
-import React, { useState } from "react";
+import { authContext } from "../../providers/AuthContext";
+import React, { useState, useContext } from "react";
 import { ReactComponent as SendSvg } from "../../assets/svg/send-button.svg";
 import { Avatar } from "@chakra-ui/avatar";
 import { Flex } from "@chakra-ui/layout";
@@ -8,6 +9,8 @@ import axios from "axios";
 
 export default function MessageConversation(props) {
   const [message, setMessage] = useState("");
+
+  const { fullName, isTeacher } = useContext(authContext)[0];
 
   const sendMessage = () => {
     if (!message) {
@@ -18,14 +21,26 @@ export default function MessageConversation(props) {
       "sendMessage",
       {
         reciever: props.currentChat.recieverId,
+        grade: props.currentChat.gradeId,
         text: message,
       },
-      ({ message }) => {
-        props.setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: message.text, isMe: true, _id: message._id },
-        ]);
-        setMessage("");
+      ({ message, error }) => {
+        if (!error) {
+          props.setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              text: message.text,
+              isMe: true,
+              _id: message._id,
+              created_at: message.created_at,
+              sender: {
+                fullName: props.currentChat.gradeId ? fullName : undefined,
+                isTeacher: props.currentChat.gradeId ? isTeacher : undefined,
+              },
+            },
+          ]);
+          setMessage("");
+        }
       }
     );
 

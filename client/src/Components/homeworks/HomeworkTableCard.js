@@ -4,11 +4,11 @@ import {
   useDisclosure,
   List,
   ListItem,
+  Heading,
 } from "@chakra-ui/react";
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
-import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
-
+import moment from "moment";
 export default function HomeworkTableCard(props) {
   const { isOpen, onToggle } = useDisclosure();
   const baseURL =
@@ -31,6 +31,21 @@ export default function HomeworkTableCard(props) {
               </>
             ) : (
               <p>Pending</p>
+            )}
+          </div>
+          <div className="homework-table-card__status">
+            <h1 className="homework-table-card__status__title">Seen:</h1>
+            {props.hasAccomplished ? (
+              <>
+                <p className="homework-table-card__status__tag">Done</p>
+                <FaCheckCircle size="25px" color="green" bgColor="white" />
+              </>
+            ) : (
+              <p>
+                {props.lastSeen
+                  ? moment(props.lastSeen).format("MMM. D, YYYY h:mm A z")
+                  : "Not yet."}
+              </p>
             )}
           </div>
           <div className="homework-table-card__actions">

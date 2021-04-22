@@ -31,6 +31,12 @@ const homeworkSchema = new mongoose.Schema(
         fileId: { type: mongoose.Schema.Types.ObjectId, ref: "GFS" },
       },
     ],
+    studentsSeen: [
+      {
+        student: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        date: Date,
+      },
+    ],
     dueDate: Date,
   },
 

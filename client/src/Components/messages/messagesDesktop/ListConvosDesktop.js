@@ -7,6 +7,7 @@ export default function ListConvosDesktop(props) {
       {props.chats?.map((chat) => (
         <div key={chat._id}>
           <ConvoCard
+            gradeId={chat.gradeId}
             setCurrentChat={props.setCurrentChat}
             userName={chat.fullName}
             userId={chat._id}

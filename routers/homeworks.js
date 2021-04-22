@@ -51,15 +51,22 @@ router
                     : homeworks.map((homework) => {
                         const accomplishedUsers =
                           homework._doc.accomplishedUsers;
+                        const studentsSeen = homework._doc.studentsSeen;
                         const dueDate = homework._doc.dueDate;
                         const newHomeworks = homework._doc;
                         const isAccomplished = accomplishedUsers.includes(
                           req.user.id
                         );
+                        const hasSeen = studentsSeen.some((studentSeen) =>
+                          studentSeen.student.equals(req.user._id)
+                        );
                         delete newHomeworks.accomplishedUsers;
+                        delete newHomeworks.studentsSeen;
+
                         return {
                           ...newHomeworks,
-                          isAccomplished: isAccomplished,
+                          isAccomplished,
+                          hasSeen,
                           isExpired: !isAccomplished && dueDate < new Date(),
                         };
                       }),
@@ -152,31 +159,48 @@ router
   })
   .patch(function (req, res) {
     if (req.isAuthenticated()) {
-      if (
-        !req.user.isTeacher &&
-        (parseInt(req.query.accomplish) ||
-          (parseInt(req.query.answer) && req.body.fileId))
-      ) {
-        const update = {
-          $push: parseInt(req.query.accomplish)
-            ? { accomplishedUsers: req.user.id }
-            : {
-                accomplishedUsers: req.user.id,
-                answers: { student: req.user.id, fileId: req.body.fileId },
-              },
-        };
+      if (!req.user.isTeacher) {
+        if (
+          parseInt(req.query.accomplish) ||
+          (parseInt(req.query.answer) && req.body.fileId)
+        ) {
+          const update = {
+            $push: parseInt(req.query.accomplish)
+              ? { accomplishedUsers: req.user.id }
+              : {
+                  accomplishedUsers: req.user.id,
+                  answers: { student: req.user.id, fileId: req.body.fileId },
+                },
+          };
 
-        Homework.findByIdAndUpdate(
-          req.params.id,
-          update,
-          function (e, homework) {
-            if (e) {
-              res.status(403).send();
-            } else {
-              res.status(200).send();
+          Homework.findByIdAndUpdate(
+            req.params.id,
+            update,
+            function (e, homework) {
+              if (e) {
+                res.status(403).send();
+              } else {
+                res.status(200).send();
+              }
             }
-          }
-        );
+          );
+        } else if (req.query.seen) {
+          Homework.findByIdAndUpdate(
+            req.params.id,
+            {
+              $push: {
+                studentsSeen: { date: new Date(), student: req.user._id },
+              },
+            },
+            function (e) {
+              if (e) {
+                res.status(403).send();
+              } else {
+                res.send();
+              }
+            }
+          );
+        }
       } else if (req.user.isTeacher) {
         Homework.findByIdAndUpdate(
           req.params.id,

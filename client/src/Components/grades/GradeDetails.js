@@ -1,14 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  List,
-  ListItem,
-  ListIcon,
-  UnorderedList,
-  Collapse,
-  Center,
-} from "@chakra-ui/react";
+import { Button, List, Wrap } from "@chakra-ui/react";
 
 import GradeId from "./gradesItem/GradeId";
 import { getByDisplayValue } from "@testing-library/dom";
@@ -50,9 +42,10 @@ export default function GradeDetails(props) {
       )}
 
       {/* manage */}
-      {isTeacher && (
-        <div className="grade-manage">
-          <Center>
+
+      <div className="grade-manage">
+        {isTeacher && (
+          <Wrap justify="center">
             <AddChapterModal
               gradeId={props.id}
               addChapter={(chapter) =>
@@ -62,7 +55,6 @@ export default function GradeDetails(props) {
                 })
               }
             />
-
             <Link
               to={{
                 pathname: `/grades/${props.id}`,
@@ -72,16 +64,26 @@ export default function GradeDetails(props) {
                 Manage
               </Button>
             </Link>
-          </Center>
-          <div className="grade-manager__delete">
+          </Wrap>
+        )}
+
+        <Wrap justify="center">
+          {isTeacher && (
             <DeleteGradeModal
               setGrades={props.setGrades}
               gradeTitle={props.title}
               gradeId={props.id}
             />
-          </div>
-        </div>
-      )}
+          )}
+          <Link to={`/grades/${props.id}/messages`}>
+            <Button width="125px" colorScheme="messenger">
+              Messages
+            </Button>
+          </Link>
+        </Wrap>
+
+        <div className="grade-manager__delete"></div>
+      </div>
     </>
   );
 }
