@@ -18,6 +18,8 @@ export default function SearchBar(props) {
         height="30px"
         borderRadius="15px"
         borderColor="#2b2b2b"
+        mb={props.isGrades && "18px" }
+        width = {props.isGrades&& "75%"}
       />
     </InputGroup>
   );

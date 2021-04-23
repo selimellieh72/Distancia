@@ -8,7 +8,7 @@ import AddGradesModal from "../../Components/grades/AddGradesModal";
 import GradesList from "../../Components/grades/GradesList";
 import JoinGrades from "../../Components/grades/JoinGrades";
 import { ReactComponent as MessageIcon } from "../../assets/svg/send.svg";
-import {ReactComponent as HomeworkSvg} from "../../assets/svg/write.svg";
+import { ReactComponent as HomeworkSvg } from "../../assets/svg/write.svg";
 
 function Grades() {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -23,10 +23,10 @@ function Grades() {
             <Heading as="h1">Materials</Heading>
           )}
           <Flex justifyContent="center" alignItems="center">
-            {!isTeacher&& (
+            {!isTeacher && (
               <Link to="/homeworks">
-            <HomeworkSvg className="all-homeworks"/>
-            </Link>
+                <HomeworkSvg className="all-homeworks" />
+              </Link>
             )}
             {isTeacher ? (
               <AddGradesModal setGrades={setGrades} />
@@ -38,6 +38,7 @@ function Grades() {
         <Box my="18px">
           <Divider borderColor="black" opacity="0.2" variant="solid" />
         </Box>
+
         <GradesList grades={grades} setGrades={setGrades} />
       </Container>
     </div>
