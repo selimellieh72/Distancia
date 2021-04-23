@@ -20,11 +20,13 @@ export default function Lecture(props) {
       setDeleteState(false),
     [lecturesData]
   );
-
   return (
     <>
       <Container maxW="container.lg" p="18px">
         <PageHeader
+          gradeId={gradeId}
+          chapterTitle={lecturesData?.chapterTitle}
+          chapterId={chapterId}
           deleteButton={
             <Tooltip label="Delete lectures" bg="red">
               <div

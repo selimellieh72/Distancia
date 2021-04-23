@@ -10,9 +10,10 @@ import BackIcon from "../Core/BackIcon";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { ReactComponent as ClassroomSvg } from "../../assets/svg/multiple-users-silhouette.svg";
 import UserAvatar from "../User/UserAvatar";
+import { useMediaPredicate } from "react-media-hook";
 export default function MessageConversation(props) {
   const [message, setMessage] = useState("");
-
+  const lessThan660 = useMediaPredicate("(max-width: 660px)");
   const { fullName, isTeacher } = useContext(authContext)[0];
 
   const sendMessage = () => {
@@ -49,7 +50,7 @@ export default function MessageConversation(props) {
   };
   return (
     <>
-      <div className="messages">
+      <div className={lessThan660?"small-messages":"messages"}>
         <div className="messages-header">
           <Flex
             // justifyContent="space-between"

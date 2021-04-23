@@ -4,6 +4,7 @@ import { authContext } from "../../providers/AuthContext";
 import HomeworkCard from "./homeworkCard";
 import CircularProgessIndicator from "../Core/CircularProgessIndicator";
 import { ReactComponent as HomeworkSvg } from "../../assets/svg/homework.svg";
+import Homework from "../../routers/homework/Homework";
 
 export default function HomeworksList(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
@@ -28,26 +29,44 @@ export default function HomeworksList(props) {
   }, []);
   if (props.homeworks) {
     return props.homeworks.length !== 0 ? (
-      props.homeworks.map((homework) => (
-        <HomeworkCard
-          gradeId={props.gradeId}
-          chapterId={props.chapterId}
-          key={homework._id}
-          id={homework._id}
-          title={homework.title}
-          content={homework.content}
-          teacherName={homework.grade.teacher.fullName}
-          teacherDiscipline={homework.grade.teacher.discipline}
-          isAccomplished={homework.isAccomplished}
-          hasSeen={homework.hasSeen}
-          dueDate={homework.dueDate}
-          setHomeworksData={props.setHomeworksData}
-          files={homework.files}
-          acceptAnswers={homework.acceptAnswers}
-          answers={homework.answers}
-          isExpired={homework.isExpired}
-        />
-      ))
+      props.homeworks
+        .filter((homework) => {
+          switch (props.homeworksFilter) {
+            case "all":
+              return true;
+            case "done":
+              return homework.isAccomplished;
+            case "undone":
+              return !homework.isAccomplished;
+            case "expired":
+              return homework.isExpired;
+            case "notExpired":
+              return !homework.isExpired;
+
+            default:
+              return true;
+          }
+        })
+        .map((homework) => (
+          <HomeworkCard
+            gradeId={props.gradeId}
+            chapterId={props.chapterId}
+            key={homework._id}
+            id={homework._id}
+            title={homework.title}
+            content={homework.content}
+            teacherName={homework.grade.teacher.fullName}
+            teacherDiscipline={homework.grade.teacher.discipline}
+            isAccomplished={homework.isAccomplished}
+            hasSeen={homework.hasSeen}
+            dueDate={homework.dueDate}
+            setHomeworksData={props.setHomeworksData}
+            files={homework.files}
+            acceptAnswers={homework.acceptAnswers}
+            answers={homework.answers}
+            isExpired={homework.isExpired}
+          />
+        ))
     ) : (
       <div className="list-empty">
         <HomeworkSvg />

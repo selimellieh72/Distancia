@@ -33,6 +33,7 @@ function HomeworkCard(props) {
     content: props.content,
     dueDate: props.dueDate,
     files: props.files,
+    hasSeen: props.hasSeen,
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -45,7 +46,13 @@ function HomeworkCard(props) {
         chapterId: props.chapterId,
       });
     } else {
-      if (!props.hasSeen) axios.patch(`/homeworks/${props.id}?seen=true`);
+      if (!props.hasSeen) {
+        axios.patch(`/homeworks/${props.id}?seen=true`);
+        setHomeworkData((prevHomeworkData) => ({
+          ...prevHomeworkData,
+          hasSeen: true,
+        }));
+      }
       onOpen();
     }
   }
@@ -67,8 +74,8 @@ function HomeworkCard(props) {
         id={props.id}
       />
       <Flex
-        bgColor={props.hasSeen && !isTeacher ? "#2b2b2b" : "#d3d3d3"}
-        color={props.hasSeen && !isTeacher ? "#fff" : "#2b2b2b"}
+        bgColor={homeworkData.hasSeen && !isTeacher ? "#2b2b2b" : "#d3d3d3"}
+        color={homeworkData.hasSeen && !isTeacher ? "#fff" : "#2b2b2b"}
         className="homework-card"
         borderRadius="20px"
         alignItems="center"

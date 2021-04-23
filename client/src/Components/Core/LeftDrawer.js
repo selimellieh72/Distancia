@@ -15,7 +15,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 
-export default function LeftDrawer() {
+export default function LeftDrawer(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
@@ -34,9 +34,11 @@ export default function LeftDrawer() {
           <DrawerHeader>Chpater Name</DrawerHeader>
           <DrawerBody>
             <UnorderedList mb="1rem" minWidth="min-content" spacing={1.5}>
-              <ListItem className="grade-content__type">
-                <Link>Lecture</Link>
-              </ListItem>
+    
+                <ListItem className="grade-content__type">
+                  <Link to="">Lecture</Link>
+                </ListItem>
+        
               <ListItem className="grade-content__type">
                 <Link>Homeworks</Link>
               </ListItem>
