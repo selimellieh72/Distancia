@@ -11,6 +11,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import UploadFiles from "../Core/UploadFiles";
 import AccomplishButton from "./AccomplishButton";
@@ -53,21 +54,22 @@ export default function AnswerHomework(props) {
           </ModalBody>
 
           <ModalFooter>
-            
-            <Button colorScheme="green" onClick={onSubmit}  disabled={!fileId}>
-              Answer
-            </Button>
-            <Button
-              colorScheme="red"
-              variant="ghost"
-              mr={3}
-              onClick={() => {
-                setFileId(null);
-                onClose();
-              }}
-            >
-              Close
-            </Button>
+            <ButtonGroup>
+              <Button colorScheme="green" onClick={onSubmit} disabled={!fileId}>
+                Answer
+              </Button>
+              <Button
+                colorScheme="red"
+                variant="ghost"
+                mr={3}
+                onClick={() => {
+                  setFileId(null);
+                  onClose();
+                }}
+              >
+                Close
+              </Button>
+            </ButtonGroup>
           </ModalFooter>
         </ModalContent>
       </Modal>

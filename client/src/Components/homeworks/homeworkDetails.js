@@ -65,27 +65,25 @@ export default function HomeworkDetails(props) {
       </div>
 
       <Flex justifyContent="center">
-        {props.isAccomplished || isTeacher ? (
+        {props.isAccomplished || isTeacher || props.isExpired ? (
           <> </>
         ) : (
           <Tooltip label={"Click to mark this homework as accomplished"}>
-            <span>
-              {props.acceptAnswers ? (
-                <AnswerHomework
-                  id={props.id}
-                  setIsAcomplished={props.setIsAcomplished}
-                />
-              ) : (
-                <HomeworkAccomplish
-                  id={props.id}
-                  setIsAcomplished={props.setIsAcomplished}
-                  isAccomplished={props.isAccomplished}
-                  onClose={props.onClose}
-                  disabled={props.acceptAnswers}
-                  isExpired={props.isExpired}
-                />
-              )}
-            </span>
+            {props.acceptAnswers ? (
+              <AnswerHomework
+                id={props.id}
+                setIsAcomplished={props.setIsAcomplished}
+              />
+            ) : (
+              <HomeworkAccomplish
+                id={props.id}
+                setIsAcomplished={props.setIsAcomplished}
+                isAccomplished={props.isAccomplished}
+                onClose={props.onClose}
+                disabled={props.acceptAnswers}
+                isExpired={props.isExpired}
+              />
+            )}
           </Tooltip>
         )}
       </Flex>

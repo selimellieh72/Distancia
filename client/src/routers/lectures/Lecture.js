@@ -28,30 +28,32 @@ export default function Lecture(props) {
           chapterTitle={lecturesData?.chapterTitle}
           chapterId={chapterId}
           deleteButton={
-            <Tooltip label="Delete lectures" bg="red">
-              <div
-                onClick={() => {
-                  if (
-                    !lecturesData.lectures ||
-                    lecturesData.lectures.length <= 0
-                  ) {
-                    return;
+            isTeacher && (
+              <Tooltip label="Delete lectures" bg="red">
+                <div
+                  onClick={() => {
+                    if (
+                      !lecturesData.lectures ||
+                      lecturesData.lectures.length <= 0
+                    ) {
+                      return;
+                    }
+                    setDeleteState(!deleteState);
+                  }}
+                  className={
+                    deleteState
+                      ? "page-header__icon__delete page-header__icon__delete__active"
+                      : "page-header__icon__delete"
                   }
-                  setDeleteState(!deleteState);
-                }}
-                className={
-                  deleteState
-                    ? "page-header__icon__delete page-header__icon__delete__active"
-                    : "page-header__icon__delete"
-                }
-              >
-                <IconButton
-                  bg="none"
-                  className="page-header__icon__button"
-                  icon={<FaTrash />}
-                />
-              </div>
-            </Tooltip>
+                >
+                  <IconButton
+                    bg="none"
+                    className="page-header__icon__button"
+                    icon={<FaTrash />}
+                  />
+                </div>
+              </Tooltip>
+            )
           }
           pathName="/grades"
           title={chapterId && lecturesData?.chapterTitle}

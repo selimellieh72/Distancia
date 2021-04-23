@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import mypdf from "./pdf.pdf";
 import { Center, Button, Heading, Divider } from "@chakra-ui/react";
-import { ReactComponent as DownloadSvg } from "../../assets/svg/download.svg";
+import { ReactComponent as DownloadSvg } from "../assets/svg/download.svg";
 
-export default function PdfReader() {
+import { useLocation } from "react-router-dom";
+
+export default function PdfReader(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+
+  const { pdfLink, title } = useLocation().state;
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -15,11 +19,13 @@ export default function PdfReader() {
   return (
     <>
       <Center flexDir="column" display="flex" mt="1rem">
-        <Heading mb="1rem" as="h1">Chaptire</Heading>
+        <Heading mb="1rem" as="h1">
+          {title}
+        </Heading>
         <hr className="header__divider" />
       </Center>
       <Center>
-        <Document file={mypdf} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={pdfLink} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
       </Center>
@@ -32,9 +38,12 @@ export default function PdfReader() {
           flexDirection: "column",
         }}
       >
-        <Button colorScheme="green" display="flex">
-          Download <DownloadSvg className="download-icon" />
-        </Button>
+        <a href={pdfLink} download>
+          <Button my="1rem" colorScheme="green" display="flex">
+            Download <DownloadSvg className="download-icon" />
+          </Button>
+        </a>
+
         <span>
           Page {pageNumber} of {numPages}
         </span>
@@ -53,7 +62,7 @@ export default function PdfReader() {
             className="btn"
             id="next-page"
           >
-            Next Page 
+            Next Page
           </button>
         </div>
       </div>

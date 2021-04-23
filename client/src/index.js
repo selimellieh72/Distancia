@@ -8,6 +8,7 @@ import { AuthProvider } from "./providers/AuthContext";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
+axios.defaults.withCredentials = true;
 axios.defaults.baseURL =
   window.location.origin === "http://localhost:3000"
     ? "http://localhost:5000/api"

@@ -20,10 +20,22 @@ import {
   Flex,
   Center,
   Avatar,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  ModalFooter,
+  useDisclosure,
+  Heading,
+  Collapse,
 } from "@chakra-ui/react";
 import UploadImage from "../Core/UploadImage";
 
 export default function Auth(props) {
+  const { isOpen: isOpenCollapse, onToggle } = useDisclosure();
+
   const {
     register,
     handleSubmit,
@@ -43,6 +55,7 @@ export default function Auth(props) {
   const isSignup = props.type === "signup";
 
   const disciplines = [
+    "Computer Science",
     "Physics",
     "Math",
     "English",
@@ -246,8 +259,8 @@ export default function Auth(props) {
                 </FormErrorMessage>
               </FormControl>
 
-              {isTeacher && (
-                <FormControl isRequired>
+              <Collapse in={isOpenCollapse} animateOpacity>
+                <FormControl isRequired={isTeacher}>
                   <FormLabel mt="20px">Discipline:</FormLabel>
                   <Select
                     name="discipline"
@@ -259,7 +272,8 @@ export default function Auth(props) {
                     ))}
                   </Select>
                 </FormControl>
-              )}
+              </Collapse>
+
               <FormControl
                 display="flex"
                 mt="6px"
@@ -268,8 +282,11 @@ export default function Auth(props) {
               >
                 <FormLabel m="0">Are you a teacher?</FormLabel>
                 <Switch
-                  onChange={({ target }) => setIsTeacher(target.checked)}
                   mt="1rem"
+                  onChange={({ target }) => {
+                    setIsTeacher(target.checked);
+                    onToggle(!isOpenCollapse);
+                  }}
                   name="isTeacher"
                   value="true"
                   ref={register}
@@ -290,6 +307,7 @@ export default function Auth(props) {
                 </Flex>
               </a>
             </Center>
+
             {!isSignup ? (
               <>
                 <Link className="auth-button__joining__type" to="/register">

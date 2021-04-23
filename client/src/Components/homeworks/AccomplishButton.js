@@ -5,7 +5,7 @@ export default function AccomplishButton(props) {
   return (
     <Button
       size="lg"
-      margin={[0, 'auto']}
+      margin={[0, "auto", 2]}
       position="relative"
       borderColor="#2b2b2b"
       colorScheme="green"

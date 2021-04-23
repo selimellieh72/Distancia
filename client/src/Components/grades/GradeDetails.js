@@ -81,7 +81,7 @@ export default function GradeDetails(props) {
           {isTeacher && (
             <DeleteGradeModal
               setGrades={props.setGrades}
-              gradeTitle={props.title}
+              title={props.title}
               gradeId={props.id}
             />
           )}

@@ -75,22 +75,26 @@ router.post("/logout", function (req, res) {
 
 router.patch("/users", (req, res) => {
   if (req.isAuthenticated()) {
-    const fullNameFormated = req.body.fullName
-      .split(" ")
-      .map((n) => n.charAt(0).toUpperCase() + n.slice(1))
-      .join(" ");
-    User.findByIdAndUpdate(
-      req.user._id,
-      { ...req.body, fullName: fullNameFormated },
-      { new: true },
-      (e, user) => {
-        if (e) {
-          res.status(403).send();
-        } else {
-          res.json(user);
-        }
+    let query;
+    if (req.body.fullName) {
+      query = {
+        ...req.body,
+        fullName: req.body.fullName
+          .split(" ")
+          .map((n) => n.charAt(0).toUpperCase() + n.slice(1))
+          .join(" "),
+      };
+    } else {
+      query = req.body;
+    }
+
+    User.findByIdAndUpdate(req.user._id, query, { new: true }, (e, user) => {
+      if (e) {
+        res.status(403).send();
+      } else {
+        res.json(user);
       }
-    );
+    });
   } else {
     res.status(401).send();
   }

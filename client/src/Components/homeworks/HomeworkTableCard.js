@@ -31,6 +31,8 @@ export default function HomeworkTableCard(props) {
                 <p className="homework-table-card__status__tag">Done</p>
                 <FaCheckCircle size="25px" color="green" bgColor="white" />
               </>
+            ) : props.isExpired ? (
+              <p>Expired</p>
             ) : (
               <p>Pending</p>
             )}

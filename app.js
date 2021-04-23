@@ -100,7 +100,10 @@ passport.use(
       User.findOrCreate(
         { googleId: profile.id },
         {
-          fullName: profile.name.givenName + " " + profile.name.familyName,
+          fullName:
+            (profile.name.givenName || "") +
+            " " +
+            (profile.name.familyName || ""),
           email: profile.emails[0].value,
           profile:
             profile.photos && profile.photos.length > 0

@@ -38,6 +38,23 @@ export default function LectureCard(props) {
         >
           <VideoSvg className="lecture-card__class__icon" />
         </Link>
+      ) : props.extension === "pdf" ? (
+        <Link
+          to={{
+            pathname: "/pdfReader",
+            state: {
+              title: props.name,
+              pdfLink: `${baseURL}/uploads/${props.fileId}`,
+            },
+          }}
+        >
+          <div className="lecture-card__class__icon">
+            <FileIcon
+              extension={props.extension}
+              {...defaultStyles[props.extension]}
+            />
+          </div>
+        </Link>
       ) : (
         <a href={`${baseURL}/uploads/${props.fileId}`} download>
           <div className="lecture-card__class__icon">

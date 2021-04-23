@@ -45,7 +45,8 @@ export default function JoinGrades(props) {
       .catch((e) => {
         setError("gradeId", {
           type: "server",
-          message: e.response.data.message || "Unknown error.",
+          message:
+            e.response?.data.message || "Please enter a correct grade id.",
         });
       });
   }
@@ -54,7 +55,12 @@ export default function JoinGrades(props) {
     <>
       <IconButton icon={<AddIcon />} onClick={onOpen} />
 
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isCentered
+        initialFocusRef={initialRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Join Grade</ModalHeader>

@@ -45,7 +45,7 @@ export default function HomeworksList(props) {
             case "seen":
               return homework.hasSeen;
             case "notSeen":
-              return !homework.hasSeen;
+              return !homework.seen;
 
             default:
               return true;

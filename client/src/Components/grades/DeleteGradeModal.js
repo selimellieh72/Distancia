@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   Tooltip,
@@ -12,12 +12,16 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   AlertDialogCloseButton,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 
-import { FaTrash } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 export default function DeleteGradeModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [inputGradeTitle, setInputGradeTitle] = useState();
   const toast = useToast();
   const cancelRef = React.useRef();
 
@@ -32,7 +36,7 @@ export default function DeleteGradeModal(props) {
         status: "success",
         isClosable: true,
         title: "Grade deleted",
-        description: `Successfuly deleted grade of title '${props.gradeTitle}'`,
+        description: `Successfuly deleted grade of title '${props.title}'`,
       });
     });
   };
@@ -65,15 +69,29 @@ export default function DeleteGradeModal(props) {
           <AlertDialogHeader>Delete Grade?!</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
-            Are you sure you want to completely delete the Grade? This will wipe
-            out all it's data and the students answers and cannot be retrieved
-            back.
+            Are you sure you want to completely delete your Grade '{props.title}
+            '? This will wipe out all it's data and the students answers and
+            cannot be retrieved back.
+            <FormControl mt="6">
+              <FormLabel>
+                <strong>Please enter '{props.title}' to proceed:</strong>
+              </FormLabel>
+              <Input
+                onChange={({ target }) => setInputGradeTitle(target.value)}
+                placeholder={props.title}
+              />
+            </FormControl>
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
               No
             </Button>
-            <Button colorScheme="red" ml={3} onClick={onSubmit}>
+            <Button
+              disabled={inputGradeTitle !== props.title}
+              colorScheme="red"
+              ml={3}
+              onClick={onSubmit}
+            >
               Yes
             </Button>
           </AlertDialogFooter>

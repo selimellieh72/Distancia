@@ -12,7 +12,6 @@ export function AuthProvider(props) {
   });
   async function getUser(history, location) {
     try {
-      axios.defaults.withCredentials = true;
       const response = await axios.get("/session", {
         withCredentials: true,
       });
@@ -23,6 +22,10 @@ export function AuthProvider(props) {
       });
 
       history.push(location.pathname);
+
+      if (response.data.isTeacher === undefined) {
+        setTimeout(() => document.getElementById("teacher-modal").click(), 100);
+      }
     } catch (e) {
       setAuthInfo({ ...authInfo, isAuth: false });
       console.log(e.response);

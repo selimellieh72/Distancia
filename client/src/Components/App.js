@@ -7,6 +7,7 @@ import CircularProgessIndicator from "./Core/CircularProgessIndicator";
 
 import Router from "../Router";
 import Header from "./header/Header";
+import IsTeacherModal from "./User/isTeacherModal";
 
 export default function App() {
   const [authInfo, , getUser] = useContext(authContext);
@@ -27,6 +28,7 @@ export default function App() {
         <>
           <Header />
           <Router isAuth={authInfo.isAuth} isTeacher={authInfo.isTeacher} />
+          <IsTeacherModal />
         </>
       )}
     </main>

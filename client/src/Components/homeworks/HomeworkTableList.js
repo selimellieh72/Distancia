@@ -12,10 +12,15 @@ export default function HomeworkTableList(props) {
     []
   );
 
+  const isExpired = new Date(props.homework.dueDate) < new Date();
+
+  console.log(props.homework.dueDate);
+
   return (
     <>
       {props.homework?.grade?.students?.map((student) => (
         <HomeworkTableCard
+          isExpired={isExpired}
           key={student._id}
           studentName={student.fullName}
           answerFileId={

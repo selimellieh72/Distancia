@@ -4,7 +4,7 @@ import { Switch, Redirect, Route } from "react-router-dom";
 import Tests from "./routers/test/Tests";
 import Lecture from "./routers/lectures/Lecture";
 import Meetings from "./routers/Meetings";
-import LectureDisplay from "./routers/lectures/LectureDisplay";
+
 import CreateTest from "./routers/test/CreateTest";
 import Messages from "./routers/messages/Message";
 import Stats from "./routers/Stats";
@@ -18,10 +18,16 @@ import PrivateRoute from "./Components/Core/PrivateRoute";
 import SeeAnswers from "./routers/test/SeeAnswers";
 import TakeQuizz from "./routers/test/TakeQuizz";
 import VideoPlayer from "./routers/VideoPlayer";
+import PdfReader from "./routers/PdfReader";
 
 export default function Router(props) {
   return (
     <Switch>
+      <PrivateRoute
+        path="/pdfReader"
+        component={PdfReader}
+        isViewable={props.isAuth}
+      />
       <PrivateRoute
         path="/homeworks"
         component={Homework}
@@ -71,11 +77,7 @@ export default function Router(props) {
         component={Tests}
         isViewable={props.isAuth}
       />
-      <PrivateRoute
-        path="/lecturedisplay"
-        component={LectureDisplay}
-        isViewable={props.isAuth}
-      />
+
       <PrivateRoute
         path="/testcreator"
         component={CreateTest}

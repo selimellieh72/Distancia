@@ -56,10 +56,10 @@ export default function GradesList(props) {
       ) : (
         <div className="list-empty">
           <BoxSvg />
-          {!isTeacher ? (
+          {isTeacher ? (
             <p className="list-empty__text">
               No Grades Found <br />
-              Add Your grade
+              Create your Grade
             </p>
           ) : (
             <p className="list-empty__text">

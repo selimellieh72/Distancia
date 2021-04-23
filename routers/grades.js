@@ -193,7 +193,7 @@ router.post("/join-grade/:id", function (req, res) {
         select: { discipline: 1, fullName: 1 },
       })
       .exec(function (e, grade) {
-        if (e) {
+        if (!grade) {
           res.status(403).json({
             message: `Incorrect id, please try again.`,
           });
