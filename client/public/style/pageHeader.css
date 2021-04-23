@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.page-header__icon__button:focus{
+.page-header__icon__button:focus {
   box-shadow: none !important;
 }
 

@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
       <section className="footer">
-        <h1>Copyright © 2020 Project EDU.lb Inc. All rights reserved.</h1>
+        <h1>Copyright © 2021 Project Distantia Inc. All rights reserved.</h1>
       </section>
     </div>
   );

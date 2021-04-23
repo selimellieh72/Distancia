@@ -42,6 +42,10 @@ export default function HomeworksList(props) {
               return homework.isExpired;
             case "notExpired":
               return !homework.isExpired;
+            case "seen":
+              return homework.hasSeen;
+            case "notSeen":
+              return !homework.hasSeen;
 
             default:
               return true;

@@ -4,13 +4,11 @@ import BackIcon from "./BackIcon";
 import { ReactComponent as GridSvg } from "../../assets/svg/grid.svg";
 import LeftDrawer from "./LeftDrawer";
 
-export default function 
-PageHeader(props) {
+export default function PageHeader(props) {
   return (
     <>
       <Flex alignItems="center" minW="300px" justifyContent="space-between">
         <div className="page-header__left">
-          {" "}
           <BackIcon pathName={props.pathName || "/grades"} />
           <span className="page-title">{props.title}</span>
         </div>
@@ -18,8 +16,11 @@ PageHeader(props) {
           {props.deleteButton}
           {props.addButton}
           {props.homeworkDrawer}
-          <LeftDrawer />
-          
+          <LeftDrawer
+            chapterTitle={props.chapterTitle}
+            chapterId={props.chapterId}
+            gradeId={props.gradeId}
+          />
         </div>
       </Flex>
       <Box my="18px">

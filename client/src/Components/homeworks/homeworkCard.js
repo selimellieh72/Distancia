@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import {
   Avatar,
@@ -28,6 +28,7 @@ function HomeworkCard(props) {
   console.log(props.hasSeen);
   const isTeacher = useContext(authContext)[0].isTeacher;
   const [homeworkData, setHomeworkData] = useState({
+    id: props.id,
     isAccomplished: props.isAccomplished,
     title: props.title,
     content: props.content,
@@ -56,6 +57,18 @@ function HomeworkCard(props) {
       onOpen();
     }
   }
+
+  // useEffect(() => {
+  //   props.setHomeworksData((prevHomeworkData) => ({
+  //     ...prevHomeworkData,
+  //     homeworks: [
+  //       ...prevHomeworkData.homeworks.filter(
+  //         (homework) => homework._id !== homeworkData.id
+  //       ),
+  //       homeworkData,
+  //     ],
+  //   }));
+  // }, [homeworkData]);
 
   return (
     <div ref={btnRef} onClick={openHomework}>
