@@ -83,14 +83,13 @@ export default function (server, sessionMiddleware) {
         const message = new Message({ reciever, text, grade, sender: user });
         message.save(function (error, message) {
           if (error) {
-            console.log(error);
             callback({ error });
           }
           if (reciever) {
             const recieverSocketId = clients.find(
               (c) => c.userId === reciever && c.userChattingWith === user
             )?.socketId;
-            console.log(clients);
+
             if (recieverSocketId) {
               nsp.to(recieverSocketId).emit("message", message);
             }

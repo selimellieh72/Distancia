@@ -278,19 +278,20 @@ export default function Auth(props) {
             </div>
           )}
           <div className="auth-button">
+            <Center>
+              <a href={`${axios.defaults.baseURL}/auth/google`}>
+                <Flex
+                  width="max-content"
+                  alignItems="center"
+                  className="signin-with-google"
+                >
+                  <GoogleIcon className="google-icon" />{" "}
+                  <span>Sign in with google</span>
+                </Flex>
+              </a>
+            </Center>
             {!isSignup ? (
               <>
-                <Center>
-                  <Flex
-                    width="max-content"
-                    alignItems="center"
-                    className="signin-with-google"
-                  >
-                    {" "}
-                    <GoogleIcon className="google-icon" />{" "}
-                    <span>Sign in with google</span>
-                  </Flex>
-                </Center>
                 <Link className="auth-button__joining__type" to="/register">
                   Don't have an account? Create one!
                 </Link>

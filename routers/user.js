@@ -96,4 +96,17 @@ router.patch("/users", (req, res) => {
   }
 });
 
+router.get(
+  "/auth/google",
+
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/",
+  })
+);
+
 export default router;

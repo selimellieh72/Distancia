@@ -20,6 +20,8 @@ export default function MessageMain(props) {
   useEffect(() => {
     socket = io(axios.defaults.baseURL + "/messages", {
       withCredentials: true,
+      transports: ["websocket"],
+      upgrade: false,
     });
 
     socket.on("messages", (messages) => setMessages(messages));

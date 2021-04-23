@@ -5,8 +5,13 @@ import http from "http";
 import cors from "cors";
 import mongoose from "mongoose";
 import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import path from "path";
 import Grid from "gridfs-stream";
+import dotenv from "dotenv";
+
+//Enviroment variables
+dotenv.config();
 
 //Models
 import User from "./models/user.js";
@@ -82,6 +87,33 @@ passport.deserializeUser(function (id, done) {
     done(err, user);
   });
 });
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: "http://localhost:5000/api/auth/google/callback",
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      User.findOrCreate(
+        { googleId: profile.id },
+        {
+          fullName: profile.name.givenName + " " + profile.name.familyName,
+          email: profile.emails[0].value,
+          profile:
+            profile.photos && profile.photos.length > 0
+              ? profile.photos[0]?.value
+              : undefined,
+        },
+        function (err, user) {
+          return done(err, user);
+        }
+      );
+    }
+  )
+);
 
 //Routers
 app.use("/api", userRouter);
