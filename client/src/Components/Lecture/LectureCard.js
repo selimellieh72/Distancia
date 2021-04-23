@@ -45,6 +45,7 @@ export default function LectureCard(props) {
             state: {
               title: props.name,
               pdfLink: `${baseURL}/uploads/${props.fileId}`,
+              backPath: `/grades/${props.gradeId}/chapter/${props.chapterId}/lectures`
             },
           }}
         >
