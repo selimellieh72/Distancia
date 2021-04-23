@@ -21,7 +21,7 @@ export function AuthProvider(props) {
         ...response.data,
         isAuth: true,
       });
-      console.log(response.data);
+
       history.push(location.pathname);
     } catch (e) {
       setAuthInfo({ ...authInfo, isAuth: false });

@@ -23,11 +23,12 @@ export default function EditHomework(props) {
   return (
     <HomeworkModal
       id={props.id}
-      dueDate={props.dueDate}
+      dueDate={new Date(props.dueDate)}
       icon={myEditIcon}
       title={props.title}
       content={props.content}
       files={props.files}
+      initialFileIds={props.files?.map((f) => f._id)}
       setHomeworkData={props.setHomeworkData}
       acceptAnswers={props.acceptAnswers}
     />

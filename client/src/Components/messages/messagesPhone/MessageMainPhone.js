@@ -1,6 +1,7 @@
 import React from "react";
 
 import MessageConversation from "../MessageConversation";
+import ListConvos from "../messagesDesktop/ListConvosDesktop";
 import ListConvosPhone from "./ListConvosPhone";
 
 export default function MessageMainPhone(props) {

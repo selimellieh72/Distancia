@@ -20,6 +20,7 @@ router.post("/register", function (req, res) {
     req.body.password,
     function (e, user) {
       if (e) {
+        console.log(e);
         if (e.name === "UserExistsError") {
           res.status(409);
           res.send();

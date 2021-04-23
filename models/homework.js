@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-const requiredString = { type: String, required: true };
-
 const GFS = mongoose.model(
   "GFS",
   new mongoose.Schema({}, { strict: false }),
@@ -10,8 +8,8 @@ const GFS = mongoose.model(
 
 const homeworkSchema = new mongoose.Schema(
   {
-    title: requiredString,
-    content: requiredString,
+    title: { type: String, required: true, maxLength: 15 },
+    content: { type: String, required: true },
     accomplishedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     files: [{ type: mongoose.Schema.Types.ObjectId, ref: "GFS" }],
     grade: {

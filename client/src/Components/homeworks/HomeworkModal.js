@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import { useForm } from "react-hook-form";
 import {
   Modal,
   ModalOverlay,
@@ -17,67 +17,40 @@ import HomeworkForm from "./HomeworkForm";
 
 export default function HomeworkModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  let setValue;
+  const { register, handleSubmit, setValue, watch, errors } = useForm();
 
   const initialRef = useRef();
 
-  const isEditting = props.id && props.title && props.content && props.dueDate;
-  const [hasChanged, setHasChanged] = useState(!isEditting);
-  const initialFileIds = props.files?.map((f) => f._id);
-  const [fileIds, setFileIds] = useState(initialFileIds);
+  function arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
 
-  const [isFileAttach, setIsFileAttach] = useState(
-    props.files && props.files.length > 0
-  );
-
-  // useEffect(() => {
-  //   // console.log(initialFileIds, fileIds);
-  //   setHasChanged(
-  //     (hasChanged) => isFileAttach && JSON.stringify(initialFileIds) !== fileIds
-  //   );
-  // }, [fileIds]);
-
-  useEffect(() => console.log(hasChanged), [hasChanged]);
-
-  const [date, setDate] = useState(
-    props.dueDate ? new Date(props.dueDate) : new Date()
-  );
-
-  function updateHasChanged(formTitle, formContent, acceptAnswers, myDate) {
-    setHasChanged(
-      formTitle !== props.title ||
-        (myDate ? myDate.getTime() : date.getTime()) !==
-          new Date(props.dueDate).getTime() ||
-        formContent !== props.content ||
-        props.acceptAnswers !== acceptAnswers
-    );
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
   }
 
-  const getSetValue = (mySetValue) => (setValue = mySetValue);
-  const getDate = (myDate, formTitle, formContent, acceptAnswers) => {
-    setDate(myDate);
-
-    // if (isEditting)
-    //   updateHasChanged(formTitle, formContent, acceptAnswers, myDate);
-  };
+  const isEditting = props.id && props.title && props.content && props.dueDate;
 
   const openModal = () => {
-    if (isEditting) {
-      if (setValue) {
+    onOpen();
+    setTimeout(() => {
+      if (isEditting) {
         setValue("title", "");
         setValue("content", "");
-      }
-      setHasChanged(false);
-      setDate(new Date(props.dueDate));
-    } else {
-      setFileIds(null);
-      setDate(new Date());
-    }
-    if (isFileAttach && (!props.files || props.files.length === 0))
-      setIsFileAttach(false);
 
-    onOpen();
+        setValue("dueDate", props.dueDate);
+        setValue("files", props.initialFileIds);
+        setValue("isFileAttach", props.files && props.files.length > 0);
+      } else {
+        setValue("files", []);
+        setValue("dueDate", new Date());
+      }
+      if (watch("isFileAttach") && (!watch("files") || watch("files") === 0))
+        setValue("isFileAttach", false);
+    });
   };
   return (
     <>
@@ -99,43 +72,51 @@ export default function HomeworkModal(props) {
           </ModalHeader>
           <ModalBody pb={6}>
             <HomeworkForm
+              register={register}
+              handleSubmit={handleSubmit}
+              watch={watch}
+              errors={errors}
+              setValue={setValue}
               chapterId={props.chapterId}
               initialRef={initialRef}
               onClose={onClose}
               setHomeworkData={props.setHomeworkData}
               setHomeworks={props.setHomeworks}
-              files={props.files}
               id={props.id}
               title={props.title}
               content={props.content}
-              updateHasChanged={updateHasChanged}
-              getSetValue={getSetValue}
               gradeId={props.gradeId}
-              setFileIds={setFileIds}
-              fileIds={fileIds}
-              setIsFileAttach={setIsFileAttach}
-              isFileAttach={isFileAttach}
-              getDate={getDate}
-              date={date}
+              files={props.files}
             />
           </ModalBody>
 
           <ModalFooter>
             <Button
-              onClick={() => {
-                if (isFileAttach) {
-                  setIsFileAttach(false);
-                }
-              }}
+              // onClick={() => {
+              //   if (isFileAttach) {
+              //     setIsFileAttach(false);
+              //   }
+              // }}
               form="homework-form"
               type="submit"
               colorScheme="blue"
               mr={3}
               isDisabled={
-                !hasChanged ||
-                (isFileAttach && (!fileIds || fileIds.length === 0)) ||
-                !date
+                (watch("isFileAttach") &&
+                  (!watch("files") || watch("files").length === 0)) ||
+                (isEditting &&
+                  watch("title") === props.title &&
+                  watch("content") === props.content &&
+                  watch("dueDate").getTime() === props.dueDate.getTime() &&
+                  watch("files") &&
+                  arraysEqual(watch("files"), props.initialFileIds))
               }
+              // isDisabled={
+              //   !hasChanged
+              //   // ||
+              //   // (isFileAttach && (!fileIds || fileIds.length === 0)) ||
+              //   // !date
+              // }
             >
               {isEditting ? "Edit" : "Add"}
             </Button>

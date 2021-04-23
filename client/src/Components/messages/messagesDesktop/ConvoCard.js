@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar } from "@chakra-ui/react";
 import { ReactComponent as ClassroomSvg } from "../../../assets/svg/multiple-users-silhouette.svg";
+import UserAvatar from "../../User/UserAvatar";
 
 export default function ConvoCard(props) {
   return (
@@ -10,7 +11,8 @@ export default function ConvoCard(props) {
         props.setCurrentChat({
           recieverName: props.userName,
           recieverId: props.gradeId ? undefined : props.userId,
-          gradeId: props.gradeId ?? undefined,
+          gradeId: props.gradeId,
+          profile: props.profile,
         })
       }
     >
@@ -21,19 +23,11 @@ export default function ConvoCard(props) {
           icon={<ClassroomSvg fill="white" />}
         />
       ) : (
-        <Avatar bg="#2b2b2b" />
+        <UserAvatar external profile={props.profile} />
       )}
       <h1 className="convo-card__profile__name">
         {(props.gradeId ? "Grade: " : "") + props.userName}
       </h1>
-      {/* <div className="time-restriction">
-            <span className="time-restriction__title">
-                Allowed time
-            </span>
-            <span className="time-restriction__time">
-                18:00
-            </span>
-        </div> */}
     </div>
   );
 }

@@ -9,7 +9,6 @@ export default function MessageMainDesktop(props) {
         setChats={props.setChats}
         chats={props.chats}
         setCurrentChat={props.setCurrentChat}
-        allChats={props.allChats}
       />
       {props.currentChat && Object.keys(props.currentChat).length > 0 && (
         <MessageConversation

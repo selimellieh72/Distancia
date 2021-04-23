@@ -32,8 +32,7 @@ const app = express();
 const server = http.createServer(app);
 
 const MongoURI =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://selimellieh:Selim2015@distanciadb.jsla5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  process.env.MONGODB_URI || "mongodb://localhost:27017/distantia_db";
 
 const port = process.env.PORT || 5000;
 

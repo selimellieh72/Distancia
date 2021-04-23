@@ -65,12 +65,12 @@ router
           req.user.isTeacher
             ? {
                 path: "students",
-                select: { fullName: 1 },
+                select: "fullName profile",
                 options: { sort: { created_at: -1 } },
               }
             : {
                 path: "teacher",
-                select: { fullName: 1 },
+                select: "fullName profile",
               }
         )
         .exec(function (e, grade) {
@@ -136,9 +136,6 @@ router
           }
         );
       } else if (req.query.addLecture) {
-        if (req.body.title > 64) {
-          res.status(403).send();
-        }
         const lecture = new Lecture(req.body);
 
         Grade.findByIdAndUpdate(

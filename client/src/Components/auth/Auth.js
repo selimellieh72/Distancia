@@ -24,10 +24,18 @@ import {
 import UploadImage from "../Core/UploadImage";
 
 export default function Auth(props) {
-  const { register, handleSubmit, errors, watch, setError } = useForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    watch,
+    setError,
+    setValue,
+  } = useForm();
   let [isTeacher, setIsTeacher] = useState(false);
 
-  let image;
+  useEffect(() => register("profile"), []);
+
   const history = useHistory();
 
   const [authInfo, setAuthInfo] = useContext(authContext);
@@ -66,24 +74,27 @@ export default function Auth(props) {
           })
 
           .then((res) => {
+            console.log("res");
             updateAuthInfo(res);
 
             history.push("/grades");
           })
           .catch((e) => {
-            console.log(errors.emailAddress);
+            console.log("Here");
             setError("emailAddress", {
               type: "server",
               message:
                 "This email already exists. Please login or use another email.",
             });
           });
-      if (image) {
+
+      if (data.profile) {
         const formData = new FormData();
-        formData.append("files", image);
-        axios
-          .post("/upload", formData)
-          .then((res) => register(res.data.files[0].id));
+        formData.append("files", data.profile);
+        axios.post("/upload", formData).then((res) => {
+          console.log(res.data.files);
+          register(res.data.files[0].id);
+        });
       } else {
         register();
       }
@@ -117,15 +128,23 @@ export default function Auth(props) {
         <form action="" onSubmit={handleSubmit(submitForm)}>
           {isSignup && (
             <>
-              {" "}
-              <FormControl isRequired>
+              <FormControl
+                isInvalid={errors.firstName || errors.lastName}
+                isRequired
+              >
                 <Flex>
                   <Box mr="16px">
                     <FormLabel>First name:</FormLabel>
                     <Input
                       id="firstName"
                       name="firstName"
-                      ref={register}
+                      ref={register({
+                        maxLength: {
+                          value: 20,
+                          message:
+                            "Your first name can only be a maximum of 20 characters",
+                        },
+                      })}
                       type="text"
                       placeholder="First Name"
                     />
@@ -135,7 +154,13 @@ export default function Auth(props) {
                     <Input
                       id="lastName"
                       name="lastName"
-                      ref={register}
+                      ref={register({
+                        maxLength: {
+                          value: 20,
+                          message:
+                            "Your last name can only be a maximum of 20 characters",
+                        },
+                      })}
                       type="text"
                       placeholder="Last Name"
                     />
@@ -143,11 +168,14 @@ export default function Auth(props) {
                 </Flex>
 
                 <FormHelperText>
-                  Your name will be displayed to other users.
+                  {!errors.firstName &&
+                    "Your name will be displayed to other users."}
                 </FormHelperText>
+                <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+                <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
               </FormControl>
               <h1 style={{ textAlign: "left" }}>Profile Picture:</h1>
-              <UploadImage getImage={(gottenImage) => (image = gottenImage)} />
+              <UploadImage getImage={(image) => setValue("profile", image)} />
             </>
           )}
 

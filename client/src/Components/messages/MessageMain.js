@@ -14,7 +14,6 @@ export default function MessageMain(props) {
   const [currentChat, setCurrentChat] = useState();
   const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
-  const [allChats, setAllChats] = useState([]);
 
   const scrollRef = useRef();
 
@@ -50,14 +49,13 @@ export default function MessageMain(props) {
             },
             ...chats,
           ];
-          setAllChats(newChats);
+
           return newChats;
         });
         if (isTeacher) {
           setChats((chats) => {
             const newChats = [...chats, ...res.data.students];
 
-            setAllChats(newChats);
             return newChats;
           });
         } else {
@@ -67,26 +65,24 @@ export default function MessageMain(props) {
               {
                 _id: res.data.teacher._id,
                 fullName: res.data.teacher.fullName,
+                profile: res.data.teacher.profile,
               },
             ];
-            setAllChats(newChats);
+
             return newChats;
           });
 
-          setCurrentChat({
-            recieverName: res.data.teacher.fullName,
-            recieverId: res.data.teacher._id,
-          });
+          // setCurrentChat({
+          //   recieverName: res.data.teacher.fullName,
+          //   recieverId: res.data.teacher._id,
+          // });
         }
       });
     return () => socket.off();
   }, []);
 
   useEffect(() => {
-    if (currentChat) {
-      // axios.get(`/messages?user=${currentChat.recieverId}`).then((res) => {
-      //   setMessages(res.data);
-      // });
+    if (currentChat?.recieverId || currentChat?.gradeId) {
       setMessages([]);
       socket?.emit(
         "getMessages",
@@ -123,7 +119,6 @@ export default function MessageMain(props) {
           currentChat={currentChat}
           scrollRef={scrollRef}
           setChats={setChats}
-          allChats={allChats}
         />
       )}
     </div>

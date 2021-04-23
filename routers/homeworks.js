@@ -101,13 +101,6 @@ router
   })
   .post(function (req, res) {
     if (req.isAuthenticated()) {
-      if (
-        req.body.title < 10 ||
-        req.body.title > 80 ||
-        req.body.content > 264
-      ) {
-        res.status(403).send();
-      }
       const homework = new Homework({
         ...req.body,
         teacher: req.user._id,

@@ -52,9 +52,9 @@ export default function Home() {
             <div className="homepage-feature__div">
               <p className="homepage-feature__description right light">
                 Live Chat system
-                <br /> betwen
+                <br /> between
                 <br />
-                Teachers ans Students.
+                Teachers and Students.
               </p>
               <VideoChatSvg />
             </div>

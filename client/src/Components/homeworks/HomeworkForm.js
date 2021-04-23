@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+
 import {
   useToast,
   Checkbox,
@@ -34,37 +34,36 @@ export default function HomeworkForm(props) {
       });
     }
     if (isEditting) {
-      axios
-        .patch(`/homeworks/${props.id}`, {
-          ...data,
-          dueDate: props.date,
-          files: props.fileIds ? props.fileIds : undefined,
-        })
-        .then((res) => onData(res));
+      axios.patch(`/homeworks/${props.id}`, data).then((res) => onData(res));
     } else {
       axios
         .post("/homeworks", {
           ...data,
           grade: props.gradeId,
           chapter: props.chapterId,
-          files: props.fileIds ? props.fileIds : undefined,
-          dueDate: props.date,
         })
         .then((res) => onData(res));
     }
   }
 
-  const { register, handleSubmit, setValue, watch, errors } = useForm();
   const isEditting = props.id && props.title && props.content;
   const toast = useToast();
-  props.getSetValue(setValue);
+
   useEffect(() => {
+    register("dueDate");
+    register("files");
+
+    register("isFileAttach");
     if (isEditting) {
-      setValue("title", props.title);
-      setValue("content", props.content);
+      setTimeout(() => {
+        setValue("title", props.title);
+        setValue("content", props.content);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const { register, handleSubmit, watch, errors, setValue } = props;
 
   return (
     <>
@@ -76,26 +75,14 @@ export default function HomeworkForm(props) {
             ref={(ref) => {
               register(ref, {
                 maxLength: {
-                  value: 80,
+                  value: 15,
                   message:
-                    "Your homework title can only contain a maximum of 80 characters.",
-                },
-                minLength: {
-                  value: 10,
-                  message:
-                    "Your chapter title should be atleast 10 characters long",
+                    "Your homework title can only contain a maximum of 15 characters.",
                 },
               });
               props.initialRef.current = ref;
             }}
             placeholder="Physics"
-            onChange={() =>
-              props.updateHasChanged(
-                watch("title"),
-                watch("content"),
-                watch("acceptAnswers")
-              )
-            }
           />
           <FormHelperText>
             {!errors.title &&
@@ -117,13 +104,6 @@ export default function HomeworkForm(props) {
             placeholder="Page 36 do exercise 1."
             resize="none"
             rows="4"
-            onChange={() =>
-              props.updateHasChanged(
-                watch("title"),
-                watch("content"),
-                watch("acceptAnswers")
-              )
-            }
           />
           <FormHelperText>
             {!errors.content &&
@@ -132,15 +112,8 @@ export default function HomeworkForm(props) {
           <FormErrorMessage>{errors.content?.message}</FormErrorMessage>
         </FormControl>
         <DatePicker
-          defaultDate={props.date}
-          getDate={(date) =>
-            props.getDate(
-              date,
-              watch("title"),
-              watch("content"),
-              watch("acceptAnswers")
-            )
-          }
+          defaultDate={watch("dueDate")}
+          getDate={(date) => setValue("dueDate", date)}
         />
 
         <Wrap>
@@ -148,10 +121,10 @@ export default function HomeworkForm(props) {
             <Checkbox
               isChecked={props.isFileAttach}
               onChange={({ target }) => {
-                props.setIsFileAttach(target.checked);
+                setValue("isFileAttach", target.checked);
 
                 if (target.checked === false) {
-                  props.setFileIds(null);
+                  setValue("files", null);
                 }
               }}
             >
@@ -159,25 +132,15 @@ export default function HomeworkForm(props) {
             </Checkbox>
           </WrapItem>
           <WrapItem>
-            <Checkbox
-              onChange={() =>
-                props.updateHasChanged(
-                  watch("title"),
-                  watch("content"),
-                  watch("acceptAnswers")
-                )
-              }
-              ref={register}
-              name="acceptAnswers"
-            >
+            <Checkbox ref={register} name="acceptAnswers">
               Accept answers
             </Checkbox>
           </WrapItem>
         </Wrap>
-        {props.isFileAttach && (
+        {watch("isFileAttach") && (
           <UploadFiles
-            getFileIds={props.setFileIds}
             files={props.files}
+            getFileIds={(files) => setValue("files", files)}
             multiple
           />
         )}

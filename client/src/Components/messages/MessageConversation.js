@@ -9,7 +9,7 @@ import axios from "axios";
 import BackIcon from "../Core/BackIcon";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { ReactComponent as ClassroomSvg } from "../../assets/svg/multiple-users-silhouette.svg";
-
+import UserAvatar from "../User/UserAvatar";
 export default function MessageConversation(props) {
   const [message, setMessage] = useState("");
 
@@ -46,19 +46,6 @@ export default function MessageConversation(props) {
         }
       }
     );
-
-    // axios
-    //   .post("/messages", {
-    //     reciever: props.currentChat.recieverId,
-    //     text: message,
-    //   })
-    //   .then((res) => {
-    //     props.setMessages((prevMessages) => [
-    //       ...prevMessages,
-    //       { text: res.data.text, isMe: true, _id: res.data._id },
-    //     ]);
-    //     setMessage("");
-    //   });
   };
   return (
     <>
@@ -79,8 +66,11 @@ export default function MessageConversation(props) {
               />
             )}
             <div className="receiver">
-              <Avatar
-                padding="0.5rem"
+              <UserAvatar
+                className="user_avatar"
+                external
+                profile={props.currentChat.profile}
+                padding={props.currentChat.profile ? undefined : "0.5rem"}
                 mr="1.5rem"
                 name={
                   props.currentChat.gradeId
@@ -102,13 +92,8 @@ export default function MessageConversation(props) {
                     {props.currentChat.recieverName}
                   </p>
                 )}
-                {/* <p className="receiver-status">Physics Teacher</p> */}
               </div>
             </div>
-            {/* <div className="contacting-time">
-              <p className="contacting-time__from">From 6:00 AM</p>
-              <p className="contacting-time__until">Until 1:00 PM</p>
-            </div> */}
           </Flex>
         </div>
         <Messages messages={props.messages} scrollRef={props.scrollRef} />

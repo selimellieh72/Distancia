@@ -3,11 +3,17 @@ import { authContext } from "../../providers/AuthContext";
 import { Avatar } from "@chakra-ui/react";
 import axios from "axios";
 export default function UserAvatar(props) {
-  const { profile } = useContext(authContext)[0];
+  let authData = useContext(authContext)[0];
+  let profile;
+  if (props.profile || props.external) {
+    profile = props.profile;
+  } else {
+    profile = authData.profile;
+  }
   return (
     <Avatar
       {...props}
-      src={`${axios.defaults.baseURL}/uploads/${profile}`}
+      src={profile ? `${axios.defaults.baseURL}/uploads/${profile}` : undefined}
       className="header-profile__avatar"
       ml="1rem"
       cursor="pointer"

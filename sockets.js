@@ -14,21 +14,24 @@ export default function (server, sessionMiddleware) {
 
     if (user) {
       socket.on("getMessages", ({ secondUser, grade }, callback) => {
-        if (secondUser) {
-          const index = clients.findIndex(
-            (client) => client.userId === user || client.socketId === socket
-          );
-          if (index > -1) {
-            clients.splice(index, 1);
+        const index = clients.findIndex(
+          (client) => client.userId === user || client.socketId === socket
+        );
+
+        if (index > -1) {
+          if (clients[index].grade) {
+            socket.leave(clients[index].grade);
           }
-          clients.push({
-            userId: user,
-            socketId: socket.id,
-            room: secondUser || grade,
-          });
-        } else {
-          socket.join(grade);
+          clients.splice(index, 1);
         }
+
+        clients.push({
+          userId: user,
+          socketId: socket.id,
+          grade,
+          userChattingWith: secondUser,
+        });
+        if (grade) socket.join(grade);
 
         const userId = mongoose.Types.ObjectId(user);
         const query = secondUser
@@ -85,8 +88,9 @@ export default function (server, sessionMiddleware) {
           }
           if (reciever) {
             const recieverSocketId = clients.find(
-              (c) => c.userId === reciever && c.room === (user || grade)
+              (c) => c.userId === reciever && c.userChattingWith === user
             )?.socketId;
+            console.log(clients);
             if (recieverSocketId) {
               nsp.to(recieverSocketId).emit("message", message);
             }
