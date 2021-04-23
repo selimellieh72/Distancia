@@ -4,7 +4,7 @@ import CircularProgessIndicator from "../Components/Core/CircularProgessIndicato
 import Header from "../Components/header/Header";
 import { ReactComponent as ArrowSvg } from "../assets/svg/Ar-ID.svg";
 import { ReactComponent as CheckSvg } from "../assets/svg/Check-LogIn.svg";
-import { ReactComponent as CalendarSvg } from "../assets/svg/calendar.svg";
+import { ReactComponent as HomeworkSvg } from "../assets/svg/notebook.svg";
 import { ReactComponent as VideoChatSvg } from "../assets/svg/videoChat.svg";
 import { ReactComponent as ClassRoomSvg } from "../assets/svg/classroom.svg";
 import { ReactComponent as LibrarySvg } from "../assets/svg/library.svg";
@@ -40,10 +40,9 @@ export default function Home() {
         <div className="homepage-feature dark">
           <div>
             <div className="homepage-feature__div">
-              <CalendarSvg />
+              <HomeworkSvg />
               <p className="homepage-feature__description left dark">
-                Full editable schedule for students and teachers to manage their
-                working time.
+                Create your Homeworks and send it to your students.
               </p>
             </div>
           </div>
@@ -52,11 +51,10 @@ export default function Home() {
           <div>
             <div className="homepage-feature__div">
               <p className="homepage-feature__description right light">
-                Video chat system for schools
+                Live Chat system
+                <br /> betwen
                 <br />
-                &#38;
-                <br />
-                easy to use
+                Teachers ans Students.
               </p>
               <VideoChatSvg />
             </div>
@@ -65,12 +63,10 @@ export default function Home() {
         <div className="homepage-feature dark">
           <div>
             <div className="homepage-feature__div">
-              <p className="homepage-feature__description left dark">
-                An interaction area to encourage the exchange between students
-                and teachers, by using direct messages, agenda posts,
-                reminders...
-              </p>
               <ClassRoomSvg />
+              <p className="homepage-feature__description left dark">
+                Create or answer tests <br /> posted by your teacher.
+              </p>
             </div>
           </div>
         </div>
@@ -78,9 +74,9 @@ export default function Home() {
           <div>
             <div className="homepage-feature__div">
               <p className="homepage-feature__description right light">
-                An interaction area to encourage the exchange between students
-                and teachers, by using direct messages, agenda posts,
-                reminders...
+                Have all your lectures grouped <br />
+                at one and single
+                <br /> location.
               </p>
               <LibrarySvg />
             </div>

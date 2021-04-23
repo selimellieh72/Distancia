@@ -69,6 +69,7 @@
   margin-right: auto;
   display: flex;
   align-items: center;
+  fill: #fff;
 }
 
 .homepage-feature__description {

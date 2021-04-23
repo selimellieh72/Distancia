@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Tooltip } from "@chakra-ui/react";
+import { Container, IconButton, Tooltip } from "@chakra-ui/react";
 
 import LectureList from "../../Components/Lecture/LectureList";
 import { authContext } from "../../providers/AuthContext";
@@ -43,7 +43,10 @@ export default function Lecture(props) {
                     : "page-header__icon__delete"
                 }
               >
-                <FaTrash />
+                <IconButton
+                  className="page-header__icon__button"
+                  icon={<FaTrash />}
+                />
               </div>
             </Tooltip>
           }

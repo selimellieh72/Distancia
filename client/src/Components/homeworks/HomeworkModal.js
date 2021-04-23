@@ -57,8 +57,6 @@ export default function HomeworkModal(props) {
   const getSetValue = (mySetValue) => (setValue = mySetValue);
   const getDate = (myDate, formTitle, formContent, acceptAnswers) => {
     setDate(myDate);
-    console.log(new Date(props.dueDate).getTime());
-    console.log(myDate.getTime());
 
     // if (isEditting)
     //   updateHasChanged(formTitle, formContent, acceptAnswers, myDate);
@@ -84,7 +82,11 @@ export default function HomeworkModal(props) {
   return (
     <>
       {props.button ? (
-        <IconButton icon={<props.icon />} onClick={openModal} />
+        <IconButton
+          className="page-header__icon__button"
+          icon={<props.icon />}
+          onClick={openModal}
+        />
       ) : (
         <props.icon onClick={openModal} />
       )}

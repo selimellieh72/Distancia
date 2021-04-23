@@ -53,8 +53,13 @@ export default function AnswerHomework(props) {
           </ModalBody>
 
           <ModalFooter>
+            
+            <Button colorScheme="green" onClick={onSubmit}  disabled={!fileId}>
+              Answer
+            </Button>
             <Button
-              colorScheme="blue"
+              colorScheme="red"
+              variant="ghost"
               mr={3}
               onClick={() => {
                 setFileId(null);
@@ -62,9 +67,6 @@ export default function AnswerHomework(props) {
               }}
             >
               Close
-            </Button>
-            <Button onClick={onSubmit} variant="ghost" disabled={!fileId}>
-              Answer
             </Button>
           </ModalFooter>
         </ModalContent>

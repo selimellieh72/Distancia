@@ -37,6 +37,7 @@ export default function ShowFiles(props) {
           <WrapItem key={fileId}>
             <div
               style={{
+                marginTop: "1rem",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -49,7 +50,7 @@ export default function ShowFiles(props) {
               ) : (
                 <MyFileIcon />
               )}
-              <p style={{ textAlign: "center", marginTop: "1rem" }}>
+              <p className="file-name">
                 {customFileName(fileName)}
               </p>
             </div>

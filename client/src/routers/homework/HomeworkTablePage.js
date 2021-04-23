@@ -7,6 +7,7 @@ import Homeworktable from "../../Components/homeworks/HomeworkTable";
 
 import BackIcon from "../../Components/Core/BackIcon";
 import HomeworkDrawer from "../../Components/homeworks/HomeworkDrawer";
+import PageHeader from "../../Components/Core/PageHeader";
 
 export default function HomeworkTablePage(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,29 +30,30 @@ export default function HomeworkTablePage(props) {
   return (
     <>
       <Container maxW="container.lg" p="18px">
-        <Flex minW="300px" justifyContent="space-between">
-          <Heading as="h1">
-            <BackIcon pathName={backPath} />
-            {homework.title}
-          </Heading>
-          <Button onClick={onOpen} colorScheme="blue">
-            Homework Details
-          </Button>{" "}
-          <HomeworkDrawer
-            acceptAnswers={homework.acceptAnswers}
-            isExpired={homework.isExpired}
-            files={homework.files}
-            dueDate={homework.dueDate}
-            teacherName={fullName}
-            teacherDiscipline={discipline}
-            homeworkData={homework}
-            setHomeworkData={setHomework}
-            isOpen={isOpen}
-            onClose={onClose}
-            id={homework.id}
-          />
-          {/* <HomeworkDrawer onOpen={onOpen} /> */}
-        </Flex>
+        <PageHeader
+          homeworkDrawer={
+            <>
+              <Button className="page-header__icon__button" mr="0.5rem" onClick={onOpen} colorScheme="blue">
+                Details
+              </Button>{" "}
+              <HomeworkDrawer
+                acceptAnswers={homework.acceptAnswers}
+                isExpired={homework.isExpired}
+                files={homework.files}
+                dueDate={homework.dueDate}
+                teacherName={fullName}
+                teacherDiscipline={discipline}
+                homeworkData={homework}
+                setHomeworkData={setHomework}
+                isOpen={isOpen}
+                onClose={onClose}
+                id={homework.id}
+              />
+            </>
+          }
+          pathName={backPath}
+          title={homework.title}
+        />
         <Homeworktable
           homeworkId={homeworkId}
           homework={homework}

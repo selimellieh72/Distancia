@@ -14,13 +14,17 @@ import TestsList from "../../Components/Tests/TestsList";
 import PageHeader from "../../Components/Core/PageHeader";
 import { authContext } from "../../providers/AuthContext";
 
-export default function Test() {
+export default function Test(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
 
   return (
     <>
       <Container maxW="container.lg" p="18px">
-        {isTeacher? <PageHeader title={"grade"} /> :<PageHeader title={"material"} /> }
+        {isTeacher ? (
+          <PageHeader title={"grade"} />
+        ) : (
+          <PageHeader title={"material"} />
+        )}
         <TestsList />
       </Container>
     </>

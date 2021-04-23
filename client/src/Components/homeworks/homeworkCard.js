@@ -25,6 +25,7 @@ import axios from "axios";
 import HomeworkDrawer from "./HomeworkDrawer";
 
 function HomeworkCard(props) {
+  console.log(props.hasSeen);
   const isTeacher = useContext(authContext)[0].isTeacher;
   const [homeworkData, setHomeworkData] = useState({
     isAccomplished: props.isAccomplished,
@@ -66,8 +67,8 @@ function HomeworkCard(props) {
         id={props.id}
       />
       <Flex
-        bgColor="#d3d3d3"
-        color="#2b2b2b"
+        bgColor={props.hasSeen && !isTeacher ? "#2b2b2b" : "#d3d3d3"}
+        color={props.hasSeen && !isTeacher ? "#fff" : "#2b2b2b"}
         className="homework-card"
         borderRadius="20px"
         alignItems="center"

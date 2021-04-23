@@ -5,9 +5,13 @@
 
 .page-header__icon {
   justify-content: space-evenly;
-  width: 100px;
+  width: max-content;
   display: flex;
   align-items: center;
+}
+
+.page-header__icon__button:focus{
+  box-shadow: none !important;
 }
 
 .page-header__icon__grid {
@@ -16,8 +20,6 @@
 }
 
 .page-header__icon__delete {
-  margin-right: 3px;
-  margin-right: 1rem;
   cursor: pointer;
 }
 
@@ -52,11 +54,11 @@
 
 @media (max-width: 500px) {
   .page-title {
-    font-size: 1.35rem;
+    font-size: 1.1rem;
   }
   .arrow-back,
   .page-header__icon__grid {
-    height: 1.35rem !important;
-    width: 1.35rem !important;
+    height: 0.7rem !important;
+    width: 0.7rem !important;
   }
 }

@@ -66,7 +66,11 @@ export default function Router(props) {
         component={Meetings}
         isViewable={props.isAuth}
       />
-      <PrivateRoute path="/tests" component={Tests} isViewable={props.isAuth} />
+      <PrivateRoute
+        path="/grades/:gradeId/chapter/:chapterId/tests"
+        component={Tests}
+        isViewable={props.isAuth}
+      />
       <PrivateRoute
         path="/lecturedisplay"
         component={LectureDisplay}

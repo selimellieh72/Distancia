@@ -5,7 +5,7 @@ import LectureCard from "./LectureCard";
 import { ReactComponent as NoLectureSvg } from "../../assets/svg/open-book.svg";
 
 export default function LectureList(props) {
-  const lecturesLength = props.lecturesData?.lectures !== 0;
+  const lecturesLength = props.lecturesData?.lectures?.length !== 0;
   useEffect(
     () =>
       axios

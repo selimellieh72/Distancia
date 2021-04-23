@@ -227,6 +227,10 @@ hr {
   cursor: pointer;
 }
 
+.file-name{
+  font-size: 0.2rem;
+}
+
 #root {
   height: calc(100% - 90px);
 }

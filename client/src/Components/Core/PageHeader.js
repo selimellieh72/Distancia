@@ -4,7 +4,8 @@ import BackIcon from "./BackIcon";
 import { ReactComponent as GridSvg } from "../../assets/svg/grid.svg";
 import LeftDrawer from "./LeftDrawer";
 
-export default function PageHeader(props) {
+export default function 
+PageHeader(props) {
   return (
     <>
       <Flex alignItems="center" minW="300px" justifyContent="space-between">
@@ -16,7 +17,9 @@ export default function PageHeader(props) {
         <div className="page-header__icon">
           {props.deleteButton}
           {props.addButton}
+          {props.homeworkDrawer}
           <LeftDrawer />
+          
         </div>
       </Flex>
       <Box my="18px">
