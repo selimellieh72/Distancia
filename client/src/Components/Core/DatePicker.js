@@ -7,9 +7,12 @@ export default function DatePicker(props) {
     <div>
       <label>
         Due date:
-        <span class="chakra-form__required-indicator css-1tknnrp">*</span>
+        <span className="chakra-form__required-indicator css-1tknnrp">*</span>
       </label>
       <RDatePicker
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         onChange={props.getDate}
         min={new Date()}
         defaultValue={props.defaultDate || new Date()}

@@ -18,7 +18,6 @@ export default function HomeworksList(props) {
       )
       .then((res) => {
         if (isMounted) {
-          console.log(res.data);
           props.setHomeworksData(res.data);
         }
       });
@@ -42,7 +41,7 @@ export default function HomeworksList(props) {
           isAccomplished={homework.isAccomplished}
           hasSeen={homework.hasSeen}
           dueDate={homework.dueDate}
-          setHomeworks={props.setHomeworks}
+          setHomeworksData={props.setHomeworksData}
           files={homework.files}
           acceptAnswers={homework.acceptAnswers}
           answers={homework.answers}

@@ -136,8 +136,10 @@ router
           }
         );
       } else if (req.query.addLecture) {
+        if (req.body.title > 64) {
+          res.status(403).send();
+        }
         const lecture = new Lecture(req.body);
-        console.log("here");
 
         Grade.findByIdAndUpdate(
           req.params.id,
@@ -157,6 +159,20 @@ router
                     res.json(lecture);
                   }
                 });
+            }
+          }
+        );
+      } else if (req.query.deleteLecture) {
+        Grade.findByIdAndUpdate(
+          req.params.id,
+          {
+            $pull: { lectures: { _id: req.body.lectureId } },
+          },
+          function (e) {
+            if (e) {
+              res.status(403).send();
+            } else {
+              res.send();
             }
           }
         );

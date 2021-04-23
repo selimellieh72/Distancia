@@ -9,11 +9,12 @@
   position: relative;
 }
 
-.trash-icon{
+.delete-lecture-icon {
   position: absolute;
   fill: red;
   right: -18px;
   z-index: 999;
+  cursor: pointer;
 }
 
 .lecture-card__title {

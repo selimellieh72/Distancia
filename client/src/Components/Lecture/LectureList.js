@@ -22,6 +22,7 @@ export default function LectureList(props) {
     <div className="card-list">
       {props.lecturesData?.lectures?.map((lecture) => (
         <LectureCard
+          key={lecture._id}
           name={lecture.title}
           extension={lecture.file?.filename?.split(".")[1] ?? undefined}
           fileId={lecture.file?._id}
@@ -30,6 +31,7 @@ export default function LectureList(props) {
           gradeId={props.gradeId}
           chapterId={props.chapterId}
           deleteState={props.deleteState}
+          setLecturesData={props.setLecturesData}
         />
       ))}
     </div>

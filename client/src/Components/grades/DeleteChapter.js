@@ -71,7 +71,7 @@ export default function DeleteChapter(props) {
               Close
             </Button>
             <Button onClick={deleteChapter} colorScheme="red">
-              Delete.
+              Delete
             </Button>
           </ModalFooter>
         </ModalContent>

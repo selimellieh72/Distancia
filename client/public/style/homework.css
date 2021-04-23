@@ -125,7 +125,7 @@
   text-align: center;
 }
 
-.student-name{
+.student-name {
   font-size: 1.23rem;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
@@ -154,4 +154,8 @@
   .homework-card__teacher__name {
     font-size: 0.75rem;
   }
+}
+
+.homework-edit-icon:hover {
+  color: blue;
 }

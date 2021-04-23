@@ -14,6 +14,7 @@ export default function MessageMain(props) {
   const [currentChat, setCurrentChat] = useState();
   const [messages, setMessages] = useState([]);
   const [chats, setChats] = useState([]);
+  const [allChats, setAllChats] = useState([]);
 
   const scrollRef = useRef();
 
@@ -40,21 +41,37 @@ export default function MessageMain(props) {
         }`
       )
       .then((res) => {
-        setChats((chats) => [
-          {
-            _id: props.gradeId,
-            fullName: res.data.title,
-            gradeId: props.gradeId,
-          },
-          ...chats,
-        ]);
-        if (isTeacher) {
-          setChats((chats) => [...chats, ...res.data.students]);
-        } else {
-          setChats((chats) => [
+        setChats((chats) => {
+          const newChats = [
+            {
+              _id: props.gradeId,
+              fullName: res.data.title,
+              gradeId: props.gradeId,
+            },
             ...chats,
-            { _id: res.data.teacher._id, fullName: res.data.teacher.fullName },
-          ]);
+          ];
+          setAllChats(newChats);
+          return newChats;
+        });
+        if (isTeacher) {
+          setChats((chats) => {
+            const newChats = [...chats, ...res.data.students];
+
+            setAllChats(newChats);
+            return newChats;
+          });
+        } else {
+          setChats((chats) => {
+            const newChats = [
+              ...chats,
+              {
+                _id: res.data.teacher._id,
+                fullName: res.data.teacher.fullName,
+              },
+            ];
+            setAllChats(newChats);
+            return newChats;
+          });
 
           setCurrentChat({
             recieverName: res.data.teacher.fullName,
@@ -105,6 +122,8 @@ export default function MessageMain(props) {
           setMessages={setMessages}
           currentChat={currentChat}
           scrollRef={scrollRef}
+          setChats={setChats}
+          allChats={allChats}
         />
       )}
     </div>

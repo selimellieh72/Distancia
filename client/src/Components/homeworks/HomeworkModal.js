@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   Modal,
@@ -22,19 +22,46 @@ export default function HomeworkModal(props) {
 
   const initialRef = useRef();
 
-  const isEditting = props.id && props.title && props.content;
+  const isEditting = props.id && props.title && props.content && props.dueDate;
   const [hasChanged, setHasChanged] = useState(!isEditting);
-  const [fileIds, setFileIds] = useState(null);
-  const [isFileAttach, setIsFileAttach] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const initialFileIds = props.files?.map((f) => f._id);
+  const [fileIds, setFileIds] = useState(initialFileIds);
 
-  function updateHasChanged(formTitle, formContent) {
-    setHasChanged(formTitle !== props.title || formContent !== props.content);
+  const [isFileAttach, setIsFileAttach] = useState(
+    props.files && props.files.length > 0
+  );
+
+  // useEffect(() => {
+  //   // console.log(initialFileIds, fileIds);
+  //   setHasChanged(
+  //     (hasChanged) => isFileAttach && JSON.stringify(initialFileIds) !== fileIds
+  //   );
+  // }, [fileIds]);
+
+  useEffect(() => console.log(hasChanged), [hasChanged]);
+
+  const [date, setDate] = useState(
+    props.dueDate ? new Date(props.dueDate) : new Date()
+  );
+
+  function updateHasChanged(formTitle, formContent, acceptAnswers, myDate) {
+    setHasChanged(
+      formTitle !== props.title ||
+        (myDate ? myDate.getTime() : date.getTime()) !==
+          new Date(props.dueDate).getTime() ||
+        formContent !== props.content ||
+        props.acceptAnswers !== acceptAnswers
+    );
   }
 
   const getSetValue = (mySetValue) => (setValue = mySetValue);
-  const getDate = (myDate) => {
+  const getDate = (myDate, formTitle, formContent, acceptAnswers) => {
     setDate(myDate);
+    console.log(new Date(props.dueDate).getTime());
+    console.log(myDate.getTime());
+
+    // if (isEditting)
+    //   updateHasChanged(formTitle, formContent, acceptAnswers, myDate);
   };
 
   const openModal = () => {
@@ -43,12 +70,15 @@ export default function HomeworkModal(props) {
         setValue("title", "");
         setValue("content", "");
       }
-
       setHasChanged(false);
+      setDate(new Date(props.dueDate));
+    } else {
+      setFileIds(null);
+      setDate(new Date());
     }
-    if (isFileAttach) setIsFileAttach(false);
-    setFileIds(null);
-    setDate(new Date());
+    if (isFileAttach && (!props.files || props.files.length === 0))
+      setIsFileAttach(false);
+
     onOpen();
   };
   return (
@@ -72,6 +102,7 @@ export default function HomeworkModal(props) {
               onClose={onClose}
               setHomeworkData={props.setHomeworkData}
               setHomeworks={props.setHomeworks}
+              files={props.files}
               id={props.id}
               title={props.title}
               content={props.content}

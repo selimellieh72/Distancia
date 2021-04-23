@@ -16,7 +16,9 @@ export default function GradeCard(props) {
   const { isTeacher, discipline } = useContext(authContext)[0];
   const [gradeDetails, setGradeDetails] = useState({});
   useEffect(() => {
-    setGradeDetails({ chapters: props.chapters });
+    let isMounted = true;
+    if (isMounted) setGradeDetails({ chapters: props.chapters });
+    return () => (isMounted = false);
   }, []);
   return (
     <>

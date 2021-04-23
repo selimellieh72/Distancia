@@ -27,6 +27,9 @@ import Logout from "../auth/Logout";
 import { authContext } from "../../providers/AuthContext";
 import { Link } from "react-router-dom";
 import UpdateData from "./UpdateData";
+import axios from "axios";
+
+import UserAvatar from "./UserAvatar.js";
 
 const UserPopover = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -42,11 +45,9 @@ const UserPopover = () => {
       {biggerThan400 ? (
         <Popover onClose={onClose} placement="right" closeOnBlur={false}>
           <PopoverTrigger>
-            <Avatar
-              className="header-profile__avatar"
-              ml="1rem"
-              cursor="pointer"
-            />
+            <div>
+              <UserAvatar />
+            </div>
           </PopoverTrigger>
           <PopoverContent className="popover-content" mt={5} p={3}>
             <FocusLock returnFocus persistentFocus={false}>
@@ -55,9 +56,9 @@ const UserPopover = () => {
 
               <Flex mb="18px">
                 <Flex flexDir="column">
-                  <Avatar mr={5}>
+                  <UserAvatar mr={5}>
                     <AvatarBadge boxSize="1.25em" bg="green.500" />
-                  </Avatar>
+                  </UserAvatar>
                   <UpdateData
                     isTeacher={isTeacher}
                     fullName={fullName}

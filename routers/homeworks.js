@@ -101,6 +101,13 @@ router
   })
   .post(function (req, res) {
     if (req.isAuthenticated()) {
+      if (
+        req.body.title < 10 ||
+        req.body.title > 80 ||
+        req.body.content > 264
+      ) {
+        res.status(403).send();
+      }
       const homework = new Homework({
         ...req.body,
         teacher: req.user._id,
@@ -201,7 +208,7 @@ router
             }
           );
         }
-      } else if (req.user.isTeacher) {
+      } else {
         Homework.findByIdAndUpdate(
           req.params.id,
           req.body,
@@ -210,7 +217,15 @@ router
             if (e) {
               res.status(403).send();
             } else {
-              res.status(200).json(homework);
+              homework
+                .populate({ path: "files", select: { filename: 1 } })
+                .execPopulate((e, homework) => {
+                  if (e) {
+                    res.status(403).send();
+                  } else {
+                    res.json(homework);
+                  }
+                });
             }
           }
         );

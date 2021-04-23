@@ -41,6 +41,7 @@ export default function HomeworkTablePage(props) {
             acceptAnswers={homework.acceptAnswers}
             isExpired={homework.isExpired}
             files={homework.files}
+            dueDate={homework.dueDate}
             teacherName={fullName}
             teacherDiscipline={discipline}
             homeworkData={homework}

@@ -12,7 +12,16 @@ export default function ListConvosDesktop(props) {
       <div className="back-button-convos">
         <BackIcon pathName="/grades" />
         <h1 className="messages-chat__title">Chats</h1>
-        <InputGroup>
+        <InputGroup
+          onChange={({ target }) => {
+            console.log(props.allChats);
+            return props.setChats(
+              props.allChats?.map((chat) =>
+                chat.fullName.includes(target.value)
+              )
+            );
+          }}
+        >
           <InputLeftElement
             height="30px"
             ml="1.5rem"
@@ -20,8 +29,8 @@ export default function ListConvosDesktop(props) {
             children={<Search2Icon color="#2b2b2b" />}
           />
           <Input
-          placeholder="Search..."
-          focusBorderColor="#2b2b2b"
+            placeholder="Search..."
+            focusBorderColor="#2b2b2b"
             ml="1.5rem"
             height="30px"
             borderRadius="15px"

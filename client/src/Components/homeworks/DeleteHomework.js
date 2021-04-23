@@ -23,9 +23,12 @@ export default function DeleteHomework(props) {
 
   function deleteHomework() {
     axios.delete(`/homeworks/${props.id}`).then((_) => {
-      props.setHomeworks((prevHomeworks) =>
-        prevHomeworks.filter((hom) => hom._id !== props.id)
-      );
+      props.setHomeworksData((prevHomeworksData) => ({
+        ...prevHomeworksData,
+        homeworks: prevHomeworksData.homeworks.filter(
+          (hom) => hom._id !== props.id
+        ),
+      }));
       onClose();
       toast({
         title: "Homework deleted",

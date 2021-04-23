@@ -8,7 +8,7 @@ import ShowFiles from "../Core/ShowFiles";
 
 export default function HomeworkDetails(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
-  console.log(isTeacher);
+
   return (
     <div className="homework-details__drawer">
       <div className="sender-details">

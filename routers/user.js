@@ -15,6 +15,7 @@ router.post("/register", function (req, res) {
       username: req.body.username,
       isTeacher: req.body.isTeacher,
       discipline: req.body.discipline,
+      profile: req.body.profile,
     },
     req.body.password,
     function (e, user) {
@@ -69,6 +70,29 @@ router.get("/session", function (req, res) {
 router.post("/logout", function (req, res) {
   req.logout();
   res.send();
+});
+
+router.patch("/users", (req, res) => {
+  if (req.isAuthenticated()) {
+    const fullNameFormated = req.body.fullName
+      .split(" ")
+      .map((n) => n.charAt(0).toUpperCase() + n.slice(1))
+      .join(" ");
+    User.findByIdAndUpdate(
+      req.user._id,
+      { ...req.body, fullName: fullNameFormated },
+      { new: true },
+      (e, user) => {
+        if (e) {
+          res.status(403).send();
+        } else {
+          res.json(user);
+        }
+      }
+    );
+  } else {
+    res.status(401).send();
+  }
 });
 
 export default router;

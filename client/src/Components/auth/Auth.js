@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import Header from "../header/Header";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useHistory, Link } from "react-router-dom";
@@ -20,12 +19,15 @@ import {
   Switch,
   Flex,
   Center,
+  Avatar,
 } from "@chakra-ui/react";
+import UploadImage from "../Core/UploadImage";
 
 export default function Auth(props) {
   const { register, handleSubmit, errors, watch, setError } = useForm();
   let [isTeacher, setIsTeacher] = useState(false);
 
+  let image;
   const history = useHistory();
 
   const [authInfo, setAuthInfo] = useContext(authContext);
@@ -48,37 +50,43 @@ export default function Auth(props) {
     const updateAuthInfo = ({ data }) =>
       setAuthInfo({
         isAuth: true,
-
         username: data.emailAddress,
-        password: data.password,
-        isTeacher: data.isTeacher,
-        discipline: data.discipline,
-        fullName: data.fullName,
+        ...data,
       });
     if (isSignup) {
-      const body = {
-        fullName: data.firstName + " " + data.lastName,
-        username: data.emailAddress,
-        password: data.password,
-        isTeacher: isTeacher,
-        discipline: data.discipline,
-      };
-      axios
-        .post("/register", body)
+      const register = (profile) =>
+        axios
+          .post("/register", {
+            fullName: data.firstName + " " + data.lastName,
+            username: data.emailAddress,
+            password: data.password,
+            isTeacher: isTeacher,
+            discipline: data.discipline,
+            profile,
+          })
 
-        .then((res) => {
-          updateAuthInfo(res);
+          .then((res) => {
+            updateAuthInfo(res);
 
-          history.push("/grades");
-        })
-        .catch((e) => {
-          console.log(errors.emailAddress);
-          setError("emailAddress", {
-            type: "server",
-            message:
-              "This email already exists. Please login or use another email.",
+            history.push("/grades");
+          })
+          .catch((e) => {
+            console.log(errors.emailAddress);
+            setError("emailAddress", {
+              type: "server",
+              message:
+                "This email already exists. Please login or use another email.",
+            });
           });
-        });
+      if (image) {
+        const formData = new FormData();
+        formData.append("files", image);
+        axios
+          .post("/upload", formData)
+          .then((res) => register(res.data.files[0].id));
+      } else {
+        register();
+      }
     } else {
       axios
         .post("/login", {
@@ -108,34 +116,39 @@ export default function Auth(props) {
       <section id="auth">
         <form action="" onSubmit={handleSubmit(submitForm)}>
           {isSignup && (
-            <FormControl isRequired>
-              <Flex>
-                <Box mr="16px">
-                  <FormLabel>First name:</FormLabel>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    ref={register}
-                    type="text"
-                    placeholder="First Name"
-                  />
-                </Box>
-                <Box>
-                  <FormLabel>Last name:</FormLabel>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    ref={register}
-                    type="text"
-                    placeholder="Last Name"
-                  />
-                </Box>
-              </Flex>
+            <>
+              {" "}
+              <FormControl isRequired>
+                <Flex>
+                  <Box mr="16px">
+                    <FormLabel>First name:</FormLabel>
+                    <Input
+                      id="firstName"
+                      name="firstName"
+                      ref={register}
+                      type="text"
+                      placeholder="First Name"
+                    />
+                  </Box>
+                  <Box>
+                    <FormLabel>Last name:</FormLabel>
+                    <Input
+                      id="lastName"
+                      name="lastName"
+                      ref={register}
+                      type="text"
+                      placeholder="Last Name"
+                    />
+                  </Box>
+                </Flex>
 
-              <FormHelperText>
-                Your name will be displayed to other users.
-              </FormHelperText>
-            </FormControl>
+                <FormHelperText>
+                  Your name will be displayed to other users.
+                </FormHelperText>
+              </FormControl>
+              <h1 style={{ textAlign: "left" }}>Profile Picture:</h1>
+              <UploadImage getImage={(gottenImage) => (image = gottenImage)} />
+            </>
           )}
 
           <FormControl id="emails" isRequired isInvalid={errors.emailAddress}>

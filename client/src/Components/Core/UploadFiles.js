@@ -8,7 +8,7 @@ import { Button, Center, CircularProgress } from "@chakra-ui/react";
 import ShowFiles from "./ShowFiles";
 
 export default function UploadFiles(props) {
-  const [fileUploaded, setFileUploaded] = useState();
+  const [fileUploaded, setFileUploaded] = useState(props.files);
   const [isLoading, setIsLoading] = useState();
   const [maxLengthError, setMaxLengthError] = useState(false);
   const MAX_LENGTH = 5;
@@ -55,7 +55,7 @@ export default function UploadFiles(props) {
         style={{ display: "none" }}
         name="files"
         type="file"
-        multiple={props.multiple ? "true" : false}
+        multiple={props.multiple}
         ref={hiddenFileInput}
         onChange={handleChange}
       />
@@ -76,12 +76,15 @@ export default function UploadFiles(props) {
 
       <div
         style={{
-          display: !fileUploaded || fileUploaded === 0 ? "none" : undefined,
+          display:
+            !fileUploaded || fileUploaded.length === 0 ? "none" : undefined,
         }}
       >
         <ShowFiles
           files={fileUploaded?.map((f) => {
-            f.id = uuidv4();
+            if (!f.id && !f._id) {
+              f.id = uuidv4();
+            }
             return f;
           })}
           notDownloadable

@@ -72,7 +72,7 @@ export default function LectureModal(props) {
   return (
     <>
       {props.button ? (
-        <IconButton icon={<props.icon />} onClick={openModal} />
+        <IconButton icon={<props.icon />} onClick={openModal} mr="6px" />
       ) : (
         <props.icon onClick={openModal} />
       )}

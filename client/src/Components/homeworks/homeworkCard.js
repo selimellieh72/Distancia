@@ -30,6 +30,8 @@ function HomeworkCard(props) {
     isAccomplished: props.isAccomplished,
     title: props.title,
     content: props.content,
+    dueDate: props.dueDate,
+    files: props.files,
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -50,6 +52,7 @@ function HomeworkCard(props) {
   return (
     <div ref={btnRef} onClick={openHomework}>
       <HomeworkDrawer
+        dueDate={props.dueDate}
         acceptAnswers={props.acceptAnswers}
         files={props.files}
         isExpired={props.isExpired}
@@ -86,14 +89,17 @@ function HomeworkCard(props) {
           <Wrap mr="16px">
             <EditHomework
               id={props.id}
-              title={props.title}
-              content={props.content}
+              title={homeworkData.title}
+              content={homeworkData.content}
+              dueDate={homeworkData.dueDate}
+              files={homeworkData.files}
               setHomeworkData={setHomeworkData}
+              acceptAnswers={props.acceptAnswers}
             />
 
             <DeleteHomework
               id={props.id}
-              setHomeworks={props.setHomeworks}
+              setHomeworksData={props.setHomeworksData}
               size="50px"
             />
           </Wrap>

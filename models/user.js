@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
     password: String,
     discipline: String,
     isTeacher: Boolean,
+    profile: { type: mongoose.Schema.Types.ObjectId, ref: "GFS" },
   },
   { timestamps: { createdAt: "created_at" } }
 );

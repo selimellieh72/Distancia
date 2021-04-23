@@ -13,10 +13,7 @@ export default function GradesList(props) {
     if (isMounted) {
       axios
         .get("/grades")
-        .then(({ data }) => {
-          console.log(data);
-          return props.setGrades(data);
-        })
+        .then(({ data }) => props.setGrades(data))
         .catch((e) => console.log(e));
     }
     return () => (isMounted = false);

@@ -8,6 +8,7 @@ export function AuthProvider(props) {
     username: "",
     isTeacher: null,
     discipline: null,
+    profile: null,
   });
   async function getUser(history, location) {
     try {
@@ -17,12 +18,10 @@ export function AuthProvider(props) {
       });
 
       setAuthInfo({
-        username: response.data.username,
-        isTeacher: response.data.isTeacher,
-        discipline: response.data.discipline,
-        fullName: response.data.fullName,
+        ...response.data,
         isAuth: true,
       });
+      console.log(response.data);
       history.push(location.pathname);
     } catch (e) {
       setAuthInfo({ ...authInfo, isAuth: false });

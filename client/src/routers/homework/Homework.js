@@ -12,9 +12,6 @@ export default function Homework(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
   const { gradeId, chapterId } = props.match.params || {};
 
-  React.useEffect(() => {
-    console.log(homeworksData);
-  }, [homeworksData]);
   return (
     <div>
       <Container maxW="container.lg" p="18px">
