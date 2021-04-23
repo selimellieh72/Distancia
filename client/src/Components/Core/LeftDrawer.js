@@ -20,6 +20,7 @@ export default function LeftDrawer(props) {
   return (
     <div>
       <Button
+      bg="none"
         className="page-header__icon__button"
         boxShadow="none"
         outlineColor="white"

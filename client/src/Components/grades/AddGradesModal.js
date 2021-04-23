@@ -51,7 +51,7 @@ export default function AddGradesModal(props) {
 
   return (
     <>
-      <AddIcon cursor="pointer" mr="1rem" onClick={onOpen} />
+      <AddIcon bg="none" cursor="pointer" mr="1rem" onClick={onOpen} />
 
       <Modal
         initialFocusRef={initialRef}

@@ -46,6 +46,7 @@ export default function Lecture(props) {
                 }
               >
                 <IconButton
+                  bg="none"
                   className="page-header__icon__button"
                   icon={<FaTrash />}
                 />
