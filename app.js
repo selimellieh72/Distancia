@@ -100,6 +100,7 @@ passport.use(
       User.findOrCreate(
         { googleId: profile.id },
         {
+          username: profile.displayName,
           fullName:
             (profile.name.givenName || "") +
             " " +

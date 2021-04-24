@@ -16,6 +16,10 @@ export default function LectureCard(props) {
       return title;
     }
   };
+  const isVideo =
+    props.extension === "mp4" ||
+    props.extension === "mov" ||
+    props.extension === "FLV";
 
   const baseURL =
     window.location.origin === "http://localhost:3000"
@@ -24,7 +28,7 @@ export default function LectureCard(props) {
 
   const MyFileIcon = () => (
     <div className="lecture-card">
-      {props.link ? (
+      {props.link || isVideo ? (
         <Link
           to={{
             pathname: "/video",
@@ -32,7 +36,7 @@ export default function LectureCard(props) {
               gradeId: props.gradeId,
               chapterId: props.chapterId,
               title: props.name,
-              link: props.link,
+              link: isVideo ? `${baseURL}/uploads/${props.fileId}` : props.link,
             },
           }}
         >
@@ -45,7 +49,7 @@ export default function LectureCard(props) {
             state: {
               title: props.name,
               pdfLink: `${baseURL}/uploads/${props.fileId}`,
-              backPath: `/grades/${props.gradeId}/chapter/${props.chapterId}/lectures`
+              backPath: `/grades/${props.gradeId}/chapter/${props.chapterId}/lectures`,
             },
           }}
         >

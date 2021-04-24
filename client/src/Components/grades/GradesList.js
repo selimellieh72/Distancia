@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
-import { SettingsIcon } from "@chakra-ui/icons";
+
 import axios from "axios";
 import CircularProgessIndicator from "../Core/CircularProgessIndicator";
 import GradeCard from "./GradeCard";
@@ -26,6 +26,7 @@ export default function GradesList(props) {
   return (
     <>
       <SearchBar isGrades setSearchTerm={setSearchTerm} />
+
       {props.grades === null ? (
         <CircularProgessIndicator />
       ) : props.grades.length !== 0 ? (

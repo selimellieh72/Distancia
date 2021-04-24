@@ -20,7 +20,7 @@ export default function LeftDrawer(props) {
   return (
     <div>
       <Button
-      bg="none"
+        bg="none"
         className="page-header__icon__button"
         boxShadow="none"
         outlineColor="white"
@@ -50,9 +50,9 @@ export default function LeftDrawer(props) {
                   Homeworks
                 </Link>
               </ListItem>
-              <ListItem className="grade-content__type">
+              {/* <ListItem className="grade-content__type">
                 <Link>Tests</Link>
-              </ListItem>
+              </ListItem> */}
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>
