@@ -17,9 +17,9 @@ export default function VideoPlayer() {
   backPath = backPath ?? "" + "/lectures";
 
   return (
-    <Container maxW="container.lg" p="18px">
+    <Container maxW="container.lg" p="18px" width="100%" height="590px">
       <PageHeader title={title} pathName={backPath} />
-      <ReactPlayer controls={true} width="100%" height="auto" url={link} />
+      <ReactPlayer controls={true} width="100%" height="100%" url={link} />
     </Container>
   );
 }

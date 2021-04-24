@@ -24,7 +24,6 @@ export default function UserAvatar(props) {
       {...props}
       src={profile ? displayUrl : undefined}
       className="header-profile__avatar"
-      ml="1rem"
       cursor="pointer"
     />
   );

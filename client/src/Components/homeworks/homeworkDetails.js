@@ -1,18 +1,26 @@
 import React, { useContext } from "react";
 import { authContext } from "../../providers/AuthContext";
-import { Avatar, Flex, Tooltip, Badge, Wrap, WrapItem } from "@chakra-ui/react";
+import { Flex, Tooltip, Badge, Wrap, WrapItem } from "@chakra-ui/react";
 import moment from "moment";
 import HomeworkAccomplish from "./HomeworkAccomplish";
 import AnswerHomework from "./AnswerHomework";
 import ShowFiles from "../Core/ShowFiles";
+import UserAvatar from "../User/UserAvatar";
 
 export default function HomeworkDetails(props) {
   const isTeacher = useContext(authContext)[0].isTeacher;
+  console.log(props.teacherProfile)
 
   return (
     <div className="homework-details__drawer">
       <div className="sender-details">
-        <Avatar size="lg" mb="1rem" mt="2rem" />
+        <UserAvatar
+          profile={props.teacherProfile}
+          external
+          size="lg"
+          mb="1rem"
+          mt="2rem"
+        />
         <p className="sender-details__name">{props.teacherName}</p>
         <p className="sender-details__discipline">{props.teacherDiscipline}</p>
       </div>

@@ -25,7 +25,7 @@ export default function GradesList(props) {
 
   return (
     <>
-      <SearchBar isGrades setSearchTerm={setSearchTerm} />
+      <SearchBar searchTerm={searchTerm} isGrades setSearchTerm={setSearchTerm} />
 
       {props.grades === null ? (
         <CircularProgessIndicator />
@@ -35,7 +35,14 @@ export default function GradesList(props) {
             ?.filter(
               (grade) =>
                 !searchTerm ||
-                grade.title.toLowerCase().includes(searchTerm.toLowerCase())
+                (isTeacher &&
+                  grade.title
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())) ||
+                (!isTeacher &&
+                  grade.teacher.discipline
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()))
             )
             .map((grade) => {
               return (

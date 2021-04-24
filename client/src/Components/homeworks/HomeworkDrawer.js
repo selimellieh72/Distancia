@@ -24,6 +24,7 @@ export default function HomeworkDrawer(props) {
         <DrawerContent overflowY="auto">
           <DrawerCloseButton color="#fff" />
           <HomeworkDetails
+            teacherProfile={props.teacherProfile}
             id={props.id}
             title={props.homeworkData.title}
             content={props.homeworkData.content}

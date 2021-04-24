@@ -46,7 +46,7 @@ const UserPopover = () => {
         <Popover onClose={onClose} placement="right" closeOnBlur={false}>
           <PopoverTrigger>
             <div>
-              <UserAvatar />
+              <UserAvatar ml="1rem" />
             </div>
           </PopoverTrigger>
           <PopoverContent className="popover-content" mt={5} p={3}>

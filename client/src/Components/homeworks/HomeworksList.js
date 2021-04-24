@@ -45,7 +45,7 @@ export default function HomeworksList(props) {
             case "seen":
               return homework.hasSeen;
             case "notSeen":
-              return !homework.seen;
+              return !homework.hasSeen;
 
             default:
               return true;
@@ -53,6 +53,7 @@ export default function HomeworksList(props) {
         })
         .map((homework) => (
           <HomeworkCard
+            teacherProfile={homework.grade.teacher.profile}
             gradeId={props.gradeId}
             chapterId={props.chapterId}
             key={homework._id}

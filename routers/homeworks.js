@@ -33,7 +33,7 @@ router
               select: { _id: 1, teacher: 1, title: 1 },
               populate: {
                 path: "teacher",
-                select: { fullName: 1, discipline: 1 },
+                select: { fullName: 1, discipline: 1 , profile: 1},
               },
             })
 

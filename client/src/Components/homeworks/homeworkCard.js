@@ -23,6 +23,7 @@ import { getTime } from "date-fns";
 import { ReactComponent as NotdoneSvg } from "../../assets/svg/remove.svg";
 import axios from "axios";
 import HomeworkDrawer from "./HomeworkDrawer";
+import UserAvatar from "../User/UserAvatar";
 
 function HomeworkCard(props) {
   console.log(props.hasSeen);
@@ -73,6 +74,7 @@ function HomeworkCard(props) {
   return (
     <div ref={btnRef} onClick={openHomework}>
       <HomeworkDrawer
+        teacherProfile={props.teacherProfile}
         dueDate={props.dueDate}
         acceptAnswers={props.acceptAnswers}
         files={props.files}
@@ -94,7 +96,7 @@ function HomeworkCard(props) {
         alignItems="center"
       >
         <Flex flex={1} flexDir="column" alignItems="center" textAlign="center">
-          <Avatar />
+          <UserAvatar m="0" external profile={props.teacherProfile} />
           <p className="homework-card__teacher__name">{props.teacherName}</p>
         </Flex>
 
