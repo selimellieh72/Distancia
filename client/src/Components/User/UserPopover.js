@@ -66,7 +66,7 @@ const UserPopover = () => {
                     isOpen={isOpen}
                     onClose={onClose}
                   />
-                  <p className="all-requests__btn">All Requests</p>
+                  {/* <p className="all-requests__btn">All Requests</p> */}
                 </Flex>
                 <Flex flexDir="column">
                   <Link to="/stats">

@@ -57,9 +57,9 @@ export default function ChapterCollapsible({
               Homeworks
             </Link>
           </ListItem>
-          <ListItem className="grade-content__type">
+          {/* <ListItem className="grade-content__type">
             <Link to={`/grades/${gradeId}/chapter/${chapterId}/tests`}>Tests</Link>
-          </ListItem>
+          </ListItem> */}
         </UnorderedList>
       </Collapse>
 

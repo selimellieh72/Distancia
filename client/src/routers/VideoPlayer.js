@@ -19,7 +19,7 @@ export default function VideoPlayer() {
   return (
     <Container maxW="container.lg" p="18px">
       <PageHeader title={title} pathName={backPath} />
-      <ReactPlayer controls={true} width="100%" height="556px" url={link} />
+      <ReactPlayer controls={true} width="100%" height="auto" url={link} />
     </Container>
   );
 }
