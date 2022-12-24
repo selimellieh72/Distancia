@@ -16,7 +16,7 @@
 
 </p>
 
-![screenshot]([https://github.com/selimellieh72/DistanciaMobile/blob/master/3.png])
+![screenshot]([https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png])
 
 ## Motivation
 The COVID-19 pandemic presented unprecedented challenges to the education system, with schools and universities closing their doors and transitioning to online learning. In this time of crisis, "Distancia" was born as a solution to facilitate the educational environment between students and teachers. Developed by Selim Ellieh and Theo Khalil, two coding passionates, "Distancia" is a web platform that provides students with a means of communication with their teachers, access to course materials, and the ability to stay on top of homework assignments. The motivation behind "Distancia" was to provide a comprehensive and convenient learning platform for students and teachers during a time of uncertainty and change. In 2021, Distancia won the first place in a web development contest by the Lebanese American University.
