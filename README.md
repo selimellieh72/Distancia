@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  Distancia
+  Distancia - Web
 </h1>
 
 <h4 align="center">Distancia ~ Digitilizing Education</h4>
