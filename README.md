@@ -36,7 +36,6 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - Specify if you are a teacher (or not)
   - Login using email, password
   - Signing up using google is also possible!
-  - Uses [Firebase](https://firebase.google.com/) Authentication
  
 * Join Course (Student)<br/>
 
@@ -98,19 +97,20 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - The teacher can add homeworks by specifying its name, its due date and if he wishes to accept answers
   - The teacher can then check all the answers of the students
 
-* Chatting system
-<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/chat.png"/>
+* Chatting system \
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/chatting.png"/>
   - Real-time chat between the student and the teacher directly in addition to the whole class
   - Uses web sockets!
   
-* Profile
-<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/profile.png"/>
-<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/edit-profile.png"/>
+* Profile\
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/profile.png"/>
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/edit_profile.png"/>
   - Clicking on the profile picture in the dashboard will open a little pop-up
   - You can click on "Edit profile" to edit your profile (First Name and Last Name)
+
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [React js](https://reactjs.org), [Mongodb](https://www.mongodb.com). From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [React](https://reactjs.org), [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com). From your command line:
 
 ```bash
 # Clone this repository 
@@ -122,12 +122,26 @@ $ cd Distancia-Mern
 # Install dependencies
 $ npm install
 
+# Run the backend api
+node app.js
+
+# On another terminal, run the client react app
+
+# Go to the client folder
+cd client
+
+# Install dependencies
+npm install
+
+# Run React App
+
+
 # Run the app
 $ npm start
 ```
 
 > **Note**
-> Make sure to use React . Otherwise you might run into some issues.
+> Make sure to run the backend (NodeJs) app alongside the client (React) app or the website will not work.
 
 
 ## You may also like...
@@ -136,9 +150,10 @@ $ npm start
 - [Zoey](https://github.com/Ghaadyy/book-app-frontend) - Exchanging books
 
 ## Credits
-- [Flutter](https://flutter.dev/)
-- [Firebase](https://firebase.google.com/)
-- [Flutter Bloc](https://pub.dev/packages/stacked) - State management solution for flutter
+- [React](https://reactjs.org)
+- [Node.js](https://nodejs.org/en/)
+- [Express.js](https://expressjs.com/)
+- [Socket.IO](https://socket.io/)
 
 
 ---
