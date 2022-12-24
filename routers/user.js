@@ -5,6 +5,7 @@ import passport from "passport";
 const router = express.Router();
 
 router.post("/register", function (req, res) {
+  console.log("Heres2");
   const fullNameFormated = req.body.fullName
     .split(" ")
     .map((n) => n.charAt(0).toUpperCase() + n.slice(1))
@@ -19,13 +20,18 @@ router.post("/register", function (req, res) {
     },
     req.body.password,
     function (e, user) {
+      console.log("here");
       if (e) {
+        console.log(e);
         if (e.name === "UserExistsError") {
+          console.log("here1");
           res.status(409);
           res.send();
         }
       } else {
+        console.log("here2");
         passport.authenticate("local")(req, res, function () {
+          console.log("here3");
           res.status(200);
           // res.json({ message: "Successfully registered" });
           res.json(user);
