@@ -16,7 +16,7 @@
 
 </p>
 
-![screenshot]([https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png])
+
 
 ## Motivation
 The COVID-19 pandemic presented unprecedented challenges to the education system, with schools and universities closing their doors and transitioning to online learning. In this time of crisis, "Distancia" was born as a solution to facilitate the educational environment between students and teachers. Developed by Selim Ellieh and Theo Khalil, two coding passionates, "Distancia" is a web platform that provides students with a means of communication with their teachers, access to course materials, and the ability to stay on top of homework assignments. The motivation behind "Distancia" was to provide a comprehensive and convenient learning platform for students and teachers during a time of uncertainty and change. In 2021, Distancia won the first place in a web development contest by the Lebanese American University.
@@ -64,24 +64,24 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Flutter](https://flutter.dev/). From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), [React js](https://reactjs.org), [Mongodb](https://www.mongodb.com). From your command line:
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/selimellieh72/DistanciaMobile
+# Clone this repository 
+$ git clone https://github.com/selimellieh72/Distancia-Mern
 
 # Go into the repository
-$ cd DistanciaMobile
+$ cd Distancia-Mern
 
 # Install dependencies
-$ flutter packages get
+$ npm install
 
 # Run the app
-$ flutter run
+$ npm start
 ```
 
 > **Note**
-> Make sure to use Flutter 1.22.6. Otherwise you might run into some issues.
+> Make sure to use React . Otherwise you might run into some issues.
 
 
 ## You may also like...
