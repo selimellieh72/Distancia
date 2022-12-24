@@ -86,7 +86,7 @@ $ npm start
 
 ## You may also like...
 
-- [Distancia](https://github.com/selimellieh72/Distantia-MERN) - Digitializing education
+- [Distancia - App](https://github.com/selimellieh72/DistanciaMobile) - Digitializing education
 - [Zoey](https://github.com/Ghaadyy/book-app-frontend) - Exchanging books
 
 ## Credits
@@ -100,4 +100,7 @@ $ npm start
 > [selimellieh.me](https://www.selimellieh.me) &nbsp;&middot;&nbsp;
 > GitHub [@selimellieh72](https://github.com/selimellieh72) &nbsp;&middot;&nbsp;
 > Twitter [@selim_ellieh](https://twitter.com/selim_ellieh)
+
+> [theokhalil.me](https://www.theokhalil.me) &nbsp;&middot;&nbsp;
+> GitHub [@Posenega](https://github.com/Posenega) &nbsp;&middot;&nbsp;
 
