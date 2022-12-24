@@ -128,9 +128,11 @@ $ npm install
 
 # Run the backend api
 node app.js
+````
 
-# On another terminal, run the client react app
+On another terminal, run the client react app:
 
+```bash
 # Go to the client folder
 cd client
 
