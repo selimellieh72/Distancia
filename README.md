@@ -59,7 +59,7 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_pd-reader(2).png"/>
   
   - Students can navigate through the material (videos, pdf, etc...) sent by the tutor.
-* Grades (Courses) Dashboard (Teacher)
+* Grades Dashboard (Teacher)
   <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_grades.png"/>
   - Teachers can manage all their courses from the home page dashboard
 
@@ -74,7 +74,7 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - By clicking the delete button, a teacher may delete the whole course contents
   - This include all materials, submitted homeworks!
   - This action is dangerous, the website requires the teacher to type the entire grade name before proceeding
- * Manage Grade (Teacher)
+* Manage Grade (Teacher)
  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_manage_grade.png"/>
   - By clicking the manage button, a teacher may manage the course
   - The teacher can see any incoming requests to join the grade and may accept them (or reject them) accordingly
