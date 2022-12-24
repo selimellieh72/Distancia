@@ -26,38 +26,41 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
 
   <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png"/>
   
-  - Our Home Page shows the different features you may find in our website introducing our vision.
+  - Our Home Page shows the different features you may find in our website.
   
 * Authentication <br/>
 
   <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_auth.png"/>
   
   - Sign up with full name, email, password and profile picture 
+  - Specify if you are a teacher (or not)
   - Login using email, password
   - Uses [Firebase](https://firebase.google.com/) Authentication
  
-* Join Course <br/>
+* Join Course (Student)<br/>
 
   <img height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_courses-student.png"/>
   
-  - Join courses using a secure ID provided by your teacher.
+  - Join courses using a secure ID provided by your teacher
+  - The teacher may then accept the request
   - Each course groups many tools such as: lectures, homeworks ...
  
   <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_grade-student-available.png"/>
   
-* Homework Management <br/>
+* Homework Management (Student)<br/>
 
   <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_homework-student.png"/>
   
   - Students can easily manage their homeworks and keep track of it.
-  - We offer an incredible tool that lets student submit their due work.
+  - We offer an incredible and interactive tool that lets student submit their due work.
  
-* Lecture Navigation <br/>
+* Lecture Navigation (Student)<br/>
 
   <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_pd-reader(2).png"/>
   
-  - Students can navigate through the material(videos, pdf, ...) sent by the tutor.
-  
+  - Students can navigate through the material (videos, pdf, etc...) sent by the tutor.
+* Create a Grade
+
 * Domain-Driven
   - This app uses the domain-driven design principles!
   
