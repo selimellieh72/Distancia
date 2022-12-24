@@ -22,20 +22,45 @@
 The COVID-19 pandemic presented unprecedented challenges to the education system, with schools and universities closing their doors and transitioning to online learning. In this time of crisis, "Distancia" was born as a solution to facilitate the educational environment between students and teachers. Developed by Selim Ellieh and Theo Khalil, two coding passionates, "Distancia" is a web platform that provides students with a means of communication with their teachers, access to course materials, and the ability to stay on top of homework assignments. The motivation behind "Distancia" was to provide a comprehensive and convenient learning platform for students and teachers during a time of uncertainty and change. In 2021, Distancia won the first place in a web development contest by the Lebanese American University.
 
 ## Key Features
-* Authentication <br/>
-  <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png"/>
+* Home Page <br/>
 
-  - Sign up with full name, email, password and profile picture
+  <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png"/>
+  
+  - Our Home Page shows the different features you may find in our website introducing our vision.
+  
+* Authentication <br/>
+
+  <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_auth.png"/>
+  
+  - Sign up with full name, email, password and profile picture 
   - Login using email, password
   - Uses [Firebase](https://firebase.google.com/) Authentication
-* Manage homeworks, chats, etc... <br/>
-  <img width='264px' height='528px' src="https://github.com/selimellieh72/DistanciaMobile/blob/master/3.png"/>
-  - Uses [Firestore](https://firebase.google.com/docs/firestore)
+ 
+* Join Course <br/>
+
+  <img height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_courses-student.png"/>
+  
+  - Join courses using a secure ID provided by your teacher.
+  - Each course groups many tools such as: lectures, homeworks ...
+ 
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_grade-student-available.png"/>
+  
+* Homework Management <br/>
+
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_homework-student.png"/>
+  
+  - Students can easily manage their homeworks and keep track of it.
+  - We offer an incredible tool that lets student submit their due work.
+ 
+* Lecture Navigation <br/>
+
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_pd-reader(2).png"/>
+  
+  - Students can navigate through the material(videos, pdf, ...) sent by the tutor.
+  
 * Domain-Driven
   - This app uses the domain-driven design principles!
-* Cross platform
-  - IOS and Android ready!
-
+  
 
 ## How To Use
 
