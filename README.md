@@ -148,6 +148,7 @@ $ npm start
 
 ## Credits
 - [React](https://reactjs.org)
+- [MongoDB](https://www.mongodb.com)
 - [Node.js](https://nodejs.org/en/)
 - [Express.js](https://expressjs.com/)
 - [Socket.IO](https://socket.io/)
