@@ -134,9 +134,6 @@ cd client
 npm install
 
 # Run React App
-
-
-# Run the app
 $ npm start
 ```
 
