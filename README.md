@@ -35,6 +35,7 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - Sign up with full name, email, password and profile picture 
   - Specify if you are a teacher (or not)
   - Login using email, password
+  - Signing up using google is also possible!
   - Uses [Firebase](https://firebase.google.com/) Authentication
  
 * Join Course (Student)<br/>
