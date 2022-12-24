@@ -23,7 +23,7 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
 
 ## Key Features
 * Authentication <br/>
-  <img width='264px' height='528px' src="https://github.com/selimellieh72/DistanciaMobile/blob/master/1.png"/>
+  <img width='264px' height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/Screen%20Shot%202022-12-24%20at%203.32.48%20PM.png"/>
   <img width='264px' height='528px' src="https://github.com/selimellieh72/DistanciaMobile/blob/master/2.png"/>
   - Sign up with full name, email, password and profile picture
   - Login using email, password
