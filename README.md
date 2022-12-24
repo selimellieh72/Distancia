@@ -97,7 +97,17 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - By clicking on "Homework" underneath each chapter, the teacher is able to manage homeworks due to the students
   - The teacher can add homeworks by specifying its name, its due date and if he wishes to accept answers
   - The teacher can then check all the answers of the students
+
+* Chatting system
+<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/chat.png"/>
+  - Real-time chat between the student and the teacher directly in addition to the whole class
+  - Uses web sockets!
   
+* Profile
+<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/profile.png"/>
+<img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/edit-profile.png"/>
+  - Clicking on the profile picture in the dashboard will open a little pop-up
+  - You can click on "Edit profile" to edit your profile (First Name and Last Name)
 ## How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [React js](https://reactjs.org), [Mongodb](https://www.mongodb.com). From your command line:
