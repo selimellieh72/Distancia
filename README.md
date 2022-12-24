@@ -70,32 +70,33 @@ The COVID-19 pandemic presented unprecedented challenges to the education system
   - The teacher can then either delete the course, add (or delete a new chapter), add a homework for each chapter and manage the grade as a whole
 
 * Delete Grade (Teacher)
- <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_delete_grade.png"/>
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_delete_grade.png"/>
   - By clicking the delete button, a teacher may delete the whole course contents
   - This include all materials, submitted homeworks!
   - This action is dangerous, the website requires the teacher to type the entire grade name before proceeding
+  
 * Manage Grade (Teacher)
- <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_manage_grade.png"/>
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_manage_grade.png"/>
   - By clicking the manage button, a teacher may manage the course
   - The teacher can see any incoming requests to join the grade and may accept them (or reject them) accordingly
   - The teacher can also see all the students enrolled in his class
+
 * Add Chapter (Teacher)
- <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_chapter.png"/>
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_chapter.png"/>
   - By clicking the add chapter button, a teacher may add a chapter to the course
   - The teacher has to specify the name of that specific chapter
   - Then, he may be able to post lecture materials, assignments related to this specific chapter (That the students enrolled may see)
-* Upload lecture material (Teacher)
- <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_lecture.png"/>
+  
+* Upload Lecture material (Teacher)
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_lecture.png"/>
   - By clicking on "Lecture" underneath each chapter, the teacher is able to post any lecture material for the students (in any format)
 
 * Add due homework (Teacher)
- <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_homework.png"/>
+  <img height="528px" src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/teacher_add_homework.png"/>
   - By clicking on "Homework" underneath each chapter, the teacher is able to manage homeworks due to the students
   - The teacher can add homeworks by specifying its name, its due date and if he wishes to accept answers
   - The teacher can then check all the answers of the students
   
-  
-
 ## How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [React js](https://reactjs.org), [Mongodb](https://www.mongodb.com). From your command line:
@@ -136,5 +137,5 @@ $ npm start
 > Twitter [@selim_ellieh](https://twitter.com/selim_ellieh)
 
 > [theokhalil.me](https://www.theokhalil.me) &nbsp;&middot;&nbsp;
-> GitHub [@Posenega](https://github.com/Posenega) &nbsp;&middot;&nbsp;
+> GitHub [@Posenega](https://github.com/Posenega)
 
