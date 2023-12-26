@@ -28,7 +28,8 @@ You can visit an online live demo now by clicking [here](https://edudistancia.he
 ## Key Features
 * Home Page <br/>
 
-  <img  height='528px' src="https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png"/>
+    ![Distancia Home](https://github.com/selimellieh72/Distantia-MERN/blob/main/preview/distancia_home.png)
+
   
   - Our Home Page shows the different features you may find in our website.
   
